@@ -144,11 +144,19 @@ Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
   (\textbf{TODO} I've already written the proof on paper)
 \end{proof}
 
-\subsection*{Bernstein inequality}
+\subsection{Hoeffding-Bernstein inequalities}
 
 \begin{theorem}
-  
+  Let $\|f\|_\infty < c$, $\E f(X_1,\ldots, X_m) = 0$ and $\sigma^2 = \E f^2(X_1,\ldots, X_m)$. Then for any $t > 0$,
+  \begin{equation}
+    \P\{U_m^n(f,P) > t\} \leq \exp \left(\frac{(n/m)t^2}{2\sigma^2 + (2/3)ct}\right)
+  \end{equation}
 \end{theorem}
+
+\begin{proof}
+  Proposition 2.3(a) M.A. Arcones, E. Gine, Limit theorems for U-processes, Ann. Probab. 21 (1993) 1494-1542
+\end{proof}
+
 
 \subsection{Application to Estimation of Data Dimension}
 The article (ref) explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how does the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution on any manifold.\\[4mm]
