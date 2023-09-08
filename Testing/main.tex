@@ -1,13 +1,20 @@
 \documentclass[12pt]{exam}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[round]{natbib}
-\bibliographystyle{plainnat}
 \usepackage{amsfonts, amsthm, amsmath, amssymb, hyperref, cancel, wrapfig}
 \usepackage{tikz, circuitikz, quiver}
 \usepackage{algpseudocode, algorithm}
+\bibliographystyle{plainnat}
 \parindent=2pt
 \pagestyle{head}
 
+%%--CORRECTIONS--------------------------------------------------
+\usepackage[switch, displaymath, mathlines]{lineno}
+\linenumbers
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+
+\newcommand\inlinetag{\stepcounter{equation}\ (\theequation)}
 %%---------------------------------------------------------------
 %% AMS-LaTeX Paper 
 %%---------------------------------------------------------------
@@ -25,11 +32,13 @@
 
 \usepackage{bbm,dsfont}
 \def\1{\ensuremath{\mathds{1}}}
-\def\E{\ensuremath{\mathbf{E}}}
+\def\E{\ensuremath{\mathbf{E}}\:}
 \def\P{\ensuremath{\mathbf{P}}}
 
 % Custom text commands
-\def\Var{\ensuremath{\textbf{Var}}}
+\def\Var{\ensuremath{\mathbf{Var}}\,}
+\def\Bi{\ensuremath{\mathrm{Bi}}}
+\def\Be{\ensuremath{\mathrm{Be}}}
 
 % Theorems and more
 \newtheorem{theorem}{Theorem}[section]
@@ -61,10 +70,11 @@ Martín Prado \- 201922940
 \end{center}
 \vspace{10pt}
 
-\section{Basic Inequalities}
+\section{Introduction}
+\subsection{Basic Inequalities}
 
 \begin{theorem}[Markov's inequality]\label{markov}
-  For a random variable $X$ with $P\{X < 0\} = 0$ and $t>0$, we have
+  For a random variable $X$ with $\P\{X < 0\} = 0$ and $t>0$, we have
   \[ \P\{X \geq t\} \leq \frac{\E X}{t}.\]
   It follows that for a non-decreasing function $\varphi$ which only takes non-negative values,
   \[ \P\{X \geq t\} = \P\{\varphi(X) \geq \varphi(t)\} \leq \frac{\varphi(X)}{\varphi(t)}.\]
@@ -77,38 +87,75 @@ Martín Prado \- 201922940
     & \geq t \cdot \1_{X\geq t} + 0,
  \end{array}\]
 and thus,
-\[ \E X \geq t \cdot \E \1_{X\geq t} = t \P\{X \geq t\} \]
+\[ \E X \geq t \cdot \E \1_{X\geq t} = t \cdot \P\{X \geq t\}. \]
+For the second statement, apply the same argument on the random variable $Y := \varphi(X)$ and the constant $s := \varphi(t)$.
 \end{proof}
 
+\vspace*{4mm}
+
 \begin{theorem}[Chebyshev's inequality]\label{chebyshev}
-  For a random variable $X$ with $P\{X < 0\} = 0$ and $t>0$, we have
-  \[ \P\{X \geq t\} \leq \frac{\E X}{t}.\]
-  It follows that for a non-decreasing function $\varphi$ which only takes non-negative values,
-  \[ \P\{X \geq t\} = \P\{\varphi(X) \geq \varphi(t)\} \leq \frac{\varphi(X)}{\varphi(t)}.\]
+  For $t > 0$ and a random variable $X$ with mean $\mu = \E X$ and variance $\sigma^2 = \Var X$, then
+  \[ \P\{|X-\mu| \geq t\} \leq \sigma^2 t^{-2}. \] 
 \end{theorem}
 
-% The most commonly used concentration inequalities are based on how far a random variable is from its expected value. The first example illustrates how can
+\begin{proof}
+  Applying Markov's inequality with $\varphi: x \mapsto x^2$ we obtain,
+  \[ \P\{|X-\mu| \geq t \} = \P\{|X-\mu|^2 \geq t^2 \} \leq \frac{\E [{(X-\mu)}^2]}{t^2} = \sigma^2 t^{-2}.\] 
+\end{proof}
+ 
+
+\begin{theorem}[Jensen's inequality]\label{jensen}
+  For any real valued random variable $X$ and convex function $\varphi$
+  \[ \varphi(\E X) \leq \E \varphi(X) \] 
+\end{theorem}
 
 \section{Exponential Inequalities}
 
 %Introduction
 
-\subsection*{Chernoff-Okamoto Inequalities}
+\subsection{Chernoff-Okamoto Inequalities}
 
 % \begin{theorem}[Chernoff Inequality for Upper Tails]
 % Let $X_i$ be Bernoulli random variables with parameters $p_i$, $S_N = \sum_{i = 1}^N X_i$ and $\mu_N = $
 % \end{theorem}
 
+Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
+  \[
+    \P\{X \geq \lambda + t\} \leq e^{-u(\lambda+t)} \E e^{uX} = e^{-u(\lambda+ t)} {(1-p + p e^{u})}^n. 
+  \] 
+  The minimum on the right hand equation can be obtained at
+  \[ e^{u} = \frac{\lambda+t}{(n-\lambda-t)} \cdot \frac{1-p}{p}. \]
+  Therefore, for $0 \leq t \leq n-\lambda$,
+  \begin{equation}\label{co:1}
+    \P\{X \geq \lambda + t\} \leq {\left(\frac{\lambda}{\lambda+t}\right)}^{\lambda + t} {\left(\frac{n-\lambda}{n-\lambda-t}\right)}^{n - \lambda - t}
+  \end{equation}
+
+\begin{theorem}\label{co:T1}
+  Let $X$ be random variable with the binomial distribution $\Bi(n,p)$ with $\lambda := np = \E X$, then for $t \geq 0$,
+  \begin{equation}\label{co:2}
+    \P\{X \geq \lambda + t\} \leq \exp\left(- \frac{t^2}{2(\lambda+t/3)}\right)
+  \end{equation}
+  \begin{equation}\label{co:3}
+    \P\{X \leq \lambda - t\} \leq \exp\left(- \frac{t^2}{2\lambda}\right)
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  (\textbf{TODO} I've already written the proof on paper)
+\end{proof}
+
+\subsection*{Bernstein inequality}
+
 \begin{theorem}
   
 \end{theorem}
 
-\subsection*{Application to Estimation of Data Dimension}
+\subsection{Application to Estimation of Data Dimension}
 The article (ref) explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how does the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution on any manifold.\\[4mm]
 
 In the first place, let $Z_1, \ldots, Z_k$ be a i.i.d.\ sample uniformly distributed on $\S^{d-1}$. Then, we have the following formula for the variance of the angles between $Z_i,Z_j, i\neq j$:
 
-\begin{equation}\label{ade:1}\tag{1}\everymath{\displaystyle}
+\begin{equation}\label{ade:1}\everymath{\displaystyle}
   \beta_d := \Var(\arccos \angles{Z_i,Z_j}) = \begin{cases}
     \frac{\pi^2}{4} - 2 \sum_{j = 1}^{k} {(2j-1)}^{-2}, & \mbox{ if } d = 2k+1 \mbox{ is odd},\\
     \frac{\pi^2}{12}- 2 \sum_{j = 1}^{k} {(2j)}^{-2}, & \mbox{ if } d = 2k+2 \mbox{ is even.}
@@ -122,7 +169,7 @@ The previous formula for the angle variance is proven in (ref) and will be skipp
   \[ \frac{1}{d} \leq \beta_d \leq \frac{1}{d-1}. \] 
 \end{theorem}
 
-\begin{proof}[Proof Theorem~\ref*{ade:T1}]
+\begin{proof}
   The even and the odd cases must be distinguished:
   \begin{enumerate}
     \item[(1)] When $d = 2k+2$ is even:
@@ -173,7 +220,7 @@ The previous formula for the angle variance is proven in (ref) and will be skipp
 Knowing that for every $d > 1$, $\beta_d$ is in the interval $[\tfrac{1}{d}, \tfrac{1}{d-1}]$, we are going to guess the dimension of the sphere by estimating $\beta_d$, and then, taking $d$ from the lower bound of the interval where our estimator is. Since $\beta_d$ is the variance of the angles in our sphere, our best choice for an estimator is the angle's sample variance,
 
 
-\begin{equation}\label{ade:2}\tag{2}
+\begin{equation}\label{ade:2}
   U_{k} = \binom{k}{2}^{-1} \sum_{i<j\leq k}{\left(
     \arccos\angles{Z_i, Z_j} - \frac{\pi^2}{2} 
     \right)}^{2}.
@@ -183,9 +230,11 @@ In Proposition 1.\ of (ref) the authors prove that it's the Minimum Variance Unb
 
 Let $X_1,\ldots, X_n$ be a i.i.d.\ sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ a point. For $C>0 \in  \R$, let $k = \lceil C \ln(n)\rceil$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$
 
-\begin{theorem}\label{ade:T2}
+\begin{theorem}[Bound $k$-neighbors]\label{ade:T2}
   For any sufficiently large $C > 0$, we have that, there exists $n_0$ such that, with probability 1, for every $n \geq n_0$,
-  \[ R(n) \leq f_{p,P,C}(n) = O(\sqrt[d]{\ln(n)/n}).\]
+  \begin{equation}\label{ade:3}
+    R(n) \leq f_{p,P,C}(n) = O(\sqrt[d]{\ln(n)/n}).
+  \end{equation}
   The function $f_{p,P,C}$ is a deterministic function which depends on $p,\, P$ and $C$.
 \end{theorem}
 
@@ -198,13 +247,14 @@ What follows from the previous and the following lemma is that if we know that $
 \begin{theorem}[Projection Distance Bounds]\label{ade:T3}
   For any $i<j \leq n$,
   \begin{enumerate}
-    \item[(i)]    \( \|X_i-\pi(X_i)\|  =   O(\|\pi (X_i)\|^2) \)
-    \item[(ii)]   \( \|Z_i-\widehat{W_i}\|  =   O(\|\pi (X_i) \|) \)
+    \item[(i)]    \( \|X_i-\pi(X_i)\|  =   O(\|\pi (X_i)\|^2) \hfill\inlinetag  \)
+    \item[(ii)]   \( \|Z_i-\widehat{W_i}\|  =   O(\|\pi (X_i) \|) \hfill\inlinetag \)
     \item[(iii)]  The inner products (cosine of angles) can be bounded as it follows:
-    \[ |\angles{Z_i,Z_j} - \langle\widehat{W_i}, \widehat{W_j}\rangle| \leq K r,\]
+    \begin{equation}\label{ade:6}
+      |\angles{Z_i,Z_j} - \langle\widehat{W_i}, \widehat{W_j}\rangle| \leq K r,
+    \end{equation}
     for a constant $K\in\R$, whenever $r \geq \max (\|\pi(X_i)\|,\|\pi(X_j)\|)$.
   \end{enumerate}
-  
 \end{theorem}
 
 The last result in the article shows that if we estimate $\beta_d$ as we did with $U_{k,n} = U_k$ in equation (\ref{ade:2}), and then, extract $\widehat{d}$ from the interval where $U_{k,n}$ is located, it follows that,
