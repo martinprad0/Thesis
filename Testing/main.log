@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/CVE-2023-32700 patched) (preloaded format=pdflatex 2023.6.25)  8 SEP 2023 03:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/CVE-2023-32700 patched) (preloaded format=pdflatex 2023.6.25)  8 SEP 2023 03:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -711,12 +711,12 @@ File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
 
  []
 
 [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
 
  []
 
@@ -729,15 +729,15 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 404CDA39B0966AC0F2D0409BE1DB0191;1131.
  ) 
 Here is how much of TeX's memory you used:
- 39095 strings out of 476182
- 905621 string characters out of 5796581
+ 39096 strings out of 476182
+ 905628 string characters out of 5796581
  1867793 words of memory out of 6000000
- 58903 multiletter control sequences out of 15000+600000
+ 58904 multiletter control sequences out of 15000+600000
  520606 words of font info for 64 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  100i,11n,104p,594b,599s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (5 pages, 169114 bytes).
+Output written on main.pdf (5 pages, 169400 bytes).
 PDF statistics:
  153 PDF objects out of 1000 (max. 8388607)
  116 compressed objects within 2 object streams

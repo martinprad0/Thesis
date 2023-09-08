@@ -140,21 +140,27 @@ Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
   \end{equation}
 \end{theorem}
 
+\textbf{Used in:} Theorem~\ref*{ade:T2}
+
 \begin{proof}
   (\textbf{TODO} I've already written the proof on paper)
 \end{proof}
 
 \subsection{Hoeffding-Bernstein inequalities}
 
-\begin{theorem}
+\begin{theorem}\label{hb:T1}
   Let $\|f\|_\infty < c$, $\E f(X_1,\ldots, X_m) = 0$ and $\sigma^2 = \E f^2(X_1,\ldots, X_m)$. Then for any $t > 0$,
   \begin{equation}
     \P\{U_m^n(f,P) > t\} \leq \exp \left(\frac{(n/m)t^2}{2\sigma^2 + (2/3)ct}\right)
   \end{equation}
 \end{theorem}
 
+\textbf{Used in:} Theorem~\ref*{ade:T4}
+
 \begin{proof}
-  Proposition 2.3(a) M.A. Arcones, E. Gine, Limit theorems for U-processes, Ann. Probab. 21 (1993) 1494-1542
+  Proposition 2.3(a) M.A. Arcones, E. Gine, Limit theorems for U-processes, Ann. Probab. 21 (1993) 1494-1542 
+  
+  https://sci-hub.se/https://www.jstor.org/stable/2244585
 \end{proof}
 
 
