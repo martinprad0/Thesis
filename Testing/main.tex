@@ -61,59 +61,68 @@ Martín Prado \- 201922940
 \end{center}
 \vspace{10pt}
 
-% \section*{Basic Inequalities}
+\section{Basic Inequalities}
 
-% \begin{theorem}[Markov's Inequality]
-%   For a random variable $X$ with $P\{X < 0\} = 0$ and $t>0$, we have
-%   \[ \P\{X \geq t\} \leq \frac{\E X}{t}.\]
-%   It follows that for a non-decreasing function $\varphi$ which only takes non-negative values,
-%   \[ \P\{X \geq t\} = \P\{\varphi(X) \geq \varphi(t)\} \leq \frac{\varphi(X)}{\varphi(t)}.\]
-% \end{theorem}
+\begin{theorem}[Markov's inequality]\label{markov}
+  For a random variable $X$ with $P\{X < 0\} = 0$ and $t>0$, we have
+  \[ \P\{X \geq t\} \leq \frac{\E X}{t}.\]
+  It follows that for a non-decreasing function $\varphi$ which only takes non-negative values,
+  \[ \P\{X \geq t\} = \P\{\varphi(X) \geq \varphi(t)\} \leq \frac{\varphi(X)}{\varphi(t)}.\]
+\end{theorem}
 
-% \begin{proof}
-%  In the first place, note that
-%  \[ \begin{array}{rl}
-%   X & = X\cdot \1_{X\geq t} + X \cdot \1_{X < t}\\
-%     & \geq t \cdot \1_{X\geq t} + 0,
-%  \end{array}\]
-% and thus,
-% \[ \E X \geq t \cdot \E \1_{X\geq t} = t \P\{X \geq t\} \]
+\begin{proof}
+ In the first place, note that
+ \[ \begin{array}{rl}
+  X & = X\cdot \1_{X\geq t} + X \cdot \1_{X < t}\\
+    & \geq t \cdot \1_{X\geq t} + 0,
+ \end{array}\]
+and thus,
+\[ \E X \geq t \cdot \E \1_{X\geq t} = t \P\{X \geq t\} \]
+\end{proof}
 
-% \end{proof}
+\begin{theorem}[Chebyshev's inequality]\label{chebyshev}
+  For a random variable $X$ with $P\{X < 0\} = 0$ and $t>0$, we have
+  \[ \P\{X \geq t\} \leq \frac{\E X}{t}.\]
+  It follows that for a non-decreasing function $\varphi$ which only takes non-negative values,
+  \[ \P\{X \geq t\} = \P\{\varphi(X) \geq \varphi(t)\} \leq \frac{\varphi(X)}{\varphi(t)}.\]
+\end{theorem}
 
 % The most commonly used concentration inequalities are based on how far a random variable is from its expected value. The first example illustrates how can
 
-\section*{Exponential Inequalities}
+\section{Exponential Inequalities}
 
 %Introduction
 
-\subsection*{Chernoff Inequalities}
+\subsection*{Chernoff-Okamoto Inequalities}
 
-\begin{theorem}[Chernoff Inequality for Upper Tails]
-Let $X_i$ be Bernoulli random variables with parameters $p_i$, $S_N = \sum_{i = 1}^N X_i$ and $\mu_N = $
+% \begin{theorem}[Chernoff Inequality for Upper Tails]
+% Let $X_i$ be Bernoulli random variables with parameters $p_i$, $S_N = \sum_{i = 1}^N X_i$ and $\mu_N = $
+% \end{theorem}
+
+\begin{theorem}
+  
 \end{theorem}
-
 
 \subsection*{Application to Estimation of Data Dimension}
 The article (ref) explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how does the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution on any manifold.\\[4mm]
 
-In the first place, let $Z_1, \cdots, Z_k$ be a i.i.d. sample uniformly distributed on $\S^{d-1}$. Then, we have the following formula for the variance of the angles between $Z_i,Z_j, i\neq j$:
+In the first place, let $Z_1, \ldots, Z_k$ be a i.i.d.\ sample uniformly distributed on $\S^{d-1}$. Then, we have the following formula for the variance of the angles between $Z_i,Z_j, i\neq j$:
 
 \begin{equation}\label{ade:1}\tag{1}\everymath{\displaystyle}
   \beta_d := \Var(\arccos \angles{Z_i,Z_j}) = \begin{cases}
-    \frac{\pi^2}{4} - 2 \sum_{j = 1}^{k} (2j-1)^{-2}, & \mbox{ if } d = 2k+1 \mbox{ is odd},\\
-    \frac{\pi^2}{12}- 2 \sum_{j = 1}^{k} (2j)^{-2}, & \mbox{ if } d = 2k+2 \mbox{ is even.}
+    \frac{\pi^2}{4} - 2 \sum_{j = 1}^{k} {(2j-1)}^{-2}, & \mbox{ if } d = 2k+1 \mbox{ is odd},\\
+    \frac{\pi^2}{12}- 2 \sum_{j = 1}^{k} {(2j)}^{-2}, & \mbox{ if } d = 2k+2 \mbox{ is even.}
   \end{cases}
 \end{equation}
 
 The previous formula for the angle variance is proven in (ref) and will be skipped (\textbf{TODO}: Should it really be skipped?). In order to give more insight on how we will be choosing the estimator $\widehat{d}$ for the dimension of the sphere, consider the following theorem.
 
-\begin{theorem}[cool name] 
-  For every $d > 1$, the following bound holds:
+\begin{theorem}[Bounds for $\beta_d$]\label{ade:T1}
+  For every $d > 1$,
   \[ \frac{1}{d} \leq \beta_d \leq \frac{1}{d-1}. \] 
 \end{theorem}
 
-\begin{proof}
+\begin{proof}[Proof Theorem~\ref*{ade:T1}]
   The even and the odd cases must be distinguished:
   \begin{enumerate}
     \item[(1)] When $d = 2k+2$ is even:
@@ -122,12 +131,12 @@ The previous formula for the angle variance is proven in (ref) and will be skipp
     It follows that
     \[\everymath{\displaystyle}
       \begin{array}{rl}
-        \beta_d & = \frac{\pi^2}{12}- 2 \sum_{j = 1}^{k} (2j)^{-2}\\
+        \beta_d & = \frac{\pi^2}{12} - 2 \sum_{j = 1}^{k} {(2j)}^{-2}\\
         & = \frac{\pi^2}{12} - \frac{1}{2} \sum_{j = 1}^{k} j^{-2}\\
         & = \frac{1}{2} \sum_{j = k+1}^{\infty} j^{-2}.
       \end{array}      
      \]
-    Since $(j^{-2})_{j \in \N}$ is a monotonically decreasing sequence, it follows that (\textbf{TODO}: Improve array syntax)
+    Since ${(j^{-2})}_{j \in \N}$ is a monotonically decreasing sequence, it follows that (\textbf{TODO}: Improve array syntax)
     \[\everymath{\displaystyle} 
       \begin{array}{rrl}
         \frac{1}{d}   & = \frac{1}{2k+2}  & = \frac{1}{2} \int_{k+1}^{\infty}x^{-2} dx\\[5mm]
@@ -139,23 +148,23 @@ The previous formula for the angle variance is proven in (ref) and will be skipp
     On the other hand, note that
     \[\everymath{\displaystyle} 
       \begin{array}{rl}
-      \lim_{k\to\infty} \; \sum_{j = 1}^{k} (2j-1)^{-2} 
-      & = \lim_{k\to\infty} \sum_{j = 1}^{2k-1} j^{-2} - \sum_{j = 1}^{k-1} (2j)^{-2}\\
+      \lim_{k\to\infty} \; \sum_{j = 1}^{k} {(2j-1)}^{-2} 
+      & = \lim_{k\to\infty} \sum_{j = 1}^{2k-1} j^{-2} - \sum_{j = 1}^{k-1} {(2j)}^{-2}\\
       & = \lim_{k\to\infty} \sum_{j = 1}^{2k-1} j^{-2} - \frac{1}{4}\sum_{j = 1}^{k-1} j^{-2}\\
       & = \frac{\pi^2}{6}-\frac{\pi^2}{24} = \frac{\pi^2}{8}
     \end{array}\]
     Then,
     \[\everymath{\displaystyle}
     \begin{array}{rl}
-      \beta_d & = \frac{\pi^2}{4} - 2 \sum_{j = 1}^{k} \left(2j-1\right)^{-2}\\
-      & = 2\sum_{j = k+1}^{\infty}\left(2j-1\right)^{-2}.\\
+      \beta_d & = \frac{\pi^2}{4} - 2 \sum_{j = 1}^{k} {\left(2j-1\right)}^{-2}\\
+      & = 2\sum_{j = k+1}^{\infty}{\left(2j-1\right)}^{-2}.\\
     \end{array}      
    \]
    Using a similar argument we conclude that (\textbf{TODO}: Improve array syntax)
    \[\everymath{\displaystyle} 
       \begin{array}{rrl}
-        \frac{1}{d}& = \frac{1}{2k+1}  & = 2 \int_{k+1}^{\infty}(2x-1)^{-2} dx\\[5mm]
-      & \leq \beta_d    & \leq  2 \int_{k+1/2}^{\infty}(2x-1)^{-2} dx\\[5mm]
+        \frac{1}{d}& = \frac{1}{2k+1}  & = 2 \int_{k+1}^{\infty}{(2x-1)}^{-2} dx\\[5mm]
+      & \leq \beta_d    & \leq  2 \int_{k+1/2}^{\infty}{(2x-1)}^{-2} dx\\[5mm]
       &  & = \frac{1}{2k+2} = \frac{1}{d-1}.
     \end{array}  \] 
   \end{enumerate}
@@ -165,26 +174,29 @@ Knowing that for every $d > 1$, $\beta_d$ is in the interval $[\tfrac{1}{d}, \tf
 
 
 \begin{equation}\label{ade:2}\tag{2}
-  U_{k} = {k \choose 2}^{-1} \sum_{i<j\leq k}\left(
+  U_{k} = \binom{k}{2}^{-1} \sum_{i<j\leq k}{\left(
     \arccos\angles{Z_i, Z_j} - \frac{\pi^2}{2} 
-    \right)^{2}.
+    \right)}^{2}.
 \end{equation}
 
-In Proposition 1. of (ref) the authors prove that it's the Minimum Variance Unbiased Estimator for $\beta_d$ on the unit sphere. However, the authors also prove that this result can be generalized for any manifold with samples of any distribution.\\[5mm]
+In Proposition 1.\ of (ref) the authors prove that it's the Minimum Variance Unbiased Estimator for $\beta_d$ on the unit sphere. However, the authors also prove that this result can be generalized for any manifold with samples of any distribution.\\[5mm]
 
-Let $X_1,\ldots, X_n$ be a i.i.d. sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ a point. For $C>0 \in  \R$, let $k = \lceil C \ln(n)\rceil$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$
+Let $X_1,\ldots, X_n$ be a i.i.d.\ sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ a point. For $C>0 \in  \R$, let $k = \lceil C \ln(n)\rceil$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$
 
-\begin{theorem}
+\begin{theorem}\label{ade:T2}
   For any sufficiently large $C > 0$, we have that, there exists $n_0$ such that, with probability 1, for every $n \geq n_0$,
   \[ R(n) \leq f_{p,P,C}(n) = O(\sqrt[d]{\ln(n)/n}).\]
   The function $f_{p,P,C}$ is a deterministic function which depends on $p,\, P$ and $C$.
 \end{theorem}
 
+(\textbf{TODO}: I need help connecting the previous theorem with the following idea)
+
 Let $\pi : R^m \to T_p M$ be the orthogonal projection on the Tangent Space of $M$ at $p$. Also, define $W_i := \pi(X_i)$ and then normalize,
 \[ Z_i := \frac{X_i}{\|X_i\|},\hspace*{5mm} \widehat{W_i} := \frac{W_i}{\|W_i\|}. \] 
-What follows from the previous and the following lemma is that if we know that $W_1,\cdots, W_k$ behave similar to a uniformly distributed sample on the sphere $\S^d$, then, $Z_1,\cdots, Z_k$ (the normalized $k$-nearest neighbors of $p$) also behave like they are uniformly distributed on $\S^d$.
+What follows from the previous and the following lemma is that if we know that $W_1,\ldots, W_k$ behave similar to a uniformly distributed sample on the sphere $\S^d$, then, $Z_1,\ldots, Z_k$ (the normalized $k$-nearest neighbors of $p$) also behave like they are uniformly distributed on $\S^d$.
 
-\begin{theorem}[Projection Distance Bounds] For any $i<j \leq n$,
+\begin{theorem}[Projection Distance Bounds]\label{ade:T3}
+  For any $i<j \leq n$,
   \begin{enumerate}
     \item[(i)]    \( \|X_i-\pi(X_i)\|  =   O(\|\pi (X_i)\|^2) \)
     \item[(ii)]   \( \|Z_i-\widehat{W_i}\|  =   O(\|\pi (X_i) \|) \)
@@ -196,11 +208,15 @@ What follows from the previous and the following lemma is that if we know that $
 \end{theorem}
 
 The last result in the article shows that if we estimate $\beta_d$ as we did with $U_{k,n} = U_k$ in equation (\ref{ade:2}), and then, extract $\widehat{d}$ from the interval where $U_{k,n}$ is located, it follows that,
-\begin{theorem}[Consistency] When $n\to \infty$,
+\begin{theorem}[Consistency]\label{ade:T4}
+  When $n\to \infty$,
   \[ \P\{\widehat{d} \neq d\} \to 0.\]
 \end{theorem}
 
+\subsubsection*{Proofs}
 
-
+\begin{proof}[Theorem~\ref{ade:T2}]
+  
+\end{proof}
 
 \end{document}
