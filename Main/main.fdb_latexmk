@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1694571028 "/home/martin/Documents/VSCode/Latex/Thesis/Thesis/main.tex" "main.pdf" "main" 1694571029 0
-  "../Chapters/chapter1.tex" 1694571027 1535 a6cddf3ed4c5639db73bbcfdc5960d68 ""
+["pdflatex"] 1694571915 "/home/martin/Documents/VSCode/Latex/Thesis/Main/main.tex" "main.pdf" "main" 1694571917 0
+  "../Chapters/chapter1.tex" 1694571913 1536 0e48085b7621d76a4a70e1fd276ecd4e ""
   "../Chapters/chapter2.tex" 1694570727 1917 1637d2abef17a3fa50b81e0af3fa639d ""
   "../Chapters/chapter3.tex" 1694570491 6839 cc5458fdf91bef073430dc884267214d ""
-  "/home/martin/Documents/VSCode/Latex/Thesis/Thesis/main.tex" 1694570516 1866 91ee9128a0e73c45953520622ef94340 ""
+  "/home/martin/Documents/VSCode/Latex/Thesis/Main/main.tex" 1694570516 1866 91ee9128a0e73c45953520622ef94340 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -218,9 +218,9 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1684972800 40326 aba987258e6d6b6da5dec3a727ea174b ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1687146416 4548386 095bdf62675e309b2cc0e41f950c32d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1687739528 7862973 fd9836cf19362051e927da9ef3f385f3 ""
-  "main.aux" 1694571029 6599 65df65a4d0533723ae4719428a5f0558 "pdflatex"
+  "main.aux" 1694571917 6599 f546079ab7b0f1f3bd1975a1ed8f4427 "pdflatex"
   "main.tex" 1694570516 1866 91ee9128a0e73c45953520622ef94340 ""
-  "main.toc" 1694571029 571 f240cbcf2e811b262f1891ec5b960cc7 "pdflatex"
+  "main.toc" 1694571917 571 f240cbcf2e811b262f1891ec5b960cc7 "pdflatex"
   (generated)
   "main.aux"
   "main.log"

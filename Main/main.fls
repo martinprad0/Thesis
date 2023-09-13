@@ -1,8 +1,8 @@
-PWD /home/martin/Documents/VSCode/Latex/Thesis/Thesis
+PWD /home/martin/Documents/VSCode/Latex/Thesis/Main
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/martin/Documents/VSCode/Latex/Thesis/Thesis/main.tex
+INPUT /home/martin/Documents/VSCode/Latex/Thesis/Main/main.tex
 OUTPUT main.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbook.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbook.cls
