@@ -1,0 +1,72 @@
+\documentclass[oneside]{scrbook}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+\usepackage{bookmark}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[round]{natbib}
+\usepackage{amsfonts, amsthm, amsmath, amssymb, hyperref, cancel, wrapfig}
+\usepackage{tikz, circuitikz}
+\usepackage{algpseudocode, algorithm}
+\bibliographystyle{plainnat}
+
+%%--CORRECTIONS--------------------------------------------------
+\usepackage[switch, displaymath, mathlines]{lineno}
+\linenumbers{}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+
+\newcommand\inlinetag{\stepcounter{equation}\ (\theequation)}
+
+
+%%--MATH---------------------------------------------------------
+
+% Custom Letters
+\def\N{\ensuremath{\mathbb{N}}}
+\def\Z{\ensuremath{\mathbb{Z}}}
+\def\Q{\ensuremath{\mathbb{Q}}}
+\def\R{\ensuremath{\mathbb{R}}}
+\def\S{\ensuremath{\mathbb{S}}}
+
+\usepackage{bbm,dsfont}
+\def\1{\ensuremath{\mathds{1}}}
+\def\E{\ensuremath{\mathbf{E}}\:}
+\def\P{\ensuremath{\mathbf{P}}}
+
+% Custom text commands
+\def\Var{\ensuremath{\mathbf{Var}}\,}
+\def\Bi{\ensuremath{\mathrm{Bi}}}
+\def\Be{\ensuremath{\mathrm{Be}}}
+
+% Theorems and more
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% Custom Commands
+\newcommand{\angles}[1]{\ensuremath{\left\langle}#1\ensuremath{\right\rangle} }
+
+% \title{A Sample PhD Thesis}
+% \author{A. N. Other}
+% \date{July 2013}
+% \titlehead{A Thesis submitted for the degree of Doctor of Philosophy}
+% \publishers{School of Something\\University of Somewhere}
+
+\begin{document}
+
+% \maketitle
+
+\frontmatter
+\tableofcontents
+\mainmatter{}
+
+\input{../Chapters/chapter1}
+
+\input{../Chapters/chapter2}
+
+\input{../Chapters/chapter3}
+
+\backmatter{}
+
+% The bibliography will go here
+\end{document}

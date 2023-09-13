@@ -1,0 +1,51 @@
+\chapter{Exponential Inequalities}
+
+\section{Chernoff-Okamoto Inequalities}
+
+% \begin{theorem}[Chernoff Inequality for Upper Tails]
+% Let $X_i$ be Bernoulli random variables with parameters $p_i$, $S_N = \sum_{i = 1}^N X_i$ and $\mu_N = $
+% \end{theorem}
+
+Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
+  \[
+    \P\{X \geq \lambda + t\} \leq e^{-u(\lambda+t)} \E e^{uX} = e^{-u(\lambda+ t)} {(1-p + p e^{u})}^n. 
+  \] 
+  The right hand equation is minimized when,
+  \[ e^{u} = \frac{\lambda+t}{(n-\lambda-t)} \cdot \frac{1-p}{p}. \]
+  Therefore, for $0 \leq t \leq n-\lambda$,
+  \begin{equation}\label{co:1}
+    \P\{X \geq \lambda + t\} \leq {\left(\frac{\lambda}{\lambda+t}\right)}^{\lambda + t} {\left(\frac{n-\lambda}{n-\lambda-t}\right)}^{n - \lambda - t}
+  \end{equation}
+
+\begin{theorem}\label{co:T1}
+  Let $X$ be random variable with the binomial distribution $\Bi(n,p)$ with $\lambda := np = \E X$, then for $t \geq 0$,
+  \begin{equation}\label{co:2}
+    \P\{X \geq \lambda + t\} \leq \exp\left(- \frac{t^2}{2(\lambda+t/3)}\right)
+  \end{equation}
+  \begin{equation}\label{co:3}
+    \P\{X \leq \lambda - t\} \leq \exp\left(- \frac{t^2}{2\lambda}\right)
+  \end{equation}
+\end{theorem}
+
+\textbf{Used in:} Theorem~\ref*{ade:T2}
+
+\begin{proof}
+  (\textbf{TODO} I've already written the proof on paper)
+\end{proof}
+
+\section{Hoeffding-Bernstein inequalities}
+
+\begin{theorem}\label{hb:T1}
+  Let $\|f\|_\infty < c$, $\E f(X_1,\ldots, X_m) = 0$ and $\sigma^2 = \E f^2(X_1,\ldots, X_m)$. Then for any $t > 0$,
+  \begin{equation}
+    \P\{U_m^n(f,P) > t\} \leq \exp \left(\dfrac{\tfrac{n}{m}t^2}{2\sigma^2 + \tfrac{2}{3}ct}\right)
+  \end{equation}
+\end{theorem}
+
+\textbf{Used in:} Theorem~\ref*{ade:T4}
+
+\begin{proof}
+  Proposition 2.3(a) M.A. Arcones, E. Gine, Limit theorems for U-processes, Ann. Probab. 21 (1993) 1494\-1542 
+  
+  https://sci-hub.se/https://www.jstor.org/stable/2244585
+\end{proof}

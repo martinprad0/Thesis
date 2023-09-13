@@ -1,0 +1,117 @@
+\chapter{Application to Estimation of Data Dimension}
+The article (ref) explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how does the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution on any manifold.\\[4mm]
+
+In the first place, let $Z_1, \ldots, Z_k$ be a i.i.d.\ sample uniformly distributed on $\S^{d-1}$. Then, we have the following formula for the variance of the angles between $Z_i,Z_j, i\neq j$:
+
+\begin{equation}\label{ade:1}\everymath{\displaystyle}
+  \beta_d := \Var(\arccos \angles{Z_i,Z_j}) = \begin{cases}
+    \frac{\pi^2}{4} - 2 \sum_{j = 1}^{k} {(2j-1)}^{-2}, & \mbox{ if } d = 2k+1 \mbox{ is odd},\\
+    \frac{\pi^2}{12}- 2 \sum_{j = 1}^{k} {(2j)}^{-2}, & \mbox{ if } d = 2k+2 \mbox{ is even.}
+  \end{cases}
+\end{equation}
+
+The previous formula for the angle variance is proven in (ref) and will be skipped (\textbf{TODO}: Should it really be skipped?). In order to give more insight on how we will be choosing the estimator $\widehat{d}$ for the dimension of the sphere, consider the following theorem.
+
+\begin{theorem}[Bounds for $\beta_d$]\label{ade:T1}
+  For every $d > 1$,
+  \[ \frac{1}{d} \leq \beta_d \;\leq\; \frac{1}{d-1}. \] 
+\end{theorem}
+
+\begin{proof}
+  The even and the odd cases must be distinguished:
+  \begin{enumerate}
+    \item[(1):] When $d = 2k+2$ is even:
+    In the first place, remember that,
+    \[ \lim_{k\to\infty}\; \sum_{j = 1}^{k} j^{-2} = \frac{\pi^2}{6}.\] 
+    It follows that
+    \[\everymath{\displaystyle}
+      \begin{array}{rrlll}
+        \beta_d & = & \frac{\pi^2}{12} - 2 \sum_{j = 1}^{k} {(2j)}^{-2}= & \frac{\pi^2}{12} - \frac{1}{2} \sum_{j = 1}^{k} j^{-2}\\
+        & = & \frac{1}{2} \sum_{j = k+1}^{\infty} j^{-2}.
+      \end{array}      
+     \]
+    Since ${(j^{-2})}_{j \in \N}$ is a monotonically decreasing sequence, it follows that (\textbf{TODO}: Improve array syntax)
+    \[\everymath{\displaystyle} 
+      \begin{array}{rrcll}
+        \frac{1}{d}   & = & \frac{1}{2k+2}  & = & \frac{1}{2} \int_{k+1}^{\infty}x^{-2} dx\\[5mm]
+      & \leq & \beta_d  & \leq & \frac{1}{2} \int_{k+1/2}^{\infty}x^{-2} dx\\[5mm]
+      & = & \frac{1}{2k+1} & = & \frac{1}{d-1}.
+    \end{array}  \] 
+
+    \item[(2):] When $d = 2k+3$ is odd:
+    On the other hand, note that
+    \[\hspace{-35mm}\everymath{\displaystyle} 
+      \begin{array}{rcl}
+      \lim_{k\to\infty} \; \sum_{j = 1}^{k} {(2j-1)}^{-2} 
+      & = & \lim_{k\to\infty} \sum_{j = 1}^{2k-1} j^{-2} - \sum_{j = 1}^{k-1} {(2j)}^{-2}\\
+      & = & \lim_{k\to\infty} \sum_{j = 1}^{2k-1} j^{-2} - \frac{1}{4}\sum_{j = 1}^{k-1} j^{-2}\\
+      & = & \frac{\pi^2}{6}-\frac{\pi^2}{24} = \frac{\pi^2}{8}
+    \end{array}\]
+    Then,
+    \[\hspace{-10mm}\everymath{\displaystyle}
+    \begin{array}{rll}
+      \beta_d & = & \frac{\pi^2}{4} - 2 \sum_{j = 1}^{k} {\left(2j-1\right)}^{-2}\\
+      & = & 2\sum_{j = k+1}^{\infty}{\left(2j-1\right)}^{-2}.\\
+    \end{array}      
+   \]
+   Using a similar argument we conclude that (\textbf{TODO}: Improve array syntax)
+   \[\everymath{\displaystyle} 
+      \begin{array}{rrcrl}
+        \frac{1}{d} & = & \frac{1}{2k+1}  & = & 2 \int_{k+1}^{\infty}{(2x-1)}^{-2} dx\\[5mm]
+      & \leq & \beta_d    & \leq & 2 \int_{k+1/2}^{\infty}{(2x-1)}^{-2} dx\\[5mm]
+      &  = & \frac{1}{2k+2} & = & \frac{1}{d-1}.
+    \end{array}  \] 
+  \end{enumerate}
+\end{proof}
+
+Knowing that for every $d > 1$, $\beta_d$ is in the interval $[\tfrac{1}{d}, \tfrac{1}{d-1}]$, we are going to guess the dimension of the sphere by estimating $\beta_d$, and then, taking $d$ from the lower bound of the interval where our estimator is. Since $\beta_d$ is the variance of the angles in our sphere, our best choice for an estimator is the angle's sample variance,
+
+
+\begin{equation}\label{ade:2}
+  U_{k} = \binom{k}{2}^{-1} \sum_{i<j\leq k}{\left(
+    \arccos\angles{Z_i, Z_j} - \frac{\pi^2}{2} 
+    \right)}^{2}.
+\end{equation}
+
+In Proposition 1.\ of (ref) the authors prove that it's the Minimum Variance Unbiased Estimator for $\beta_d$ on the unit sphere. However, the authors also prove that this result can be generalized for any manifold with samples of any distribution.\\[5mm]
+
+Let $X_1,\ldots, X_n$ be a i.i.d.\ sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ a point. For $C>0 \in  \R$, let $k = \lceil C \ln(n)\rceil$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$
+
+\begin{theorem}[Bound $k$-neighbors]\label{ade:T2}
+  For any sufficiently large $C > 0$, we have that, there exists $n_0$ such that, with probability 1, for every $n \geq n_0$,
+  \begin{equation}\label{ade:3}
+    R(n) \leq f_{p,P,C}(n) = O(\sqrt[d]{\ln(n)/n}).
+  \end{equation}
+  The function $f_{p,P,C}$ is a deterministic function which depends on $p,\, P$ and $C$.
+\end{theorem}
+
+(\textbf{TODO}: I need help connecting the previous theorem with the following idea)
+
+Let $\pi : R^m \to T_p M$ be the orthogonal projection on the Tangent Space of $M$ at $p$. Also, define $W_i := \pi(X_i)$ and then normalize,
+\[ Z_i := \frac{X_i}{\|X_i\|},\hspace*{5mm} \widehat{W_i} := \frac{W_i}{\|W_i\|}. \] 
+What follows from the previous and the following lemma is that if we know that $W_1,\ldots, W_k$ behave similar to a uniformly distributed sample on the sphere $\S^d$, then, $Z_1,\ldots, Z_k$ (the normalized $k$-nearest neighbors of $p$) also behave like they are uniformly distributed on $\S^d$.
+
+\begin{theorem}[Projection Distance Bounds]\label{ade:T3}
+  For any $i<j \leq n$,
+  \begin{enumerate}
+    \item[(i)]    \( \|X_i-\pi(X_i)\|  =   O(\|\pi (X_i)\|^2) \hfill\inlinetag  \)
+    \item[(ii)]   \( \|Z_i-\widehat{W_i}\|  =   O(\|\pi (X_i) \|) \hfill\inlinetag \)
+    \item[(iii)]  The inner products (cosine of angles) can be bounded as it follows:
+    \begin{equation}\label{ade:6}
+      |\angles{Z_i,Z_j} - \langle\widehat{W_i}, \widehat{W_j}\rangle| \leq K r,
+    \end{equation}
+    for a constant $K\in\R$, whenever $r \geq \max (\|\pi(X_i)\|,\|\pi(X_j)\|)$.
+  \end{enumerate}
+\end{theorem}
+
+The last result in the article shows that if we estimate $\beta_d$ as we did with $U_{k,n} = U_k$ in equation (\ref{ade:2}), and then, extract $\widehat{d}$ from the interval where $U_{k,n}$ is located, it follows that,
+\begin{theorem}[Consistency]\label{ade:T4}
+  When $n\to \infty$,
+  \[ \P\{\widehat{d} \neq d\} \to 0.\]
+\end{theorem}
+
+\subsubsection*{Proofs}
+
+\begin{proof}[Theorem~\ref{ade:T2}]
+  
+\end{proof}

@@ -1,0 +1,44 @@
+\chapter{Introduction}
+\section{Basic Inequalities}
+
+
+%% --- Markov's inequality
+\begin{theorem}[Markov's inequality]\label{markov}
+  For a random variable $X$ with $\P\{X < 0\} = 0$ and $t>0$, we have
+  \[ \P\{X \geq t\} \leq \frac{\E X}{t}.\]
+  It follows that for a non-decreasing function $\varphi$ which only takes non-negative values,
+  \[ \P\{X \geq t\} = \P\{\varphi(X) \geq \varphi(t)\} \leq \frac{\varphi(X)}{\varphi(t)}.\]
+\end{theorem}
+
+\vspace*{1em}
+
+\begin{proof}
+ In the first place, note that
+ \[ \begin{array}{rl}
+  X & = X\cdot \1_{X\geq t} + X \cdot \1_{X < t}\\
+    & \geq t \cdot \1_{X\geq t} + 0,
+ \end{array}\]
+and thus,
+\[ \E X \geq t \cdot \E \1_{X\geq t} = t \cdot \P\{X \geq t\}. \]
+For the second statement, apply the same argument on the random variable $Y := \varphi(X)$ and the constant $s := \varphi(t)$.
+\end{proof}
+%% --------------------
+
+\vspace*{2em}
+
+%% --- Chebyshev's inequality
+\begin{theorem}[Chebyshev's inequality]\label{chebyshev}
+  For $t > 0$ and a random variable $X$ with mean $\mu = \E X$ and variance $\sigma^2 = \Var X$, then
+  \[ \P\{|X-\mu| \geq t\} \leq \sigma^2 t^{-2}. \] 
+\end{theorem}
+
+\begin{proof}
+  Applying Markov's inequality with $\varphi: x \mapsto x^2$ we obtain,
+  \[ \P\{|X-\mu| \geq t \} = \P\{|X-\mu|^2 \geq t^2 \} \leq \frac{\E [{(X-\mu)}^2]}{t^2} = \sigma^2 t^{-2}.\] 
+\end{proof}
+ 
+
+\begin{theorem}[Jensen's inequality]\label{jensen}
+  For any real valued random variable $X$ and convex function $\varphi$
+  \[ \varphi(\E X) \leq \E \varphi(X) \] 
+\end{theorem}
