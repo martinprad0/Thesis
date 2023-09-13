@@ -37,9 +37,65 @@ For the second statement, apply the same argument on the random variable $Y := \
   Applying Markov's inequality with $\varphi: x \mapsto x^2$ we obtain,
   \[ \P\{|X-\mu| \geq t \} = \P\{|X-\mu|^2 \geq t^2 \} \leq \frac{\E [{(X-\mu)}^2]}{t^2} = \sigma^2 t^{-2}.\] 
 \end{proof}
- 
+%% --------------------
 
+\vspace*{2em}
+
+%% --- Jensen's inequality
 \begin{theorem}[Jensen's inequality]\label{jensen}
   For any real valued random variable $X$ and convex function $\varphi$
   \[ \varphi(\E X) \leq \E \varphi(X) \] 
 \end{theorem}
+%% --------------------
+
+\vspace*{2em}
+
+\section{Why bother?}
+
+The concentration inequalities are used to obtain information on how a random variable is distributed at some specific places of its domain. In the most common scenarios, these inequalities will be used to quantify how concentrated a random variable at its tails, for example,
+
+\[ \P\{|X-\mu| \geq t\} < f(t) << 1. \]
+
+A concentration inequality is specially useful when this probability cannot be calculated at a low computational cost or estimated with high precision. The following  will illustrate a case where using concentration inequalities achieves the best results.
+
+\subsection{Coin Tossing}
+
+A coin tossing game is fair if the chances of winning are equal to the chances of losing. We can verify from a sample of $N$ games that the game is not rigged if the number of heads in the sample is not very distant from the average $N/2$. However, there's a chance that one may classify the coin as rigged, even when the coin is fair. By the \textit{Law of Large Numbers}, we know that the larger the sample, the less likely it is to obtain a false positive. But let's ask ourselves how fast this probability converges to 0.
+
+\vspace*{1em}
+
+Let $S_N \sim \Bi(N,1/2)$ denote the number of heads in a fair coin tossing game. Then,
+\[ \mu = \E S_N = \frac{N}{2}, \hspace*{2em} \sigma^2 = \Var S_N = \frac{N}{4}. \] 
+For a fixed $\varepsilon > 0$, we may classify a coin tossing game as rigged if, after $N$ trials, the ratio of heads vs tails in the sample is greater than $[1+\varepsilon:1-\varepsilon]$, or similarly,
+\[ S_N \geq \mu +  \frac{\varepsilon}{2} N = \frac{1+\varepsilon}{2} N. \]
+
+Using the Chebyshev inequality~\ref{chebyshev}, we assert that
+
+\[ \P\left\{S_N \geq \mu +  \frac{\varepsilon}{2} N\right\} \leq 
+\P\left\{|S_N-\mu| \geq  \frac{\varepsilon}{2} N\right\} \leq \sigma^2 \frac{4}{\varepsilon^2 N^2} = \frac{1}{\varepsilon^2 N}.\] 
+
+Therefore, the probability of bad events tends to 0 at least linearly with the number of games.
+
+\subsection{Central Limit Theorem}
+
+The proof of the following theorems can be found in (ref)
+
+%% --- Central Limit Theorem
+\begin{theorem}\label{centrallimit}
+    Let $X_i$ be a i.i.d.~sample, each with expected value $\mu$ and variance $\sigma^2$. Let $S_N = \sum_{i = 1}^N X_i$ and $Z_N = \frac{S_N - N \mu}{\sqrt{N}\sigma^2}$. Then,
+    \[ Z_N \to Z \sim \mathcal{N}(0,1),\hbox{ in distribution.} \] 
+\end{theorem}
+%% --------------------
+
+\vspace*{2em}
+
+%% --- Central Limit Theorem
+\begin{theorem}[Tails of the Normal Distribution]\label{normaltails}
+    Let $Z\sim \mathcal{N}(0,1)$, for $t>0$ we have
+    \[ \left( \frac{1}{t}-\frac{1}{t^3}\right) \frac{1}{\sqrt{2\pi}} \exp\left(\frac{-t^2}{2}\right) \leq \P\{Z \geq t\} \leq \frac{1}{t}\;\frac{1}{\sqrt{2\pi}} \exp\left(\frac{-t^2}{2}\right) \] 
+\end{theorem}
+%% --------------------
+
+With that in mind, we might naively assume that we can obtain better bounds by using the previous theorems since,
+
+\[ \] 

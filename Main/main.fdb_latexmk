@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1694571915 "/home/martin/Documents/VSCode/Latex/Thesis/Main/main.tex" "main.pdf" "main" 1694571917 0
-  "../Chapters/chapter1.tex" 1694571913 1536 0e48085b7621d76a4a70e1fd276ecd4e ""
+["pdflatex"] 1694592469 "/home/martin/Documents/VSCode/Latex/Thesis/Main/main.tex" "main.pdf" "main" 1694592470 0
+  "../Chapters/chapter1.tex" 1694592468 4587 d32ecb9b05ca8af639e52f768c046e53 ""
   "../Chapters/chapter2.tex" 1694570727 1917 1637d2abef17a3fa50b81e0af3fa639d ""
   "../Chapters/chapter3.tex" 1694570491 6839 cc5458fdf91bef073430dc884267214d ""
   "/home/martin/Documents/VSCode/Latex/Thesis/Main/main.tex" 1694570516 1866 91ee9128a0e73c45953520622ef94340 ""
@@ -39,6 +39,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1248133631 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb" 1248133631 35022 e40946b20bfdcd1099eafb2bcd9f25dd ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb" 1248133631 24420 52dbb8e8aa0069a1b987309557f8d303 ""
@@ -218,9 +219,9 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1684972800 40326 aba987258e6d6b6da5dec3a727ea174b ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1687146416 4548386 095bdf62675e309b2cc0e41f950c32d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1687739528 7862973 fd9836cf19362051e927da9ef3f385f3 ""
-  "main.aux" 1694571917 6599 f546079ab7b0f1f3bd1975a1ed8f4427 "pdflatex"
+  "main.aux" 1694592470 8398 dcd4b1d882c27eacad54ec5c857bc6c4 "pdflatex"
   "main.tex" 1694570516 1866 91ee9128a0e73c45953520622ef94340 ""
-  "main.toc" 1694571917 571 f240cbcf2e811b262f1891ec5b960cc7 "pdflatex"
+  "main.toc" 1694592470 815 353cfdfb0499bf48ac32cd4850e3eb30 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
