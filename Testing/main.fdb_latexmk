@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1694161928 "/home/martin/Documents/VSCode/Latex/Thesis/Testing/main.tex" "main.pdf" "main" 1694161929 0
-  "/home/martin/Documents/VSCode/Latex/Thesis/Testing/main.tex" 1694161927 12171 dd62adae81a91d023f2c642ba5ba1e60 ""
+["pdflatex"] 1694497656 "/home/martin/Documents/VSCode/Latex/Thesis/Testing/main.tex" "main.pdf" "main" 1694497657 0
+  "/home/martin/Documents/VSCode/Latex/Thesis/Testing/main.tex" 1694497655 12256 7de992c3a3c0e91445ee50a90188269b ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -201,9 +201,9 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1684972800 40326 aba987258e6d6b6da5dec3a727ea174b ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1687146416 4548386 095bdf62675e309b2cc0e41f950c32d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1687739528 7862973 fd9836cf19362051e927da9ef3f385f3 ""
-  "main.aux" 1694161929 4125 0d5a5cca94cb89ae00ebb2e89776bd60 "pdflatex"
-  "main.out" 1694161929 1131 404cda39b0966ac0f2d0409be1db0191 "pdflatex"
-  "main.tex" 1694161927 12171 dd62adae81a91d023f2c642ba5ba1e60 ""
+  "main.aux" 1694497656 4125 b34a9f3e77b1e3e9f6bcc57c68d5b5fa "pdflatex"
+  "main.out" 1694497656 1131 404cda39b0966ac0f2d0409be1db0191 "pdflatex"
+  "main.tex" 1694497655 12256 7de992c3a3c0e91445ee50a90188269b ""
   "quiver.sty" 1691887517 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "main.aux"
