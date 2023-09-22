@@ -82,8 +82,12 @@ The proof of the following theorems can be found in (ref)
 
 %% --- Central Limit Theorem
 \begin{theorem}\label{centrallimit}
-    Let $X_i$ be a i.i.d.~sample, each with expected value $\mu$ and variance $\sigma^2$. Let $S_N = \sum_{i = 1}^N X_i$ and $Z_N = \frac{S_N - N \mu}{\sqrt{N}\sigma^2}$. Then,
+    Let $X_i$ be a i.i.d.~sample. Let $S_N = \sum_{i = 1}^N X_i$, with mean $\mu = \E S_N$ and variance $\sigma^2 = \Var S_N$. If  
+    \[ Z_N =  \frac{S_N - N\cdot \E X_i}{\sqrt{N \cdot \Var X_i}} =  \frac{S_N - \mu}{\sqrt{N}\sigma},\] 
+    then,
     \[ Z_N \to Z \sim \mathcal{N}(0,1),\hbox{ in distribution.} \] 
+
+    \hfill $\square$
 \end{theorem}
 %% --------------------
 
@@ -92,10 +96,28 @@ The proof of the following theorems can be found in (ref)
 %% --- Central Limit Theorem
 \begin{theorem}[Tails of the Normal Distribution]\label{normaltails}
     Let $Z\sim \mathcal{N}(0,1)$, for $t>0$ we have
-    \[ \left( \frac{1}{t}-\frac{1}{t^3}\right) \frac{1}{\sqrt{2\pi}} \exp\left(\frac{-t^2}{2}\right) \leq \P\{Z \geq t\} \leq \frac{1}{t}\;\frac{1}{\sqrt{2\pi}} \exp\left(\frac{-t^2}{2}\right) \] 
+    \[ \left( \frac{1}{t}-\frac{1}{t^3}\right) \frac{1}{\sqrt{2\pi}} \exp\left(\frac{-t^2}{2}\right) \leq \P\{Z \geq t\} \leq \frac{1}{t}\;\frac{1}{\sqrt{2\pi}} \exp\left(\frac{-t^2}{2}\right). \]
+
+    \hfill $\square$
 \end{theorem}
 %% --------------------
 
-With that in mind, we might naively assume that we can obtain better bounds by using the previous theorems since,
+With that in mind, we might naively assume that better bounds can be obtained by using the previous theorem. For a large enough $N$ we can say that for the coin tossing,
+\[ Z_N = \frac{S_N- N/2}{\sqrt{N/4}} \] 
+\[ \implies \P \left\{S_N \geq \frac{1+\varepsilon}{2} N \right\} = \P\left\{Z_N \geq \varepsilon \sqrt{N} \right\} \sim \P\left\{Z \geq \varepsilon \sqrt{N} \right\}.\]
+However, this raises the question of whether we can draw the following conclusion from Theorem~\ref{normaltails}:
+\[ \P \left\{S_N \geq \frac{1+\varepsilon}{2} N \right\} \leq \frac{1}{\varepsilon \sqrt{N}}\;\frac{1}{\sqrt{2\pi}} \exp\left(\frac{-\varepsilon^2 \cdot N}{2}\right). \]
+Unfortunately, the answer is no. The following theorem will show why.
 
-\[ \] 
+
+%% --- Berry-Essen CLT
+\begin{theorem}[Convergence Rate for Central Limit Theorem]\label{berryessen}
+  For $Z_N$, $Z$ in Theorem~\ref{centrallimit}, we have:
+  \[ \left|\P\{Z_N \geq t\} - \P\{Z \geq t\}\right| \in O(\tfrac{1}{\sqrt{N}}). \]
+  \hfill $\square$
+\end{theorem}
+%% --------------------
+
+Since the approximation error is greater than the bound, the previous results cannot be taken into account.
+
+In the context of coin tossing, this may not matter at all because the linear bound obtained using Chebyshev's inequality indicates that the probability of wrongly classifying a fair coin as a rigged coin converges at least linearly to zero. Even the Central Limit Theorem shows in a less precise way this convergence. However, for some specific problems in statistics, these basic tools are not precise enough to solve them. In the following chapters, we will show some examples were better crafted strategies are needed in order to get bounds to the tails of the random variables.
