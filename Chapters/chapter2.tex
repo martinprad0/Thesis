@@ -1,5 +1,31 @@
 \chapter{Exponential Inequalities}
 
+Even if we are satisfied with the linear convergence rate provided by Chebyshev's inequality, there is a simple way to improve this bound with the following result.
+
+%% --- Hoeffding's inequality
+\begin{theorem}[Hoeffding's inequality]\label{hoeffding:bernoulli}
+  Let $X_1, \ldots, X_N$ be independent random variables, where $X_i \sim \Be(p_i)$. Then, for every $t > 0$, we have
+  
+  \[ P\left\{ \sum (X_i - \E X_i) \geq t\right\} \leq \exp\left( \frac{-2t^2}{N}\right) \] 
+\end{theorem}
+%% --------------------
+
+\begin{proof}
+  TODO
+\end{proof}
+
+Another exponential bound we can derive with a similar idea is the following
+
+%% --- Hoeffding's inequality
+\begin{theorem}[Chernoff's inequality]\label{chernoff:bernoulli}
+  Let $X_1, \ldots, X_N$ be independent random variables, where for every $i = 1,\ldots,N$, $X_i \in [a_i,b_i]$. Define $S_N = \sum X_i$ and let $\mu = \E S_N$. Then, for every $t > 0$, we have
+  
+  \[ P\left\{  S_N \geq \mu + t\right\} \leq \exp\left( \frac{-2t^2}{\sum{( a_i - b_i )}^2}\right) \] 
+\end{theorem}
+%% --------------------
+
+\section{Chevyshev vs Chernoff vs Hoeffding}
+
 \section{Chernoff-Okamoto Inequalities}
 
 % \begin{theorem}[Chernoff Inequality for Upper Tails]

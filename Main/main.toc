@@ -4,6 +4,8 @@
 \contentsline {subsection}{\numberline {1.2.1}Coin Tossing}{2}{subsection.1.2.1}%
 \contentsline {subsection}{\numberline {1.2.2}Central Limit Theorem}{2}{subsection.1.2.2}%
 \contentsline {chapter}{\numberline {2}Exponential Inequalities}{4}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Chernoff-Okamoto Inequalities}{4}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Hoeffding-Bernstein inequalities}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.1}Chevyshev vs Chernoff vs Hoeffding}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Chernoff-Okamoto Inequalities}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Hoeffding-Bernstein inequalities}{5}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Application to Estimation of Data Dimension}{6}{chapter.3}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
