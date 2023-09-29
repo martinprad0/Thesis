@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/CVE-2023-32700 patched) (preloaded format=pdflatex 2023.6.25)  22 SEP 2023 14:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/CVE-2023-32700 patched) (preloaded format=pdflatex 2023.6.25)  29 SEP 2023 14:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -616,7 +616,43 @@ File: pgflibrarycurvilinear.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@circ@res@count=\count313
 ) (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex
 \pgfcirc@labelshift=\dimen286
-) (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2022/03/01 v3.6b Customizing captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
+\caption@tempdima=\dimen287
+\captionmargin=\dimen288
+\caption@leftmargin=\dimen289
+\caption@rightmargin=\dimen290
+\caption@width=\dimen291
+\caption@indent=\dimen292
+\caption@parindent=\dimen293
+\caption@hangindent=\dimen294
+Package caption Info: KOMA-Script document class detected.
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption-koma.sto
+File: caption-koma.sto 2020/09/21 v2.0b Adaption of the caption package to the KOMA-Script document classes (AR)
+))
+\c@caption@flags=\count314
+\c@continuedfloat=\count315
+Package caption Info: hyperref package is loaded.
+Package caption Info: wrapfig package is loaded.
+)
+\c@KVtest=\count316
+\sf@farskip=\skip73
+\sf@captopadj=\dimen295
+\sf@capskip=\skip74
+\sf@nearskip=\skip75
+\c@subfigure=\count317
+\c@subfigure@save=\count318
+\c@lofdepth=\count319
+\c@subtable=\count320
+\c@subtable@save=\count321
+\c@lotdepth=\count322
+\sf@top=\skip76
+\sf@bottom=\skip77
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
  (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
@@ -624,51 +660,51 @@ Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count314
-\c@ALG@rem=\count315
-\c@ALG@nested=\count316
-\ALG@tlm=\skip73
-\ALG@thistlm=\skip74
-\c@ALG@Lnr=\count317
-\c@ALG@blocknr=\count318
-\c@ALG@storecount=\count319
-\c@ALG@tmpcounter=\count320
-\ALG@tmplength=\skip75
+\c@ALG@line=\count323
+\c@ALG@rem=\count324
+\c@ALG@nested=\count325
+\ALG@tlm=\skip78
+\ALG@thistlm=\skip79
+\c@ALG@Lnr=\count326
+\c@ALG@blocknr=\count327
+\c@ALG@storecount=\count328
+\c@ALG@tmpcounter=\count329
+\ALG@tmplength=\skip80
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
  (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count321
+\c@float@type=\count330
 \float@exts=\toks42
 \float@box=\box69
 \@float@everytoks=\toks43
 \@floatcapt=\box70
 )
 \@float@every@algorithm=\toks44
-\c@algorithm=\count322
+\c@algorithm=\count331
 ) (/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2022/07/30 line numbers on paragraphs v5.0
-\linenopenalty=\count323
+\linenopenalty=\count332
 \output=\toks45
-\linenoprevgraf=\count324
-\linenumbersep=\dimen287
-\linenumberwidth=\dimen288
-\c@linenumber=\count325
-\c@pagewiselinenumber=\count326
-\c@LN@truepage=\count327
+\linenoprevgraf=\count333
+\linenumbersep=\dimen296
+\linenumberwidth=\dimen297
+\c@linenumber=\count334
+\c@pagewiselinenumber=\count335
+\c@LN@truepage=\count336
 
 
 Package lineno Warning: Option [displaymath] is obsolete -- default now!.
 
-\c@internallinenumber=\count328
-\c@internallinenumbers=\count329
-\quotelinenumbersep=\dimen289
-\bframerule=\dimen290
-\bframesep=\dimen291
+\c@internallinenumber=\count337
+\c@internallinenumbers=\count338
+\quotelinenumbersep=\dimen298
+\bframerule=\dimen299
+\bframesep=\dimen300
 \bframebox=\box71
-\linenoamsmath@ams@eqpen=\count330
+\linenoamsmath@ams@eqpen=\count339
 LaTeX Info: Redefining \\ on input line 3114.
 ) (/usr/share/texlive/texmf-dist/tex/latex/bbm-macros/bbm.sty
 Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
@@ -679,59 +715,64 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 ) (/usr/share/texlive/texmf-dist/tex/latex/doublestroke/dsfont.sty
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 )
-\c@theorem=\count331
-\c@corollary=\count332
+\c@theorem=\count340
+\c@corollary=\count341
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-Package scrbase Info: activating english \partname on input line 55.
-Package scrbase Info: activating english \chaptername on input line 55.
-Package scrbase Info: activating english \appendixname on input line 55.
-Package scrbase Info: activating english \figurename on input line 55.
-Package scrbase Info: activating english \tablename on input line 55.
-Package scrbase Info: activating english \contentsname on input line 55.
-Package scrbase Info: activating english \listfigurename on input line 55.
-Package scrbase Info: activating english \listtablename on input line 55.
-Package scrbase Info: activating english \bibname on input line 55.
-Package scrbase Info: activating english \indexname on input line 55.
-Package hyperref Info: Link coloring ON on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+Package scrbase Info: activating english \partname on input line 59.
+Package scrbase Info: activating english \chaptername on input line 59.
+Package scrbase Info: activating english \appendixname on input line 59.
+Package scrbase Info: activating english \figurename on input line 59.
+Package scrbase Info: activating english \tablename on input line 59.
+Package scrbase Info: activating english \contentsname on input line 59.
+Package scrbase Info: activating english \listfigurename on input line 59.
+Package scrbase Info: activating english \listtablename on input line 59.
+Package scrbase Info: activating english \bibname on input line 59.
+Package scrbase Info: activating english \indexname on input line 59.
+Package hyperref Info: Link coloring ON on input line 59.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count333
-\scratchdimen=\dimen292
+\scratchcounter=\count342
+\scratchdimen=\dimen301
 \scratchbox=\box72
-\nofMPsegments=\count334
-\nofMParguments=\count335
+\nofMPsegments=\count343
+\nofMParguments=\count344
 \everyMPshowfont=\toks46
-\MPscratchCnt=\count336
-\MPscratchDim=\dimen293
-\MPnumerator=\count337
-\makeMPintoPDFobject=\count338
+\MPscratchCnt=\count345
+\MPscratchDim=\dimen302
+\MPnumerator=\count346
+\makeMPintoPDFobject=\count347
 \everyMPtoPDFconversion=\toks47
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) (./main.toc
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+ (./main.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -784,28 +825,120 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--3
 
  []
 
-[6
 
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-[7]) [8] (./main.aux) ) 
+[6
+
+
+] [7] [8]) (../Chapters/chapter4.tex [9]
+chapter 4.
+<../Simulation/TSPPictures/ex0.png, id=118, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/ex0.png Graphic file (type png)
+<use ../Simulation/TSPPictures/ex0.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/ex0.png  used on input line 13.
+(pdftex.def)             Requested size: 138.02509pt x 138.0279pt.
+<../Simulation/TSPPictures/ex1.png, id=120, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/ex1.png Graphic file (type png)
+<use ../Simulation/TSPPictures/ex1.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/ex1.png  used on input line 16.
+(pdftex.def)             Requested size: 138.02509pt x 138.0279pt.
+<../Simulation/TSPPictures/ex2.png, id=121, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/ex2.png Graphic file (type png)
+<use ../Simulation/TSPPictures/ex2.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/ex2.png  used on input line 19.
+(pdftex.def)             Requested size: 138.02509pt x 138.0279pt.
+
+Overfull \hbox (17.71967pt too wide) in paragraph at lines 13--20
+ [][][][][][][][][] 
+ []
+
+[10
+
+
+ <../Simulation/TSPPictures/ex0.png> <../Simulation/TSPPictures/ex1.png> <../Simulation/TSPPictures/ex2.png>]
+pdfTeX warning (ext4): destination with the same identifier (name{subfigure.4.1.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.40     \subfloat
+                  [$i = 0$]{\label{TSP:pic1.1}
+<../Simulation/TSPPictures/pic0.png, id=136, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/pic0.png Graphic file (type png)
+<use ../Simulation/TSPPictures/pic0.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/pic0.png  used on input line 42.
+(pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
+
+pdfTeX warning (ext4): destination with the same identifier (name{subfigure.4.1.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.43     \subfloat
+                  [$i = 1$]{\label{TSP:pic1.2}
+<../Simulation/TSPPictures/pic1.png, id=137, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/pic1.png Graphic file (type png)
+<use ../Simulation/TSPPictures/pic1.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/pic1.png  used on input line 45.
+(pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
+
+pdfTeX warning (ext4): destination with the same identifier (name{subfigure.4.1.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.46     \subfloat
+                  [$i = 2$]{\label{TSP:pic1.3}
+<../Simulation/TSPPictures/pic2.png, id=138, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/pic2.png Graphic file (type png)
+<use ../Simulation/TSPPictures/pic2.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/pic2.png  used on input line 48.
+(pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
+<../Simulation/TSPPictures/pic3.png, id=139, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/pic3.png Graphic file (type png)
+<use ../Simulation/TSPPictures/pic3.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/pic3.png  used on input line 51.
+(pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
+
+Overfull \hbox (29.19995pt too wide) in paragraph at lines 42--52
+[][][][][][][][] 
+ []
+
+<../Simulation/TSPPictures/pic4.png, id=140, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/pic4.png Graphic file (type png)
+<use ../Simulation/TSPPictures/pic4.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/pic4.png  used on input line 55.
+(pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
+<../Simulation/TSPPictures/pic5.png, id=141, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/pic5.png Graphic file (type png)
+<use ../Simulation/TSPPictures/pic5.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/pic5.png  used on input line 58.
+(pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
+<../Simulation/TSPPictures/pic6.png, id=142, 505.89pt x 505.89pt>
+File: ../Simulation/TSPPictures/pic6.png Graphic file (type png)
+<use ../Simulation/TSPPictures/pic6.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/pic6.png  used on input line 61.
+(pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
+File: ../Simulation/TSPPictures/ex2.png Graphic file (type png)
+<use ../Simulation/TSPPictures/ex2.png>
+Package pdftex.def Info: ../Simulation/TSPPictures/ex2.png  used on input line 64.
+(pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
+
+Overfull \hbox (29.19995pt too wide) in paragraph at lines 55--65
+[][][][][][][][] 
+ []
+
+[11 <../Simulation/TSPPictures/pic0.png> <../Simulation/TSPPictures/pic1.png> <../Simulation/TSPPictures/pic2.png> <../Simulation/TSPPictures/pic3.png> <../Simulation/TSPPictures/pic4.png> <../Simulation/TSPPictures/pic5.png> <../Simulation/TSPPictures/pic6.png>]) [12] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 41495 strings out of 476182
- 972459 string characters out of 5796581
- 1867793 words of memory out of 6000000
- 61256 multiletter control sequences out of 15000+600000
- 521527 words of font info for 67 fonts, out of 8000000 for 9000
+ 43105 strings out of 476182
+ 1004326 string characters out of 5796581
+ 1866793 words of memory out of 6000000
+ 62813 multiletter control sequences out of 15000+600000
+ 524526 words of font info for 80 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 110i,8n,106p,10734b,613s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (9 pages, 213445 bytes).
+ 110i,11n,106p,10734b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (13 pages, 549313 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
- 176 compressed objects within 2 object streams
- 44 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 303 PDF objects out of 1000 (max. 8388607)
+ 225 compressed objects within 3 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 159 words of extra memory for PDF output out of 10000 (max. 10000000)
 

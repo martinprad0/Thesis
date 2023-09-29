@@ -4,12 +4,13 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage[round]{natbib}
 \usepackage{amsfonts, amsthm, amsmath, amssymb, hyperref, cancel, wrapfig}
-\usepackage{tikz, circuitikz}
+\usepackage{tikz, circuitikz, subfig, graphicx}
 \usepackage{algpseudocode, algorithm}
 \bibliographystyle{plainnat}
 
 %%--CORRECTIONS--------------------------------------------------
 \usepackage[switch, displaymath, mathlines]{lineno}
+%\usepackage[allfiguresdraft]{draftfigure} % Disable pictures for fast rendering
 \linenumbers{}
 \counterwithin*{equation}{section}
 \counterwithin*{equation}{subsection}
@@ -30,6 +31,7 @@
 \def\1{\ensuremath{\mathds{1}}}
 \def\E{\ensuremath{\mathbf{E}}\:}
 \def\P{\ensuremath{\mathbf{P}}}
+\def\A{\ensuremath{\mathcal{A}}}
 
 % Custom text commands
 \def\Var{\ensuremath{\mathbf{Var}}\,}
@@ -45,6 +47,8 @@
 
 % Custom Commands
 \newcommand{\angles}[1]{\ensuremath{\left\langle}#1\ensuremath{\right\rangle} }
+\newcommand{\floor}[1]{\ensuremath{\left\lfloor}#1\ensuremath{\right\rfloor} }
+\newcommand{\ceil}[1]{\ensuremath{\left\lceil}#1\ensuremath{\right\rceil} }
 
 % \title{A Sample PhD Thesis}
 % \author{A. N. Other}
@@ -65,6 +69,8 @@
 \input{../Chapters/chapter2}
 
 \input{../Chapters/chapter3}
+
+\input{../Chapters/chapter4}
 
 \backmatter{}
 
