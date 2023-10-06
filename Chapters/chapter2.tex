@@ -16,7 +16,7 @@ Even if we are satisfied with the linear convergence rate provided by Chebyshev'
 
 Another exponential bound we can derive with a similar idea is the following
 
-%% --- Hoeffding's inequality
+%% --- Chernoff's inequality
 \begin{theorem}[Chernoff's inequality]\label{chernoff:bernoulli}
   Let $X_1, \ldots, X_N$ be independent random variables, where for every $i = 1,\ldots,N$, $X_i \in [a_i,b_i]$. Define $S_N = \sum X_i$ and let $\mu = \E S_N$. Then, for every $t > 0$, we have
   
@@ -53,7 +53,7 @@ Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
   \end{equation}
 \end{theorem}
 
-\textbf{Used in:} Theorem~\ref*{ade:T2}
+\textbf{Used in:} Theorem~\ref{ade:T2}
 
 \begin{proof}
   (\textbf{TODO} I've already written the proof on paper)
@@ -71,7 +71,5 @@ Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
 \textbf{Used in:} Theorem~\ref*{ade:T4}
 
 \begin{proof}
-  Proposition 2.3(a) M.A. Arcones, E. Gine, Limit theorems for U-processes, Ann. Probab. 21 (1993) 1494\-1542 
-  
-  https://sci-hub.se/https://www.jstor.org/stable/2244585
+  Proposition 2.3. (a)~\cite{arcones1993limit}
 \end{proof}

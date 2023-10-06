@@ -1,5 +1,5 @@
 \chapter{Application to Estimation of Data Dimension}
-The article (ref) explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how does the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution on any manifold.\\[4mm]
+The article~\cite{diaz2019local} explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how does the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution on any manifold.\\[1em]
 
 In the first place, let $Z_1, \ldots, Z_k$ be a i.i.d.\ sample uniformly distributed on $\S^{d-1}$. Then, we have the following formula for the variance of the angles between $Z_i,Z_j, i\neq j$:
 
@@ -10,16 +10,19 @@ In the first place, let $Z_1, \ldots, Z_k$ be a i.i.d.\ sample uniformly distrib
   \end{cases}
 \end{equation}
 
-The previous formula for the angle variance is proven in (ref) and will be skipped (\textbf{TODO}: Should it really be skipped?). In order to give more insight on how we will be choosing the estimator $\widehat{d}$ for the dimension of the sphere, consider the following theorem.
+The previous formula for the angle variance is proven in~\cite{diaz2019local}. In order to give more insight on how we will be choosing an estimator $\widehat{d}$ of the dimension of the sphere, consider the following theorem.
 
 \begin{theorem}[Bounds for $\beta_d$]\label{ade:T1}
   For every $d > 1$,
   \[ \frac{1}{d} \leq \beta_d \;\leq\; \frac{1}{d-1}. \] 
 \end{theorem}
+\begin{proof}[]
 
+\end{proof}
 
+\vspace*{1em}
 
-Knowing that for every $d > 1$, $\beta_d$ is in the interval $[\tfrac{1}{d}, \tfrac{1}{d-1}]$, we are going to guess the dimension of the sphere by estimating $\beta_d$, and then, taking $d$ from the lower bound of the interval where our estimator is. Since $\beta_d$ is the variance of the angles in our sphere, our best choice for an estimator is the angle's sample variance,
+Knowing that for every $d > 1$, $\beta_d$ is in the interval $[\tfrac{1}{d}, \tfrac{1}{d-1}]$, one can guess the dimension of the sphere by estimating $\beta_d$, and then, taking $d$ from the lower bound of the interval where our estimator is. Since $\beta_d$ is the variance of the angles in our sphere, our best choice for an estimator is the angle's sample variance,
 
 
 \begin{equation}\label{ade:2}
@@ -28,23 +31,30 @@ Knowing that for every $d > 1$, $\beta_d$ is in the interval $[\tfrac{1}{d}, \tf
     \right)}^{2}.
 \end{equation}
 
-In Proposition 1.\ of (ref) the authors prove that it's the Minimum Variance Unbiased Estimator for $\beta_d$ on the unit sphere. However, the authors also prove that this result can be generalized for any manifold with samples of any distribution.\\[5mm]
+In Proposition 1.\ of~\cite{diaz2019local} the authors prove that it's the Minimum Variance Unbiased Estimator for $\beta_d$ on the unit sphere.\\[0.5 em]
 
-Let $X_1,\ldots, X_n$ be a i.i.d.\ sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ a point. For $C>0 \in  \R$, let $k = \lceil C \ln(n)\rceil$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$
+Furthermore, the authors also prove that this result can be generalized for any manifold with samples of any distribution. Let $X_1,\ldots, X_n$ be a i.i.d.\ sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ a point. For $C>0 \in  \R$, let $k = \ceil{C \ln(n)}$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0 \in M$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$. Additionally, for the following theorem to be true, we requiere that at any neighborhood of $p$, the probability in that neighborhood is greater than 0.\\[0.5 em]
+
+The following theorem uses a special inequality from Chernoff-Okamoto, and it's crucial in the idea behind this generalization.
 
 \begin{theorem}[Bound $k$-neighbors]\label{ade:T2}
   For any sufficiently large $C > 0$, we have that, there exists $n_0$ such that, with probability 1, for every $n \geq n_0$,
   \begin{equation}\label{ade:3}
-    R(n) \leq f_{p,P,C}(n) = O(\sqrt[d]{\ln(n)/n}).
+    R(n) \leq f_{p,P,C}(n) = O(\sqrt[d]{\ln(n)/n}),
   \end{equation}
-  The function $f_{p,P,C}$ is a deterministic function which depends on $p,\, P$ and $C$.
+  where the function $f_{p,P,C}$ is a deterministic function which depends on $p,\, P$ and $C$.
 \end{theorem}
 
-(\textbf{TODO}: I need help connecting the previous theorem with the following idea)
+\begin{proof}[]
 
-Let $\pi : R^m \to T_p M$ be the orthogonal projection on the Tangent Space of $M$ at $p$. Also, define $W_i := \pi(X_i)$ and then normalize,
-\[ Z_i := \frac{X_i}{\|X_i\|},\hspace*{5mm} \widehat{W_i} := \frac{W_i}{\|W_i\|}. \] 
-What follows from the previous and the following lemma is that if we know that $W_1,\ldots, W_k$ behave similar to a uniformly distributed sample on the sphere $\S^d$, then, $Z_1,\ldots, Z_k$ (the normalized $k$-nearest neighbors of $p$) also behave like they are uniformly distributed on $\S^d$.
+\end{proof}
+
+\vspace*{0.5 em}
+
+The following theorem, although it does not require concentration inequalities, is important for connecting the idea of the previous theorem to the main frame. Let $\pi : R^m \to T_p M$ be the orthogonal projection on the Tangent Space of $M$ at $p$. Also, define $W_i := \pi(X_i)$ and then normalize,
+\begin{equation}\label{ade:4}
+  Z_i := \frac{X_i}{\|X_i\|},\hspace*{5mm} \widehat{W_i} := \frac{W_i}{\|W_i\|}.
+\end{equation}
 
 \begin{theorem}[Projection Distance Bounds]\label{ade:T3}
   For any $i<j \leq n$,
@@ -52,22 +62,48 @@ What follows from the previous and the following lemma is that if we know that $
     \item[(i)]    \( \|X_i-\pi(X_i)\|  =   O(\|\pi (X_i)\|^2) \hfill\inlinetag  \)
     \item[(ii)]   \( \|Z_i-\widehat{W_i}\|  =   O(\|\pi (X_i) \|) \hfill\inlinetag \)
     \item[(iii)]  The inner products (cosine of angles) can be bounded as it follows:
-    \begin{equation}\label{ade:6}
+    \begin{equation}\label{ade:7}
       |\angles{Z_i,Z_j} - \langle\widehat{W_i}, \widehat{W_j}\rangle| \leq K r,
     \end{equation}
     for a constant $K\in\R$, whenever $r \geq \max (\|\pi(X_i)\|,\|\pi(X_j)\|)$.
   \end{enumerate}
 \end{theorem}
+\begin{proof}[]
 
-The last result in the article shows that if we estimate $\beta_d$ as we did with $U_{k,n} = U_k$ in equation (\ref{ade:2}), and then, extract $\widehat{d}$ from the interval where $U_{k,n}$ is located, it follows that,
-\begin{theorem}[Consistency]\label{ade:T4}
+\end{proof}
+
+\vspace*{0.5 em}
+
+What follows is that if we know $W_1,\ldots, W_k$ are behaved similar to a uniformly distributed sample on the sphere $\S^d$, then, $Z_1,\ldots, Z_k$ (the normalized $k$-nearest neighbors of $p$) also behave like they are uniformly distributed on $\S^d$. The following theorem is made by combining the ideas of the previous theorems.
+
+\begin{theorem}[Projection's Angle Variance Statistic]\label{ade:T4}
+  For $k = O(\ln n)$, let
+  \begin{equation}\label{ade:8}
+    V_{k,n} = \binom{k}{2}^{-1} \sum_{i<j\leq k}{\left(
+      \arccos\angles{\widehat{W_i}, \widehat{W_j}} - \frac{\pi^2}{2} 
+      \right)}^{2},
+  \end{equation}
+  and let $U_{k,n} = U_k$ from equation~\ref{ade:2}. The following statements hold
+  \begin{enumerate}
+    \item[(i)]    \( k |U_{k,n} - V_{k,n}| \overset{n\to\infty}{\longrightarrow} 0,\;\mbox{in probability}. \hfill\inlinetag  \)
+    \item[(ii)]    \( \E |U_{k,n} - V_{k,n}| \overset{n\to\infty}{\longrightarrow} 0\).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}[]
+
+\end{proof}
+
+\vspace*{0.5 em}
+
+This last theorem is as far as this document is planned to cover. However, the last result in the paper provides the main statement. It says that if we estimate $\beta_d$ as we did with $U_{k,n}$ from~\ref{ade:T4}, and then, extract $\widehat{d}$ from the interval where $U_{k,n}$ is located, it follows that,
+\begin{theorem}[Consistency]\label{ade:T5}
   When $n\to \infty$,
   \[ \P\{\widehat{d} \neq d\} \to 0.\]
 \end{theorem}
 
 \section{Proofs}
 
-\begin{proof}[Proof Theorem~\ref{ade:T1}:]
+\begin{proof}[Proof Theorem~\ref{ade:T1}:]\label{ade:T1P}
   The even and the odd cases must be distinguished:
   \begin{enumerate}
     \item[(1):] When $d = 2k+2$ is even:
@@ -114,9 +150,29 @@ The last result in the article shows that if we estimate $\beta_d$ as we did wit
   \end{enumerate}
 \end{proof}
 
-\begin{proof}[Proof Theorem~\ref{ade:T2}:]
+\begin{proof}[Proof Theorem~\ref{ade:T2}:]\label{ade:T2P}
 
+The volume of a $d$-sphere of radius $r$ is equal to:
 
+\[ v_d r^d = \frac{\pi^{d/2}}{\Gamma(\tfrac{n}{2}+1)} r^d. \]
 
+Where $v_d$ is the volume of the unit $d$-sphere. For the assumptions we made on $P$ and $M$ around $p = 0$, we can say that for any $r > 0$, there's a percent (greater than 0) of the sample that is within a range $r$ from $p$. This proportion is subordinated only by the volume of a $d$-sphere of radius $r$ and a constant $\alpha := \alpha(P)$ that depends on the distribution $P$:
 
+\[ \rho = \P\{X \in M : |X| < r\} \geq \alpha v_d r^d  > 0.  \] 
+
+We can now define a binomial process based on how many neighbors does $p$ has within a range $r$. Let $N = N_r \sim \Bi(n,\rho)$ be the number of neighbors, using \textbf{Theorem~\ref{co:T1}} with $\lambda = n\rho $ and $t = \tfrac{\lambda}{2}$ we obtain,
+
+\[ \P\{N \leq \lambda - t\} = P\{2N \leq \lambda \} \leq \exp(-\lambda/8). \] 
+
+Since $n(\alpha v_d r^d) \leq n\rho = \lambda$, it follows that, by choosing $r(n)$ such that 
+\[ \tag*{($\star$)} r(n) = {\left(\frac{C}{\alpha v_d} \cdot \frac{\ln n}{n} \right)}^{1/d} = O(\sqrt[d]{\ln(n)/n}),\]
+and thus,
+\[ C \ln n = n(\alpha v_d r{(n)}^d) \leq \lambda,\]
+we obtain:
+\[P\{2N \leq C \ln n \} \leq P\{2N \leq \lambda \}, \]
+and,
+\[\exp(-\lambda/8)  \leq  \exp\left(\frac{-C\ln n}{8}\right) = n^{-C/8}.\]
+Therefore,
+\[P\{2N \leq C \ln n \} \leq  n^{-C/8}.\]
+Finally, with this last expression we proved that if $k = \tfrac{C}{2}\ln n$, then the $k$-neighbors of $p$ are contained in the ball of radius $r(n)$ with a probability that converges exponentially to 1.
 \end{proof}

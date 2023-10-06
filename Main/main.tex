@@ -5,7 +5,6 @@
 \usepackage[round]{natbib}
 \usepackage{amsfonts, amsthm, amsmath, amssymb, hyperref, cancel, wrapfig}
 \usepackage{tikz, circuitikz, subfig, graphicx}
-\usepackage{algpseudocode, algorithm}
 \bibliographystyle{plainnat}
 
 %%--CORRECTIONS--------------------------------------------------
@@ -34,15 +33,15 @@
 \def\A{\ensuremath{\mathcal{A}}}
 
 % Custom text commands
-\def\Var{\ensuremath{\mathbf{Var}}\,}
+\def\Var{\ensuremath{\mathbf{Var}}\:}
 \def\Bi{\ensuremath{\mathrm{Bi}}}
 \def\Be{\ensuremath{\mathrm{Be}}}
 
 % Theorems and more
+\theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
-\theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 
 % Custom Commands
@@ -74,5 +73,6 @@
 
 \backmatter{}
 
-% The bibliography will go here
+\bibliography{refs}
+
 \end{document}
