@@ -19,7 +19,7 @@ Let $X_1,\ldots, X_N$ be a sample of $N$ uniformly distributed points in a compa
     }
 \end{figure}
 
-In the reference (ref) the authors assert that by choosing a number of stripes $M^* = \floor{0.58 N^{1/2}}$, one can achieve the best result in comparison to the real TSP solution. If $t_N$ is the TSP solution distance for our sample and $d_N$ is the algorithm's answer with the optimal $M^*$, then the error is asymptotically:
+In the reference~\cite{gzyl1990physicist} the authors assert that by choosing a number of stripes $M^* = \floor{0.58 N^{1/2}}$, one can achieve the best result in comparison to the real TSP solution. If $t_N$ is the TSP solution distance for our sample and $d_N$ is the algorithm's answer with the optimal $M^*$, then the error is asymptotically:
 \[  \frac{d_N-t_N}{t_N} \approx 0.23.\] 
 
 The result that we are going to prove is that $d_N$ converges with an exponential rate to its mean. To prove our point, we are going to modify the algorithm's trajectory as it follows. Let $e_N$ be trajectory distance that for any empty stripe in the plane we sum the length of its diagonal $\sqrt{L^2+ L^2/M^2}$ and then it skips the empty stripe. When there are no empty stripes $e_N = d_N$ and the probability that any given stripe is empty converges exponentially to 0:

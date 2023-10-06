@@ -1,17 +1,17 @@
 # Fdb version 4
-["bibtex main"] 1696597604 "main.aux" "main.bbl" "main" 1696597606 0
+["bibtex main"] 1696597876 "main.aux" "main.bbl" "main" 1696597881 0
   "./refs.bib" 1696401230 2104 fd1323aef0dbdfb7b8eb90fe97c29bf3 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "main.aux" 1696597606 16236 c9a5951a7dd3658629e1bd358e0f71c5 "pdflatex"
+  "main.aux" 1696597881 16380 84dc2b9018a2db1b24813a77c8141688 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1696597604 "/home/martin/Documents/VSCode/Latex/Thesis/Main/main.tex" "main.pdf" "main" 1696597606 0
+["pdflatex"] 1696597879 "/home/martin/Documents/VSCode/Latex/Thesis/Main/main.tex" "main.pdf" "main" 1696597881 0
   "../Chapters/chapter1.tex" 1696405760 6309 2b64c5e8d40c52b1331e6b73e36cb8ed ""
   "../Chapters/chapter2.tex" 1696587922 2897 bda33cf821e0588a2ffd2b34653d2721 ""
   "../Chapters/chapter3.tex" 1696597602 9828 3c20e30f128f3e3b00789516637da1c5 ""
-  "../Chapters/chapter4.tex" 1696017214 4916 f99ff635553a4554bba6428fd5bf4145 ""
+  "../Chapters/chapter4.tex" 1696597877 4935 ebf9658303a1dea402dd876edf7c3950 ""
   "../Simulation/TSPPictures/ex0.png" 1696012891 16508 17e0ce49019efe0e7851d297158b62c7 ""
   "../Simulation/TSPPictures/ex1.png" 1696012892 18895 00e3c2d7341e77bc5c9093861b4cd232 ""
   "../Simulation/TSPPictures/ex2.png" 1696012893 60291 3b1d578db3e4962db034f284e3cd54d2 ""
@@ -249,10 +249,10 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1684972800 40326 aba987258e6d6b6da5dec3a727ea174b ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1687146416 4548386 095bdf62675e309b2cc0e41f950c32d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1687739528 7862973 fd9836cf19362051e927da9ef3f385f3 ""
-  "main.aux" 1696597606 16236 c9a5951a7dd3658629e1bd358e0f71c5 "pdflatex"
-  "main.bbl" 1696597604 770 b91930428562300a7bbcb7d697e0e7d6 "bibtex main"
+  "main.aux" 1696597881 16380 84dc2b9018a2db1b24813a77c8141688 "pdflatex"
+  "main.bbl" 1696597877 1057 bd0024e11739cdf50ce3efd047fbb75b "bibtex main"
   "main.tex" 1696586113 2138 267685cfce46d0c486c9f60a6da9b1d3 ""
-  "main.toc" 1696597606 1092 7e02f28e2612909b76b6f702193b8c2a "pdflatex"
+  "main.toc" 1696597881 1092 7e02f28e2612909b76b6f702193b8c2a "pdflatex"
   (generated)
   "main.aux"
   "main.log"

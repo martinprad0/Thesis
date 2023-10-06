@@ -1,4 +1,4 @@
-\begin{thebibliography}{2}
+\begin{thebibliography}{3}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -15,5 +15,11 @@ Mateo D{\'\i}az, Adolfo~J Quiroz, and Mauricio Velasco.
 \newblock Local angles and dimension estimation from data on manifolds.
 \newblock \emph{Journal of Multivariate Analysis}, 173:\penalty0 229--247,
   2019.
+
+\bibitem[Gzyl et~al.(1990)Gzyl, Jim{\'e}nez, and Quiroz]{gzyl1990physicist}
+H~Gzyl, R~Jim{\'e}nez, and AJ~Quiroz.
+\newblock The physicist's approach to the travelling salesman problem—ii.
+\newblock \emph{Mathematical and Computer Modelling}, 13\penalty0 (7):\penalty0
+  45--48, 1990.
 
 \end{thebibliography}
