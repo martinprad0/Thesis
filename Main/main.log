@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/CVE-2023-32700 patched) (preloaded format=pdflatex 2023.6.25)  6 OCT 2023 08:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/CVE-2023-32700 patched) (preloaded format=pdflatex 2023.6.25)  13 OCT 2023 14:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -688,35 +688,35 @@ Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-Package scrbase Info: activating english \partname on input line 58.
-Package scrbase Info: activating english \chaptername on input line 58.
-Package scrbase Info: activating english \appendixname on input line 58.
-Package scrbase Info: activating english \figurename on input line 58.
-Package scrbase Info: activating english \tablename on input line 58.
-Package scrbase Info: activating english \contentsname on input line 58.
-Package scrbase Info: activating english \listfigurename on input line 58.
-Package scrbase Info: activating english \listtablename on input line 58.
-Package scrbase Info: activating english \bibname on input line 58.
-Package scrbase Info: activating english \indexname on input line 58.
-Package hyperref Info: Link coloring ON on input line 58.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+Package scrbase Info: activating english \partname on input line 57.
+Package scrbase Info: activating english \chaptername on input line 57.
+Package scrbase Info: activating english \appendixname on input line 57.
+Package scrbase Info: activating english \figurename on input line 57.
+Package scrbase Info: activating english \tablename on input line 57.
+Package scrbase Info: activating english \contentsname on input line 57.
+Package scrbase Info: activating english \listfigurename on input line 57.
+Package scrbase Info: activating english \listtablename on input line 57.
+Package scrbase Info: activating english \bibname on input line 57.
+Package scrbase Info: activating english \indexname on input line 57.
+Package hyperref Info: Link coloring ON on input line 57.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count333
@@ -758,7 +758,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (../Chapters/chapter1.tex
 chapter 1.
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 19.
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 20.
 (/usr/share/texlive/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 ) [1
@@ -770,7 +770,7 @@ chapter 2.
 [4
 
 
-]) (../Chapters/chapter3.tex [5]
+] [5] [6]) (../Chapters/chapter3.tex [7]
 chapter 3.
 
 Underfull \hbox (badness 10000) in paragraph at lines 2--3
@@ -782,7 +782,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 34--35
 
  []
 
-[6
+[8
 
 
 ]
@@ -790,19 +790,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--37
 
  []
 
-[7] [8] [9]) (../Chapters/chapter4.tex [10]
+[9] [10] [11]) (../Chapters/chapter4.tex [12]
 chapter 4.
-<../Simulation/TSPPictures/ex0.png, id=139, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/ex0.png, id=154, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/ex0.png Graphic file (type png)
 <use ../Simulation/TSPPictures/ex0.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/ex0.png  used on input line 13.
 (pdftex.def)             Requested size: 138.02509pt x 138.0279pt.
-<../Simulation/TSPPictures/ex1.png, id=141, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/ex1.png, id=156, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/ex1.png Graphic file (type png)
 <use ../Simulation/TSPPictures/ex1.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/ex1.png  used on input line 16.
 (pdftex.def)             Requested size: 138.02509pt x 138.0279pt.
-<../Simulation/TSPPictures/ex2.png, id=142, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/ex2.png, id=157, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/ex2.png Graphic file (type png)
 <use ../Simulation/TSPPictures/ex2.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/ex2.png  used on input line 19.
@@ -812,7 +812,7 @@ Overfull \hbox (17.71967pt too wide) in paragraph at lines 13--20
  [][][][][][][][][] 
  []
 
-[11
+[13
 
 
  <../Simulation/TSPPictures/ex0.png> <../Simulation/TSPPictures/ex1.png> <../Simulation/TSPPictures/ex2.png>]
@@ -821,7 +821,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{subfigure.4.1.
                    \relax 
 l.40     \subfloat
                   [$i = 0$]{\label{TSP:pic1.1}
-<../Simulation/TSPPictures/pic0.png, id=160, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/pic0.png, id=175, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/pic0.png Graphic file (type png)
 <use ../Simulation/TSPPictures/pic0.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/pic0.png  used on input line 42.
@@ -832,7 +832,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{subfigure.4.1.
                    \relax 
 l.43     \subfloat
                   [$i = 1$]{\label{TSP:pic1.2}
-<../Simulation/TSPPictures/pic1.png, id=161, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/pic1.png, id=176, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/pic1.png Graphic file (type png)
 <use ../Simulation/TSPPictures/pic1.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/pic1.png  used on input line 45.
@@ -843,12 +843,12 @@ pdfTeX warning (ext4): destination with the same identifier (name{subfigure.4.1.
                    \relax 
 l.46     \subfloat
                   [$i = 2$]{\label{TSP:pic1.3}
-<../Simulation/TSPPictures/pic2.png, id=162, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/pic2.png, id=177, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/pic2.png Graphic file (type png)
 <use ../Simulation/TSPPictures/pic2.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/pic2.png  used on input line 48.
 (pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
-<../Simulation/TSPPictures/pic3.png, id=163, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/pic3.png, id=178, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/pic3.png Graphic file (type png)
 <use ../Simulation/TSPPictures/pic3.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/pic3.png  used on input line 51.
@@ -858,17 +858,17 @@ Overfull \hbox (29.19995pt too wide) in paragraph at lines 42--52
 [][][][][][][][] 
  []
 
-<../Simulation/TSPPictures/pic4.png, id=164, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/pic4.png, id=179, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/pic4.png Graphic file (type png)
 <use ../Simulation/TSPPictures/pic4.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/pic4.png  used on input line 55.
 (pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
-<../Simulation/TSPPictures/pic5.png, id=165, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/pic5.png, id=180, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/pic5.png Graphic file (type png)
 <use ../Simulation/TSPPictures/pic5.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/pic5.png  used on input line 58.
 (pdftex.def)             Requested size: 104.56389pt x 104.56494pt.
-<../Simulation/TSPPictures/pic6.png, id=166, 505.89pt x 505.89pt>
+<../Simulation/TSPPictures/pic6.png, id=181, 505.89pt x 505.89pt>
 File: ../Simulation/TSPPictures/pic6.png Graphic file (type png)
 <use ../Simulation/TSPPictures/pic6.png>
 Package pdftex.def Info: ../Simulation/TSPPictures/pic6.png  used on input line 61.
@@ -882,25 +882,25 @@ Overfull \hbox (29.19995pt too wide) in paragraph at lines 55--65
 [][][][][][][][] 
  []
 
-[12 <../Simulation/TSPPictures/pic0.png> <../Simulation/TSPPictures/pic1.png> <../Simulation/TSPPictures/pic2.png> <../Simulation/TSPPictures/pic3.png> <../Simulation/TSPPictures/pic4.png> <../Simulation/TSPPictures/pic5.png> <../Simulation/TSPPictures/pic6.png>]) [13] (./main.bbl) [14
+[14 <../Simulation/TSPPictures/pic0.png> <../Simulation/TSPPictures/pic1.png> <../Simulation/TSPPictures/pic2.png> <../Simulation/TSPPictures/pic3.png> <../Simulation/TSPPictures/pic4.png> <../Simulation/TSPPictures/pic5.png> <../Simulation/TSPPictures/pic6.png>]) [15] (./main.bbl) [16
 
 
 
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 42476 strings out of 476182
- 993866 string characters out of 5796581
+ 42485 strings out of 476182
+ 993893 string characters out of 5796581
  1868793 words of memory out of 6000000
- 62190 multiletter control sequences out of 15000+600000
+ 62195 multiletter control sequences out of 15000+600000
  524526 words of font info for 80 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  110i,11n,106p,10734b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (15 pages, 556576 bytes).
+Output written on main.pdf (17 pages, 568962 bytes).
 PDF statistics:
- 333 PDF objects out of 1000 (max. 8388607)
- 253 compressed objects within 3 object streams
- 69 named destinations out of 1000 (max. 500000)
+ 348 PDF objects out of 1000 (max. 8388607)
+ 266 compressed objects within 3 object streams
+ 73 named destinations out of 1000 (max. 500000)
  159 words of extra memory for PDF output out of 10000 (max. 10000000)
 

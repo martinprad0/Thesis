@@ -1,6 +1,6 @@
 \chapter{Introduction}
 
-\section{Basic Inequalities}
+\section{Basic inequalities and theorems}
 
 
 %% --- Markov's inequality
@@ -15,12 +15,13 @@
 
 \begin{proof}
  In the first place, note that
- \[ \begin{array}{rl}
-  X & = X\cdot \1_{X\geq t} + X \cdot \1_{X < t}\\
-    & \geq t \cdot \1_{X\geq t} + 0,
+ \[\arraycolsep=2pt
+  \begin{array}{rrrll}
+  X & = & X\cdot \1_{\{X \geq t\}} & + & X \cdot \1_{\{X < t\}}\\
+    & \geq &t \cdot \1_{\{X \geq t\}} & + & 0,
  \end{array}\]
 and thus,
-\[ \E X \geq t \cdot \E \1_{X\geq t} = t \cdot \P\{X \geq t\}. \]
+\[ \E X \geq t \cdot \E \1_{\{X \geq t\}} = t \cdot \P\{X \geq t\}. \]
 For the second statement, apply the same argument on the random variable $Y := \varphi(X)$ and the constant $s := \varphi(t)$.
 \end{proof}
 %% --------------------
@@ -44,9 +45,14 @@ For the second statement, apply the same argument on the random variable $Y := \
 %% --- Jensen's inequality
 \begin{theorem}[Jensen's inequality]\label{jensen}
   For any real valued random variable $X$ and convex function $\varphi$
-  \[ \varphi(\E X) \leq \E \varphi(X) \] 
+  \[ \varphi(\E X) \leq \E \varphi(X). \] 
 \end{theorem}
+
+\begin{proof}[]
+  
+\end{proof}
 %% --------------------
+
 
 \vspace*{2em}
 
@@ -113,7 +119,7 @@ Unfortunately, the answer is no. The following theorem will show why.
 %% --- Berry-Essen CLT
 \begin{theorem}[Convergence Rate for Central Limit Theorem]\label{berryessen}
   For $Z_N$, $Z$ in Theorem~\ref{centrallimit}, we have:
-  \[ \left|\P\{Z_N \geq t\} - \P\{Z \geq t\}\right| \in O(\tfrac{1}{\sqrt{N}}). \]
+  \[ \left|\P\{Z_N \geq t\} - \P\{Z \geq t\}\right| = O(\tfrac{1}{\sqrt{N}}). \]
   \hfill $\square$
 \end{theorem}
 %% --------------------

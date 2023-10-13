@@ -1,36 +1,107 @@
 \chapter{Exponential Inequalities}
 
-Even if we are satisfied with the linear convergence rate provided by Chebyshev's inequality, there is a simple way to improve this bound with the following result.
+Even if we are satisfied with the linear convergence rate provided by Chebyshev's inequality, there are simple ways to improve this bound. The following result will provide the idea from which the exponential inequalities derive
 
-%% --- Hoeffding's inequality
-\begin{theorem}[Hoeffding's inequality]\label{hoeffding:bernoulli}
-  Let $X_1, \ldots, X_N$ be independent random variables, where $X_i \sim \Be(p_i)$. Then, for every $t > 0$, we have
-  
-  \[ P\left\{ \sum (X_i - \E X_i) \geq t\right\} \leq \exp\left( \frac{-2t^2}{N}\right) \] 
+%% --- MGF Inequality
+\begin{theorem}[MGF inequality]\label{mgf}
+  Let $X_i$ be independent random variables and let $S_N := \sum_{i = 1}^N a_i X_i$. Let $\lambda > 0$ the following inequality holds,
+  \[ \P\left\{  S_N \geq t\right\} \leq e^{-\lambda t}\cdot \prod_{i = 1}^N \E e^{\lambda a_i X_i} \] 
+
 \end{theorem}
-%% --------------------
 
 \begin{proof}
-  TODO
+  Let $\lambda > 0$, using Markov's inequality (Theorem~\ref{markov}) we assert that since $x\mapsto e^{\lambda x}$ is a non-decreasing function,
+  \[ \P\left\{  S_N \geq t\right\} = \P\left\{  e^{\lambda S_N} \geq e^{\lambda t}\right\} \leq e^{-\lambda t} \cdot \E \exp\left( \lambda \sum_{i = 1}^N a_i X_i \right). \]
+  Since $X_i$ are independent, the MGF of $S_N$ is the product of MGFs of each $X_i$:
+  \[\E \exp\left( \lambda \sum_{i = 1}^N a_i X_i \right) = \prod_{i = 1}^N \E e^{\lambda a_i X_i} \] 
+  \[ \implies \P\left\{  S_N \geq t\right\} \leq e^{-\lambda t}\cdot \prod_{i = 1}^N \E e^{\lambda a_i X_i}. \]
 \end{proof}
+%% --------------------
 
-Another exponential bound we can derive with a similar idea is the following
+The following theorem is a good example on how we can drastically improve the bound provided by Chebyshev's inequality with a simple change.
 
 %% --- Chernoff's inequality
 \begin{theorem}[Chernoff's inequality]\label{chernoff:bernoulli}
-  Let $X_1, \ldots, X_N$ be independent random variables, where for every $i = 1,\ldots,N$, $X_i \in [a_i,b_i]$. Define $S_N = \sum X_i$ and let $\mu = \E S_N$. Then, for every $t > 0$, we have
+  Let $X_i \sim \Be(p_i)$ be independent random variables. Define $S_N = \sum_{i = 1}^{N} X_i$ and let $\mu = \E S_N$. Then, for every $t > 0$, we have
   
-  \[ P\left\{  S_N \geq \mu + t\right\} \leq \exp\left( \frac{-2t^2}{\sum{( a_i - b_i )}^2}\right) \] 
+  \[ \P\left\{  S_N \geq t\right\} \leq  {\left(\frac{\mu}{t}\right)}^t e^{-\mu+t} .\] 
 \end{theorem}
+
+\begin{proof}
+  In the first place, use Theorem~\ref{mgf} to assert that for a $\lambda > 0$ that
+  \[\P\left\{  S_N \geq t\right\} \leq e^{-\lambda t}\cdot \prod_{i = 1}^N \E e^{\lambda X_i} \] 
+  Now it is left to bound every $X_i$ individually. Using the inequality $1+x \leq e^x$ we obtain
+  \[ \E e^{\lambda X_i} = e^{\lambda}p_i + (1-p_i) = 1 + (e^{\lambda}-1)p_i  \leq \exp(e^{\lambda}-1)e^{p_i}.\]
+  Finally, we plug this inequality on the equation to conclude that
+  \[e^{-\lambda t}\cdot \prod_{i = 1}^N \E e^{\lambda X_i} \leq e^{-\lambda t}\cdot \prod_{i = 1}^N \exp((e^{\lambda}-1) p_i) = e^{-\lambda t} \exp((e^{\lambda}-1) \mu). \]
+  By using the substitution $\lambda = \ln (t/\mu)$ we obtain the desired result,
+  \[ \P\left\{  S_N \geq t\right\} \leq {\left(\frac{\mu}{t}\right)}^t \exp{\left(\frac{\mu t}{\mu}-\mu\right)} = {\left(\frac{\mu}{t}\right)}^t e^{-\mu+t}. \]
+\end{proof}
 %% --------------------
+
+Another exponential inequality that is derived using a similar technique is Hoeffding's inequality:
+
+%% --- Hoeffding's inequality
+\begin{theorem}[Hoeffding's inequality]\label{hoeffding:bernoulli}
+  Let $X_1, \ldots, X_N$ be independent random variables, such that $X_i \in [a_i,b_i]$ for every $i = 1,\ldots,N$. Define $S_N = \sum_{i = 1}^{N} X_i$ and let $\mu = \E S_N$. Then, for every $t > 0$, we have
+  \[ \P\left\{  S_N \geq \mu + t\right\} \leq \exp\left( \frac{-2t^2}{\sum{( a_i - b_i )}^2}\right). \]
+\end{theorem}
+
+\begin{proof}
+  Since $x \mapsto e^x$ is a convex function, it follows that, for a random variable $X \in [a,b]$:
+  \[ e^{\lambda X} \leq \frac{e^{\lambda a}(b-X)}{b-a} + \frac{e^{\lambda b}(X-a)}{b-a},\hspace*{1em} a \leq b. \]
+  Next, take expectations on both hands of the equation to obtain:
+  \[ \E e^{tX} \leq \frac{(b-\E X) \cdot e^{\lambda a}}{b-a} - \frac{(\E X -a) \cdot e^{\lambda b}}{b-a}. \]
+  To simplify the expression, let $\alpha = (\E X -a)/(b-a)$, $\beta = (b-\E X)/(b-a)$ and $u = \lambda (b-a)$. Since $a < \E X < b$, it follows that $\alpha$ and $\beta$ are positive. Also, note that,
+  \[ \alpha + \beta = \frac{\E X-a}{b-a} + \frac{b-\E X}{b-a} = \frac{b-a}{b-a} = 1. \] 
+  Now,
+  \[ \ln \E e^{\lambda X} \leq \ln (\beta e^{-\alpha u} + \alpha e^{\beta u}) = -\alpha u + \ln(\beta + \alpha e^{u}). \] 
+  This function is differentiable with respect to $u$.
+  \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+    \begin{array}{rcl}
+    L(u) & = & -\alpha u + \ln(\beta + \alpha e^{u})\\
+    L'(u) & = & -\alpha + \frac{\alpha}{\alpha + \beta e^{-u}}\\
+    L''(u) & = & \frac{\alpha}{\alpha + \beta e^{-u}} \cdot \frac{\beta e^{-u}}{\alpha + \beta e^{-u}}.
+  \end{array} \]
+  Note that if $x = \frac{\alpha}{\alpha + \beta e^{-u}} \leq 1$, then $L''(u) = x(1-x) \leq \frac{1}{4}$. Remember that $\alpha + \beta = 1$. Now, by expanding the Taylor series we obtain,
+  \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{2}
+  \begin{array}{rcl}
+    L(u) & = & L(0) + uL'(0) + \frac{1}{2} u^2 L''(u)\\
+    & = &\ln(\beta + \alpha) + u \left(-\alpha + \frac{\alpha}{\alpha + \beta}\right) + \frac{1}{2} u^2 L''(u) \\
+    & = & \frac{1}{2} u^2 L''(u)\\
+    &\leq & \frac{1}{8}\lambda^2 {(b-a)}^2. \tag{$\star$}
+  \end{array} \]
+  Finally, use the inequality from Theorem~\ref{mgf} to conclude that
+  \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{2}
+    \begin{array}{rcl}
+      \P\{S_N-\mu \geq t\} & \leq & e^{-\lambda t} \prod_{i = 1}^N \E e^{\lambda X_i} \\
+      &\leq^{(\star)} & e^{-\lambda t} \exp\left(\frac{1}{8}t^2 \sum_{i = 1}^{N} {(b_i-a_i)}^2\right)
+    \end{array}\]  
+
+\end{proof}
+%% --------------------
+
+
+
+%% --- Hoeffding's inequality (Bernoulli)
+\begin{corollary}
+  Let $X_1,\ldots, X_N$ be independent random Bernoulli variables such that $X_i \sim \Be(p_i)$, then
+  \[ \P\left\{ \sum_{i = 1}^N (X_i - p_i) \geq t\right\} \leq \exp\left( \frac{-2t^2}{N}\right). \] 
+\end{corollary}
+
+\begin{proof}[]
+
+\end{proof}
+%% --------------------
+
+Returning to the coin tossing problem, we can now make a stronger assertion of the rate of convergence of a false negative classification using the previous corollary:
+\[\P \left\{S_N- \frac{N}{2} \geq \frac{\varepsilon}{2} N \right\} \leq \exp\left( - \varepsilon N \right). \] 
+
+However, this raises the question of which of the previous inequalities is better for a given problem. In the previous case, Hoeffding's inequality was used, but when dealing with any specific distribution, one needs to determine the criteria for deciding whether to use Chernoff's or Hoeffding's inequalities. In the following section, we will try to identify situations where one of these inequalities is more suitable than the other.
 
 \section{Chevyshev vs Chernoff vs Hoeffding}
 
 \section{Chernoff-Okamoto Inequalities}
-
-% \begin{theorem}[Chernoff Inequality for Upper Tails]
-% Let $X_i$ be Bernoulli random variables with parameters $p_i$, $S_N = \sum_{i = 1}^N X_i$ and $\mu_N = $
-% \end{theorem}
 
 Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
   \[

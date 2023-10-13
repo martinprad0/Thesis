@@ -12,7 +12,6 @@
 %\usepackage[allfiguresdraft]{draftfigure} % Disable pictures for fast rendering
 \linenumbers{}
 \counterwithin*{equation}{section}
-\counterwithin*{equation}{subsection}
 
 \newcommand\inlinetag{\stepcounter{equation}\ (\theequation)}
 
@@ -39,9 +38,9 @@
 
 % Theorems and more
 \theoremstyle{definition}
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{corollary}{Corollary}[theorem]
-\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}[theorem]{section}
 \newtheorem*{remark}{Remark}
 
 % Custom Commands
