@@ -1,4 +1,34 @@
 \chapter{Application to Estimation of Data Dimension}
+
+\section{Chernoff-Okamoto Inequalities}
+
+Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
+  \[
+    \P\{X \geq \lambda + t\} \leq e^{-u(\lambda+t)} \E e^{uX} = e^{-u(\lambda+ t)} {(1-p + p e^{u})}^n. 
+  \] 
+  The right hand equation is minimized when,
+  \[ e^{u} = \frac{\lambda+t}{(n-\lambda-t)} \cdot \frac{1-p}{p}. \]
+  Therefore, for $0 \leq t \leq n-\lambda$,
+  \begin{equation}\label{co:1}
+    \P\{X \geq \lambda + t\} \leq {\left(\frac{\lambda}{\lambda+t}\right)}^{\lambda + t} {\left(\frac{n-\lambda}{n-\lambda-t}\right)}^{n - \lambda - t}
+  \end{equation}
+
+\begin{theorem}\label{co:T1}
+  Let $X$ be random variable with the binomial distribution $\Bi(n,p)$ with $\lambda := np = \E X$, then for $t \geq 0$,
+  \begin{equation}\label{co:2}
+    \P\{X \geq \lambda + t\} \leq \exp\left(- \frac{t^2}{2(\lambda+t/3)}\right)
+  \end{equation}
+  \begin{equation}\label{co:3}
+    \P\{X \leq \lambda - t\} \leq \exp\left(- \frac{t^2}{2\lambda}\right)
+  \end{equation}
+\end{theorem}
+
+\textbf{Used in:} Theorem~\ref{ade:T2}
+
+\begin{proof}
+  (\textbf{TODO} I've already written the proof on paper)
+\end{proof}
+
 The article~\cite{diaz2019local} explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how does the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution on any manifold.\\[1em]
 
 In the first place, let $Z_1, \ldots, Z_k$ be a i.i.d.\ sample uniformly distributed on $\S^{d-1}$. Then, we have the following formula for the variance of the angles between $Z_i,Z_j, i\neq j$:
@@ -110,14 +140,14 @@ This last theorem is as far as this document is planned to cover. However, the l
     In the first place, remember that,
     \[ \lim_{k\to\infty}\; \sum_{j = 1}^{k} j^{-2} = \frac{\pi^2}{6}.\] 
     It follows that
-    \[\everymath{\displaystyle}
+    \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
       \begin{array}{rrlll}
         \beta_d & = & \frac{\pi^2}{12} - 2 \sum_{j = 1}^{k} {(2j)}^{-2}= & \frac{\pi^2}{12} - \frac{1}{2} \sum_{j = 1}^{k} j^{-2}\\
         & = & \frac{1}{2} \sum_{j = k+1}^{\infty} j^{-2}.
       \end{array}      
      \]
-    Since ${(j^{-2})}_{j \in \N}$ is a monotonically decreasing sequence, it follows that (\textbf{TODO}: Improve array syntax)
-    \[\everymath{\displaystyle} 
+    Since ${(j^{-2})}_{j \in \N}$ is a monotonically decreasing sequence, it follows that
+    \[\everymath{\displaystyle}\arraycolsep=1.5pt\def\arraystretch{1.5}
       \begin{array}{rrcll}
         \frac{1}{d}   & = & \frac{1}{2k+2}  & = & \frac{1}{2} \int_{k+1}^{\infty}x^{-2} dx\\[5mm]
       & \leq & \beta_d  & \leq & \frac{1}{2} \int_{k+1/2}^{\infty}x^{-2} dx\\[5mm]
@@ -126,7 +156,7 @@ This last theorem is as far as this document is planned to cover. However, the l
 
     \item[(2):] When $d = 2k+3$ is odd:
     On the other hand, note that
-    \[\hspace{-35mm}\everymath{\displaystyle} 
+    \[\hspace{-35mm}\everymath{\displaystyle}\arraycolsep=1.5pt\def\arraystretch{1.5}
       \begin{array}{rcl}
       \lim_{k\to\infty} \; \sum_{j = 1}^{k} {(2j-1)}^{-2} 
       & = & \lim_{k\to\infty} \sum_{j = 1}^{2k-1} j^{-2} - \sum_{j = 1}^{k-1} {(2j)}^{-2}\\
@@ -134,14 +164,14 @@ This last theorem is as far as this document is planned to cover. However, the l
       & = & \frac{\pi^2}{6}-\frac{\pi^2}{24} = \frac{\pi^2}{8}
     \end{array}\]
     Then,
-    \[\hspace{-10mm}\everymath{\displaystyle}
+    \[\hspace{-10mm}\everymath{\displaystyle}\arraycolsep=1.5pt\def\arraystretch{1.5}
     \begin{array}{rll}
       \beta_d & = & \frac{\pi^2}{4} - 2 \sum_{j = 1}^{k} {\left(2j-1\right)}^{-2}\\
       & = & 2\sum_{j = k+1}^{\infty}{\left(2j-1\right)}^{-2}.\\
     \end{array}      
    \]
-   Using a similar argument we conclude that (\textbf{TODO}: Improve array syntax)
-   \[\everymath{\displaystyle} 
+   Using a similar argument we conclude that
+   \[\everymath{\displaystyle}\arraycolsep=1.5pt\def\arraystretch{1.5}
       \begin{array}{rrcrl}
         \frac{1}{d} & = & \frac{1}{2k+1}  & = & 2 \int_{k+1}^{\infty}{(2x-1)}^{-2} dx\\[5mm]
       & \leq & \beta_d    & \leq & 2 \int_{k+1/2}^{\infty}{(2x-1)}^{-2} dx\\[5mm]
@@ -160,7 +190,7 @@ Where $v_d$ is the volume of the unit $d$-sphere. For the assumptions we made on
 
 \[ \rho = \P\{X \in M : |X| < r\} \geq \alpha v_d r^d  > 0.  \] 
 
-We can now define a binomial process based on how many neighbors does $p$ has within a range $r$. Let $N = N_r \sim \Bi(n,\rho)$ be the number of neighbors, using \textbf{Theorem~\ref{co:T1}} with $\lambda = n\rho $ and $t = \tfrac{\lambda}{2}$ we obtain,
+We can now define a binomial process based on how many neighbors does $p$ has within a range $r$. Let $N = N_r \sim \Bi(n,\rho)$ be the number of neighbors, using Theorem~\ref{co:T1} with $\lambda = n\rho $ and $t = \tfrac{\lambda}{2}$ we obtain,
 
 \[ \P\{N \leq \lambda - t\} = \P\{2N \leq \lambda \} \leq \exp(-\lambda/8). \] 
 

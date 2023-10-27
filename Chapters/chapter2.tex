@@ -97,7 +97,7 @@ Another exponential inequality that is derived using a similar technique is Hoef
 Returning to the coin tossing problem, we can now make a stronger assertion of the rate of convergence of a false negative classification using Hoeffding inequality:
 \[\P \left\{S_N- \frac{N}{2} \geq \frac{\varepsilon}{2} N \right\} \leq \exp\left( - \varepsilon N \right). \] 
 
-However, this raises the question of which of the previous inequalities is better for a given problem. In the previous case, we chose Hoeffding's inequality, but when dealing with any specific problem, one needs to determine the criteria for deciding whether to use Chernoff, Hoeffding, or any other inequality. In the following section, we will try to identify situations where one of these inequalities is more suitable than the other.
+However, this raises the question of which of the previous inequalities is better for a given problem. In the previous case, we chose Hoeffding's inequality, but when dealing with any specific problem, one needs to determine the criteria for deciding whether it's more appropriate to use Chernoff, Hoeffding, or any other inequality. In the following section, we will try to identify situations where one of these inequalities is more suitable than the other.
 
 \section{Which inequality is better?}
 Let's start with a small improvement of the Chebyshev's bound for the one-sided tails
@@ -105,7 +105,7 @@ Let's start with a small improvement of the Chebyshev's bound for the one-sided 
 %% --- Cantelli's inequality
 \begin{theorem}[Cantelli's Inequality]\label{cantelli}
   For $t > 0$, a random variable $X$ with mean $\mu = \E X$ and variance $\sigma^2 = \Var X$, we have
-  \[ \P\{X-\mu \geq t\} \leq \frac{\sigma^2}{\sigma^2 + t^2}. \] 
+  \[ \P\{X-\mu \geq t\} \leq \frac{\sigma^2}{t^2 + \sigma^2}. \] 
 \end{theorem}
 
 \begin{proof}
@@ -119,56 +119,21 @@ Let's start with a small improvement of the Chebyshev's bound for the one-sided 
   \[ \E[{(X-\mu+u)}^2] = \E[{(X-\mu)}^2] + 2u \cdot \underbrace{\E(X-\mu)}_{0} + E(u^2) = \sigma^2 + u^2. \]
 
   Finally, we choose an optimal $u = \frac{\sigma^2}{t}$ to conclude
-  \[\begin{array}{rl}
-    \P\{X-\mu \geq t\} & \leq \frac{\sigma^2 + u^2}{{(t+u)}^2}\\
-    & = \frac{\sigma^2 (1+\tfrac{\sigma^2}{t^2})}{{(\tfrac{t^2+\sigma^2}{t})}^2} 
-  \end{array}\]
-  \[ \] 
+  \[
+    \P\{X-\mu \geq t\} \leq \frac{\sigma^2 + u^2}{{(t+u)}^2}
+     = \frac{\sigma^2 + \sigma^4/t^2}{{{(t+\sigma^2/t)}^2}}
+     = \frac{\sigma^2 (\tfrac{t^2+\sigma^2}{t^2})}{{(\tfrac{t^2+\sigma^2}{t})}^2}
+     = \frac{\sigma^2}{t^2+\sigma^2}\]
 \end{proof}
 %% --------------------
 
-\section{Chernoff-Okamoto Inequalities}
+On the other hand, the two-sided tail inequality, Cantelli's inequality is not always better than Chebyshev,
 
-Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
-  \[
-    \P\{X \geq \lambda + t\} \leq e^{-u(\lambda+t)} \E e^{uX} = e^{-u(\lambda+ t)} {(1-p + p e^{u})}^n. 
-  \] 
-  The right hand equation is minimized when,
-  \[ e^{u} = \frac{\lambda+t}{(n-\lambda-t)} \cdot \frac{1-p}{p}. \]
-  Therefore, for $0 \leq t \leq n-\lambda$,
-  \begin{equation}\label{co:1}
-    \P\{X \geq \lambda + t\} \leq {\left(\frac{\lambda}{\lambda+t}\right)}^{\lambda + t} {\left(\frac{n-\lambda}{n-\lambda-t}\right)}^{n - \lambda - t}
-  \end{equation}
+\begin{corollary}[Two-sided Cantelli inequality]
+  \[\P\{|X-\mu| \geq t\} \leq \frac{2\sigma^2}{t^2 + \sigma^2}. \] 
+\end{corollary}
 
-\begin{theorem}\label{co:T1}
-  Let $X$ be random variable with the binomial distribution $\Bi(n,p)$ with $\lambda := np = \E X$, then for $t \geq 0$,
-  \begin{equation}\label{co:2}
-    \P\{X \geq \lambda + t\} \leq \exp\left(- \frac{t^2}{2(\lambda+t/3)}\right)
-  \end{equation}
-  \begin{equation}\label{co:3}
-    \P\{X \leq \lambda - t\} \leq \exp\left(- \frac{t^2}{2\lambda}\right)
-  \end{equation}
-\end{theorem}
-
-\textbf{Used in:} Theorem~\ref{ade:T2}
-
-\begin{proof}
-  (\textbf{TODO} I've already written the proof on paper)
-\end{proof}
-
-\section{Hoeffding-Bernstein inequalities}
-
-\begin{theorem}\label{hb:T1}
-  Let $\|f\|_\infty < c$, $\E f(X_1,\ldots, X_m) = 0$ and $\sigma^2 = \E f^2(X_1,\ldots, X_m)$. Then for any $t > 0$,
-  \begin{equation}
-    \P\{U_m^n(f,P) > t\} \leq \exp \left(\dfrac{\tfrac{n}{m}t^2}{2\sigma^2 + \tfrac{2}{3}ct}\right)
-  \end{equation}
-\end{theorem}
-
-\textbf{Used in:} Theorem~\ref*{ade:T4}
-
-\begin{proof}
-  Proposition 2.3. (a)~\cite{arcones1993limit}
-\end{proof}
+In fact, this bound is only better than Chebyshev's $t^2+\sigma^2 \leq 2t^2$, or equivalently, when $\sigma^2 \leq t^2$. However, in this case both inequalities give bounds greater than 1, and thus, are useless. Therefore, we conclude that in general Chebyshev's is better for two-sided tails and Cantelli's for one-sided tails.
 
 
+\section{Uniform Laws of Large Numbers}

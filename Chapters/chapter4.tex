@@ -1,12 +1,32 @@
-\chapter{Application to a Heuristic Algorithm for Travelling Salesman}
+\chapter{Applications to graph theory}
 
-In this section we are going to present an application of the Azuma-Hoeffding inequality to prove the convergence to the mean of a linear approximation algorithm for the \textit{Travelling Salesman Problem}. 
+\section{The Azuma-Hoeffding Inequality}
 
-\section*{The Algorithm}
+\begin{definition}
+    A sequence $X_0, \ldots, X_n$ of random variables is consider a \textbf{martingale} if, for every $i \leq n$,
+    \[ \E [X_{i+1} | X_i,\ldots, X_0] = X_i \] 
+\end{definition}
+
+The random graph $G(n,p)$ has $n$ labeled vertices and produces an edge between 2 of them with probability $p$. Let $v_1, \ldots, v_n$ denote the vertices and $e_1, \ldots, e_m$ the potential ${n\choose 2}$ edges with the indicator function:
+\[\1_{e_k \in G} = \begin{cases}
+    1, & e_k \in G\\
+    0, & \mbox{otherwise} 
+\end{cases} \] 
+An edge exposure martingale is a sequence of random variables defined as the expected value of a function $f(G)$ which depends on the information of the first $j$ potential edges:
+
+\[ X_j = \E [f(G) \;|\; \1_{e_1 \in G}, \ldots, \1_{e_j \in G}] \] 
+
+Since all of the graph information is contained in its edges, the sequence transitions from no information: $X_0 = E(f(G))$, to the true value of the function: $X_m = f(G)$. Similarly, one can define a martingale which depends on how many vertices are revealed. The vertex exposure martingale is defined as it follows,
+
+\[ X_i = \E [f(G) \;|\; \1_{\{v_k, v_j\}}, \; k,j \leq i] \] 
+
+In the following section we are going to present an application of the Azuma-Hoeffding inequality to prove the convergence to the mean of a linear approximation algorithm for the \textit{Travelling Salesman Problem}. 
+
+\section{An heuristic algorithm for the Travelling Salesman Problem}
 
 Let $X_1,\ldots, X_N$ be a sample of $N$ uniformly distributed points in a compact square $[0,L]\times [0,L]$. The algorithm divides this square in $M$ stripes of width $L/M$ each. Then, it connects each of the points in each of the stripes vertically and connects the top-most of one stripe with the top-most of the next one (or viceversa as the image below shows).
 
-\begin{figure}[h]\label{TSP:pic0}
+\begin{figure}[ht]\label{TSP:pic0}
     \centering
     \subfloat[Uniform sample]{\label{TSP:pic0.1}
         \includegraphics[width=0.33\textwidth]{../Simulation/TSPPictures/ex0.png}
@@ -36,7 +56,7 @@ As the difference of this expectations when we reveal 1 more point. Note that si
 \[ \E(Z_i | \A_i) =  \E (e_N | \A_i, \A_i) - \E (e_N | \A_{i-1}, A_i) = \E (e_N | \A_i) - \E (e_N | \A_i) = 0,\] 
 The $Z_i's$ form a vertex exposure martingale sequence.
 
-\begin{figure}[h]\label{TSP:pic1}
+\begin{figure}[ht]\label{TSP:pic1}
     \subfloat[$i = 0$]{\label{TSP:pic1.1}
         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic0.png}
     }
@@ -62,7 +82,7 @@ The $Z_i's$ form a vertex exposure martingale sequence.
     \subfloat[$i = N = 50$]{\label{TSP:pic1.8}
         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/ex2.png}
     }
-    \caption{Evolution of the Martingale}
+    \caption{Evolution of the vertex exposure martingale}
 \end{figure}
 
 Define $e_N^{[i]}$ as the distance of the trajectory when we remove the $i$-th point from the sample. Intuitively from the figure above and the triangle inequality, we can obtain
