@@ -18,11 +18,11 @@ Even if we are satisfied with the linear convergence rate provided by Chebyshev'
 \end{proof}
 %% --------------------
 
-The following theorem is a good example on how we can drastically improve the bound provided by Chebyshev's inequality with a simple change.
+The following two theorems are examples on how we can obtain tighter bounds than the ones provided by Chebyshev's inequality. In particular, these theorems are derived from the idea of the previous theorem and are considered as corollaries by some authors.
 
 %% --- Chernoff's inequality
 \begin{theorem}[Chernoff's inequality]\label{chernoff:bernoulli}
-  Let $X_i \sim \Be(p_i)$ be independent random variables. Define $S_N = \sum_{i = 1}^{N} X_i$ and let $\mu = \E S_N$. Then, for every $t > 0$, we have
+  Let $X_i \sim \Be(p_i)$ be independent random variables. Define $S_N = \sum_{i = 1}^{N} X_i$ and let $\mu = \E S_N$. Then, for $t > \mu$, we have
   
   \[ \P\left\{  S_N \geq t\right\} \leq  {\left(\frac{\mu}{t}\right)}^t e^{-\mu+t} .\] 
 \end{theorem}
@@ -94,12 +94,38 @@ Another exponential inequality that is derived using a similar technique is Hoef
 \end{proof}
 %% --------------------
 
-Returning to the coin tossing problem, we can now make a stronger assertion of the rate of convergence of a false negative classification using the previous corollary:
+Returning to the coin tossing problem, we can now make a stronger assertion of the rate of convergence of a false negative classification using Hoeffding inequality:
 \[\P \left\{S_N- \frac{N}{2} \geq \frac{\varepsilon}{2} N \right\} \leq \exp\left( - \varepsilon N \right). \] 
 
-However, this raises the question of which of the previous inequalities is better for a given problem. In the previous case, Hoeffding's inequality was used, but when dealing with any specific distribution, one needs to determine the criteria for deciding whether to use Chernoff's or Hoeffding's inequalities. In the following section, we will try to identify situations where one of these inequalities is more suitable than the other.
+However, this raises the question of which of the previous inequalities is better for a given problem. In the previous case, we chose Hoeffding's inequality, but when dealing with any specific problem, one needs to determine the criteria for deciding whether to use Chernoff, Hoeffding, or any other inequality. In the following section, we will try to identify situations where one of these inequalities is more suitable than the other.
 
-\section{Chevyshev vs Chernoff vs Hoeffding}
+\section{Which inequality is better?}
+Let's start with a small improvement of the Chebyshev's bound for the one-sided tails
+
+%% --- Cantelli's inequality
+\begin{theorem}[Cantelli's Inequality]\label{cantelli}
+  For $t > 0$, a random variable $X$ with mean $\mu = \E X$ and variance $\sigma^2 = \Var X$, we have
+  \[ \P\{X-\mu \geq t\} \leq \frac{\sigma^2}{\sigma^2 + t^2}. \] 
+\end{theorem}
+
+\begin{proof}
+  In the first place note that,
+  \[ \P\{ Y \geq s\} \leq \P\{ Y \geq s\} + \P\{ Y \leq s\} = \P\{|Y| \geq s\} = \P\{ Y^2 \geq s^2\} \tag*{($\star$)}. \] 
+  Let $u \geq 0$, define $Y = X-\mu + u$ and $s = t+u$ to obtain
+  \[ \P\{X-\mu \geq t\} = \P\{X-\mu + u \geq t + u\} = \P\{Y \geq s\}. \]
+  We use $(\star)$ and Markov's inequality~(\ref{markov}) on $Y^2$ to conclude,
+  \[ \P\{Y \geq s\} \overset{(\star)}{\leq} \P\{ Y^2 \geq s^2\} \overset{(\ref{markov})}{\leq} \frac{\E[{(X-\mu+u)}^2]}{{(t+u)}^2}.\]
+  By linearity of expectation,
+  \[ \E[{(X-\mu+u)}^2] = \E[{(X-\mu)}^2] + 2u \cdot \underbrace{\E(X-\mu)}_{0} + E(u^2) = \sigma^2 + u^2. \]
+
+  Finally, we choose an optimal $u = \frac{\sigma^2}{t}$ to conclude
+  \[\begin{array}{rl}
+    \P\{X-\mu \geq t\} & \leq \frac{\sigma^2 + u^2}{{(t+u)}^2}\\
+    & = \frac{\sigma^2 (1+\tfrac{\sigma^2}{t^2})}{{(\tfrac{t^2+\sigma^2}{t})}^2} 
+  \end{array}\]
+  \[ \] 
+\end{proof}
+%% --------------------
 
 \section{Chernoff-Okamoto Inequalities}
 
@@ -144,3 +170,5 @@ Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
 \begin{proof}
   Proposition 2.3. (a)~\cite{arcones1993limit}
 \end{proof}
+
+

@@ -7,8 +7,6 @@
 \begin{theorem}[Markov's inequality]\label{markov}
   For a random variable $X$ with $\P\{X < 0\} = 0$ and $t>0$, we have
   \[ \P\{X \geq t\} \leq \frac{\E X}{t}.\]
-  It follows that for a non-decreasing function $\varphi$ which only takes non-negative values,
-  \[ \P\{X \geq t\} = \P\{\varphi(X) \geq \varphi(t)\} \leq \frac{\E\varphi(X)}{\varphi(t)}.\]
 \end{theorem}
 
 \vspace*{1em}
@@ -22,7 +20,6 @@
  \end{array}\]
 and thus,
 \[ \E X \geq t \cdot \E \1_{\{X \geq t\}} = t \cdot \P\{X \geq t\}. \]
-For the second statement, apply the same argument on the random variable $Y := \varphi(X)$ and the constant $s := \varphi(t)$.
 \end{proof}
 %% --------------------
 
@@ -30,28 +27,28 @@ For the second statement, apply the same argument on the random variable $Y := \
 
 %% --- Chebyshev's inequality
 \begin{theorem}[Chebyshev's inequality]\label{chebyshev}
-  For $t > 0$ and a random variable $X$ with mean $\mu = \E X$ and variance $\sigma^2 = \Var X$, then
-  \[ \P\{|X-\mu| \geq t\} \leq \sigma^2 t^{-2}. \] 
+  For $t > 0$, a random variable $X$ with mean $\mu = \E X$ and variance $\sigma^2 = \Var X$, we have
+  \[ \P\{|X-\mu| \geq t\} \leq \frac{\sigma^2}{t^2}. \] 
 \end{theorem}
 
 \begin{proof}
-  Applying Markov's inequality with $\varphi: x \mapsto x^2$ we obtain,
-  \[ \P\{|X-\mu| \geq t \} = \P\{|X-\mu|^2 \geq t^2 \} \leq \frac{\E [{(X-\mu)}^2]}{t^2} = \sigma^2 t^{-2}.\] 
+  We apply Markov's inequality to the non-negative random variable $Y = |X-\mu|^2$ in order to obtain the desired result
+  \[ \P\{|X-\mu| \geq t \} = \P\{|X-\mu|^2 \geq t^2 \} \leq \frac{\E [{(X-\mu)}^2]}{t^2} = \frac{\sigma^2}{t^2}.\] 
 \end{proof}
 %% --------------------
 
-\vspace*{2em}
+% \vspace*{2em}
 
-%% --- Jensen's inequality
-\begin{theorem}[Jensen's inequality]\label{jensen}
-  For any real valued random variable $X$ and convex function $\varphi$
-  \[ \varphi(\E X) \leq \E \varphi(X). \] 
-\end{theorem}
+% %% --- Jensen's inequality
+% \begin{theorem}[Jensen's inequality]\label{jensen}
+%   For any real valued random variable $X$ and convex function $\varphi$
+%   \[ \varphi(\E X) \leq \E \varphi(X). \] 
+% \end{theorem}
 
-\begin{proof}[]
+% \begin{proof}[]
   
-\end{proof}
-%% --------------------
+% \end{proof}
+% %% --------------------
 
 
 \vspace*{2em}
@@ -75,7 +72,7 @@ Let $S_N \sim \Bi(N,1/2)$ denote the number of heads in a fair coin tossing game
 For a fixed $\varepsilon > 0$, we may classify a coin tossing game as rigged if, after $N$ trials, the ratio of heads vs tails in the sample is greater than $[1+\varepsilon:1-\varepsilon]$, or similarly,
 \[ S_N \geq \mu +  \frac{\varepsilon}{2} N = \frac{1+\varepsilon}{2} N. \]
 
-Using the Chebyshev inequality~\ref{chebyshev}, we assert that
+It's clear that calculating the exact probability of the previous event for any $N,\; \varepsilon$ is a very demanding task computationally. The Chebyshev's inequality~\ref{chebyshev} gives us a ``good-enough'' result for this problem,
 
 \[ \P\left\{S_N \geq \mu +  \frac{\varepsilon}{2} N\right\} \leq 
 \P\left\{|S_N-\mu| \geq  \frac{\varepsilon}{2} N\right\} \leq \sigma^2 \frac{4}{\varepsilon^2 N^2} = \frac{1}{\varepsilon^2 N}.\] 
@@ -84,7 +81,7 @@ Therefore, the probability of bad events tends to 0 at least linearly with the n
 
 \subsection{Central Limit Theorem}
 
-The proof of the following theorems can be found in (ref)
+The proof of the following three theorems can be found in~\cite{boucheron2003concentration}
 
 %% --- Central Limit Theorem
 \begin{theorem}\label{centrallimit}

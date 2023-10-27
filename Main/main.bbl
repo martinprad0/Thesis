@@ -1,4 +1,4 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{4}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -9,6 +9,13 @@
 Miguel~A Arcones and Evarist Gin{\'e}.
 \newblock Limit theorems for u-processes.
 \newblock \emph{The Annals of Probability}, pages 1494--1542, 1993.
+
+\bibitem[Boucheron et~al.(2003)Boucheron, Lugosi, and
+  Bousquet]{boucheron2003concentration}
+St{\'e}phane Boucheron, G{\'a}bor Lugosi, and Olivier Bousquet.
+\newblock Concentration inequalities.
+\newblock In \emph{Summer school on machine learning}, pages 208--240.
+  Springer, 2003.
 
 \bibitem[D{\'\i}az et~al.(2019)D{\'\i}az, Quiroz, and Velasco]{diaz2019local}
 Mateo D{\'\i}az, Adolfo~J Quiroz, and Mauricio Velasco.
