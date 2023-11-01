@@ -136,4 +136,54 @@ On the other hand, the two-sided tail inequality, Cantelli's inequality is not a
 In fact, this bound is only better than Chebyshev's $t^2+\sigma^2 \leq 2t^2$, or equivalently, when $\sigma^2 \leq t^2$. However, in this case both inequalities give bounds greater than 1, and thus, are useless. Therefore, we conclude that in general Chebyshev's is better for two-sided tails and Cantelli's for one-sided tails.
 
 
-\section{Uniform Laws of Large Numbers}
+\section{Uniform Law of Large Numbers}
+
+For any probability measure $P$ on the real line and $t > \in \R$, define $P_n$ as the empirical probability measure obtain from an independent sample $X_1, \ldots, X_n$ of $P$, that is:
+\[ P_n(t) = n^{-1} \cdot \# {\{ X_i < t\}}_{i\leq n}.\]
+
+From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges to $P(t)$ with probability 1. However we can formulate a stronger statement on this convergence. The first application of concentration inequalities we are going to explore is the uniform law of large numbers, which states the following:
+
+\begin{theorem}[Glivenko-Cantelli Theorem]\label{glivenko-cantelli}
+  For $P,\; P_n$ and $t$ from above,
+  \[ \|P_n - P\| = \sup_{t\in \Q} \left|P_n(t) - P(t)\right| \overset{p}{\longrightarrow} 0.\]  
+\end{theorem} 
+
+\begin{proof}
+  The proof, adapted from~\cite{pollard2012convergence}, consists of 5 steps. At first instance, the author clarifies that we must stablish the condition of $t\in \Q$ to avoid problems with measurability. The author later proves that the theorem is true for any $t\in \R$, but for practical purposes, we will only prove it for rationals. Another remark the author makes is that this result from the real line can be later generalized for some classes of polynomials, and we will cover more about this in section 5.
+
+  \subsubsection*{First Symmetrization}
+  In the first place, define $P_n'$ as the empirical measure obtained from an independent copy of the sample $X_1',\ldots, X_n'$ of $P$. Note that for any fixed $t$, $P_n(t)$ and $P_n'(t)$ are random variables derived from their respective samples which have:
+  \[ \E P_n(t) = \E P_n'(t) = P(t),\hspace*{1em} \Var P_n(t) = \Var P_n'(t) = P(t) \] 
+  We will bound the concentration of $\|P_n- P_n'\|$ first, which will later result in a bound for $\|P_n - P\|$ according to the following lemma:
+
+  \vspace*{1em}
+
+  For now, fix $\varepsilon > 0$, and keep in mind the values $Z = P_n - P$, $Z' = P_n' - P$, $\alpha = \frac{1}{2}\varepsilon$ and $\beta = \frac{1}{2}$.
+  \begin{lemma} 
+    Let ${\{Z(t)\}}_{t\in T}$ and ${\{Z'(t)\}}_{t\in T}$ be independent stochastic processes under the same set of indices $T$. Also, assume that there exist $\alpha, \beta > 0$ such that
+    \[ \P\left\{\sup_{t\in T} |Z(t)| \leq \alpha \right\} \geq \beta. \ \]
+    It follows that, for any $\varepsilon > 0$,
+    \[  \P\left\{\sup_{t\in T} |Z(t)| > \varepsilon \right\} \leq \beta^{-1} \P\left\{\sup_{t\in T} |Z(t)-Z'(t)| > \varepsilon - \alpha \right\}. \]     
+  \end{lemma}
+
+  \begin{proof}
+    Since $Z,\; Z'$ are independent, it follows from the hypothesis that for any index $\tau \in T$,
+    \[ \P\{|Z'(\tau)|\leq \alpha | Z\} = \P\{|Z'(\tau)|\leq \alpha\} \geq \P \left\{ \sup_{t\in T}|Z'(t)|\leq \alpha \right\} \geq \beta.\] 
+    Now, fix $\tau$ such that $|Z(\tau)| > \varepsilon$ and use the previous inequality to conclude,
+    \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+    \begin{array}{rcl}
+      \beta \cdot \P\left\{\sup_{t\in T} |Z(t)| > \varepsilon \right\} & \leq & \P\{|Z'(\tau)| \leq \alpha\} \cdot \P\{|Z(\tau)| > \varepsilon\}\\
+      {\text{\scriptsize ($Z,\; Z'$ are independent)}} & = & \P\{|Z'(\tau)| \leq \alpha,\; |Z(\tau)| > \varepsilon\}\\
+       & \leq & \P\{ |Z(\tau) - Z'(\tau)| > \varepsilon - \alpha \}\\
+       {\text{\scriptsize \textbf{TODO:} why?}} & \leq & \P\left\{\sup_{t\in T} |Z(t)-Z'(t)| > \varepsilon - \alpha \right\}.
+    \end{array} \] 
+  \end{proof}
+
+  Using Chevyshev's inequality (\ref{chebyshev}) we know that the hypothesis is satisfied for the values of $\alpha$ and $\beta$ we chose:
+  \[\forall t\in T: \P\left\{ |Z'(t)| \leq \alpha \right\} = \P\{|P_n(t) - P(t)| \leq \varepsilon\} \geq \frac{1}{2} = \beta,\hspace*{1em} \text{if $n \geq 8\varepsilon^{-2}$}\]
+  Therefore, using the previous lemma, we conclude that
+  \[ \P\{\|P_n-P\| > \varepsilon\} \leq 2 \P\{\|P_n-P_n'\| > \tfrac{1}{2} \varepsilon\},\hspace*{1em} \text{if $n \geq 8\varepsilon^{-2}$}. \] 
+
+  \subsubsection*{Second Symmetrization}
+  Let $\sigma_1, \ldots, \sigma_n$
+\end{proof}
