@@ -139,7 +139,7 @@ In fact, this bound is only better than Chebyshev's $t^2+\sigma^2 \leq 2t^2$, or
 \section{Uniform Law of Large Numbers}
 
 For any probability measure $P$ on the real line and $t > \in \R$, define $P_n$ as the empirical probability measure obtain from an independent sample $X_1, \ldots, X_n$ of $P$, that is:
-\[ P_n(t) = n^{-1} \cdot \# {\{ X_i < t\}}_{i\leq n}.\]
+\[ P_n(t) = n^{-1} \cdot \sum_{i = 1}^n \1_{\{ X_i < t\}}.\]
 
 From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges to $P(t)$ with probability 1. However we can formulate a stronger statement on this convergence. The first application of concentration inequalities we are going to explore is the uniform law of large numbers, which states the following:
 
@@ -185,5 +185,27 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
   \[ \P\{\|P_n-P\| > \varepsilon\} \leq 2 \P\{\|P_n-P_n'\| > \tfrac{1}{2} \varepsilon\},\hspace*{1em} \text{if $n \geq 8\varepsilon^{-2}$}. \] 
 
   \subsubsection*{Second Symmetrization}
-  Let $\sigma_1, \ldots, \sigma_n$
+  The following trick will allow us to stop considering all of the $2n$ from the previous symmetrization, and will help us to create a simpler random variable. Let $\sigma_1, \ldots, \sigma_n$ be Rademacher random variables, that is $\P\{\sigma_i = 1\} = \P\{\sigma_i = -1\} = 1/2$. Let $Y_i = \1_{\{ X_i < t\}} - \1_{\{ X_i < t\}}$, and note that,
+  \[ P\{Y_i = 1\} = P\{Y_i = -1\} = \frac{1}{2} \left(1 - \P\{Y_i = 0 \}\right). \]
+  Since $\sigma_i$ is independent of $Y_i$, it follows that
+  \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+  \begin{array}{rcl}
+    P\{\sigma_i Y_i = 1\} & = & \P\{Y_i = 1, \sigma_i = 1\} + \P\{Y_i = -1, \sigma_i = -1\}\\
+    & = & \frac{1}{2} \P\{Y_i = 1\} + \frac{1}{2} \P\{Y_i = -1\}\\
+    & = & \P\{Y_i = 1\}
+  \end{array}
+    \] 
+  \[ \implies P\{\sigma_i Y_i = \pm 1\} = P\{Y_i = \pm 1\},\hspace*{1em}  P\{\sigma_i Y_i = 0\} =P\{ Y_i = 0\} \] 
+  Therefore, we won't alter the distribution of $Y_i$ when multiplying by $\sigma_i$
+  \[ \implies Y_i \sim \sigma_i Y_i.\]
+  It follows that since $P_n - P_n' = n^{-1} \sum_{i \leq n} Y_i$,
+  \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+  \begin{array}{rcl}
+    \P\{\|P_n - P_n'\| > \tfrac{1}{2}\varepsilon\} & = & \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i Y_i\right| >\tfrac{1}{2}\varepsilon \right\}\\
+    & \leq & \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i < t\}}\right| >\tfrac{1}{2}\varepsilon \right\}\\
+    & & + \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i' < t\}}\right| >\tfrac{1}{2}\varepsilon \right\}\\
+    & = & 2\P\{\|\tilde{P_n}\| > \tfrac{1}{4} \varepsilon\}.
+  \end{array} \] 
+  where $\tilde{P_n} = n^{-1}\sum_{i\leq n} \sigma_i \1_{\{ X_i < t\}}$. Then, from the previous section we can conclude that for $n \geq 8\varepsilon^{-2}$,
+  \[ \P\{\|P_n-P\| > \varepsilon\} \leq 4 \P\{\|\tilde{P_n}\|> \tfrac{1}{4}\varepsilon\}\] 
 \end{proof}
