@@ -42,7 +42,7 @@ The following two theorems are examples on how we can obtain tighter bounds than
 Another exponential inequality that is derived using a similar technique is Hoeffding's inequality:
 
 %% --- Hoeffding's inequality
-\begin{theorem}[Hoeffding's inequality]\label{hoeffding:bernoulli}
+\begin{theorem}[Hoeffding's inequality]\label{hoeffding:bounded}
   Let $X_1, \ldots, X_N$ be independent random variables, such that $X_i \in [a_i,b_i]$ for every $i = 1,\ldots,N$. Define $S_N = \sum_{i = 1}^{N} X_i$ and let $\mu = \E S_N$. Then, for every $t > 0$, we have
   \[ \P\left\{  S_N \geq \mu + t\right\} \leq \exp\left( \frac{-2t^2}{\sum{( a_i - b_i )}^2}\right). \]
 \end{theorem}
@@ -84,7 +84,7 @@ Another exponential inequality that is derived using a similar technique is Hoef
 
 
 %% --- Hoeffding's inequality (Bernoulli)
-\begin{corollary}
+\begin{corollary}\label{hoeffding:bernoulli}
   Let $X_1,\ldots, X_N$ be independent random Bernoulli variables such that $X_i \sim \Be(p_i)$, then
   \[ \P\left\{ \sum_{i = 1}^N (X_i - p_i) \geq t\right\} \leq \exp\left( \frac{-2t^2}{N}\right). \] 
 \end{corollary}
@@ -175,37 +175,110 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
       \beta \cdot \P\left\{\sup_{t\in T} |Z(t)| > \varepsilon \right\} & \leq & \P\{|Z'(\tau)| \leq \alpha\} \cdot \P\{|Z(\tau)| > \varepsilon\}\\
       {\text{\scriptsize ($Z,\; Z'$ are independent)}} & = & \P\{|Z'(\tau)| \leq \alpha,\; |Z(\tau)| > \varepsilon\}\\
        & \leq & \P\{ |Z(\tau) - Z'(\tau)| > \varepsilon - \alpha \}\\
-       {\text{\scriptsize \textbf{TODO:} why?}} & \leq & \P\left\{\sup_{t\in T} |Z(t)-Z'(t)| > \varepsilon - \alpha \right\}.
+        & \leq & \P\left\{\sup_{t\in T} |Z(t)-Z'(t)| > \varepsilon - \alpha \right\}.
     \end{array} \] 
   \end{proof}
-
   Using Chevyshev's inequality (\ref{chebyshev}) we know that the hypothesis is satisfied for the values of $\alpha$ and $\beta$ we chose:
   \[\forall t\in T: \P\left\{ |Z'(t)| \leq \alpha \right\} = \P\{|P_n(t) - P(t)| \leq \varepsilon\} \geq \frac{1}{2} = \beta,\hspace*{1em} \text{if $n \geq 8\varepsilon^{-2}$}\]
   Therefore, using the previous lemma, we conclude that
-  \[ \P\{\|P_n-P\| > \varepsilon\} \leq 2 \P\{\|P_n-P_n'\| > \tfrac{1}{2} \varepsilon\},\hspace*{1em} \text{if $n \geq 8\varepsilon^{-2}$}. \] 
+  \[ \P\{\|P_n-P\| > \varepsilon\} \leq 2 \P\{\|P_n-P_n'\| > \tfrac{1}{2} \varepsilon\},\hspace*{1em} \text{if $n \geq 8\varepsilon^{-2}$}. \tag*{(1)} \] 
+
+  \vspace*{1em}
 
   \subsubsection*{Second Symmetrization}
-  The following trick will allow us to stop considering all of the $2n$ from the previous symmetrization, and will help us to create a simpler random variable. Let $\sigma_1, \ldots, \sigma_n$ be Rademacher random variables, that is $\P\{\sigma_i = 1\} = \P\{\sigma_i = -1\} = 1/2$. Let $Y_i = \1_{\{ X_i < t\}} - \1_{\{ X_i < t\}}$, and note that,
-  \[ P\{Y_i = 1\} = P\{Y_i = -1\} = \frac{1}{2} \left(1 - \P\{Y_i = 0 \}\right). \]
+  The following trick will allow us to stop considering all of the $2n$ from the previous symmetrization, and will help us to create a simpler random variable. We will initially prove the trick for unidimensional random variables, but in chapter 4, we will generalize this proof for any kind on set on $\R^n$.
+
+  \begin{lemma}
+    Let $\sigma_1, \ldots, \sigma_n$ be Rademacher random variables, that is $\P\{\sigma_i = 1\} = \P\{\sigma_i = -1\} = 1/2$. Let $Y_i = \1_{\{ X_i' < t\}} - \1_{\{ X_i < t\}}$, and note that,
+    \[ \P\{Y_i = x\} = \P\{\sigma_i Y_i = x\},\hspace*{1em} x \in \{-1,0,1\} \] 
+  \end{lemma}
+
+  \begin{proof} In the first place, from the independency of $X_i$ from $X_i'$ and their equality of distributions, the following symmetry holds: 
+
+    \[ \P\{Y_i = 1\} = \P\{Y_i = -1\} = \frac{1}{2} \left(1 - \P\{Y_i = 0 \}\right) = \frac{1}{2} \P\{X_i \neq X_i'\}. \]
+
   Since $\sigma_i$ is independent of $Y_i$, it follows that
   \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
   \begin{array}{rcl}
-    P\{\sigma_i Y_i = 1\} & = & \P\{Y_i = 1, \sigma_i = 1\} + \P\{Y_i = -1, \sigma_i = -1\}\\
-    & = & \frac{1}{2} \P\{Y_i = 1\} + \frac{1}{2} \P\{Y_i = -1\}\\
-    & = & \P\{Y_i = 1\}
+    \P\{\sigma_i Y_i = 1\} & = & \P\{Y_i = 1, \sigma_i = 1\} + \P\{Y_i = -1, \sigma_i = -1\}\\
+    & = & \P\{Y_i = 1\} \P\{\sigma_i = 1\} + \P\{Y_i = -1\} \P\{\sigma_i = 1\}\\
+    & = & \frac{1}{2} \P\{Y_i = 1\} + \frac{1}{2} \P\{Y_i = 1\}\\
+    & = & \P\{Y_i = 1\} = \P\{Y_i = -1\} = \P\{\sigma_i Y_i = -1\}.
   \end{array}
-    \] 
-  \[ \implies P\{\sigma_i Y_i = \pm 1\} = P\{Y_i = \pm 1\},\hspace*{1em}  P\{\sigma_i Y_i = 0\} =P\{ Y_i = 0\} \] 
-  Therefore, we won't alter the distribution of $Y_i$ when multiplying by $\sigma_i$
-  \[ \implies Y_i \sim \sigma_i Y_i.\]
+    \]
+    Thus,
+    \[  \P\{\sigma_i Y_i = \pm 1\} = \P\{Y_i = \pm 1\},\hspace*{1em}  \P\{\sigma_i Y_i = 0\} = \P\{ Y_i = 0\}. \] 
+  \end{proof}
+  
   It follows that since $P_n - P_n' = n^{-1} \sum_{i \leq n} Y_i$,
-  \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+  \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{3}
   \begin{array}{rcl}
     \P\{\|P_n - P_n'\| > \tfrac{1}{2}\varepsilon\} & = & \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i Y_i\right| >\tfrac{1}{2}\varepsilon \right\}\\
     & \leq & \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i < t\}}\right| >\tfrac{1}{2}\varepsilon \right\}\\
-    & & + \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i' < t\}}\right| >\tfrac{1}{2}\varepsilon \right\}\\
-    & = & 2\P\{\|\tilde{P_n}\| > \tfrac{1}{4} \varepsilon\}.
+    & & + \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i' < t\}}\right| >\tfrac{1}{2}\varepsilon \right\}
   \end{array} \] 
-  where $\tilde{P_n} = n^{-1}\sum_{i\leq n} \sigma_i \1_{\{ X_i < t\}}$. Then, from the previous section we can conclude that for $n \geq 8\varepsilon^{-2}$,
-  \[ \P\{\|P_n-P\| > \varepsilon\} \leq 4 \P\{\|\tilde{P_n}\|> \tfrac{1}{4}\varepsilon\}\] 
+  \[ = 2\P\{\|P_n^\circ\| > \tfrac{1}{4} \varepsilon\}. \tag*{(2)} \] 
+  where $P_n^\circ = n^{-1}\sum_{i\leq n} \sigma_i \1_{\{ X_i < t\}}$. Then, from equations $(1), (2)$ we conclude that for $n \geq 8\varepsilon^{-2}$,
+  \[ \P\{\|P_n-P\| > \varepsilon\} \leq 4 \P\{\|P_n^\circ\|> \tfrac{1}{4}\varepsilon\}.\]
+
+  \vspace*{1em}
+
+  \subsubsection*{Maximal Inequality}
+
+  \[\begin{tikzcd}
+    {-\infty} & {X_{(1)}} & {X_{(2)}} & {X_{(3)}} & \cdots & {X_{(n)}} & \infty
+    \arrow["{t_1}", no head, from=1-2, to=1-3]% chktex 18
+    \arrow["{t_2}", no head, from=1-3, to=1-4]% chktex 18
+    \arrow["{t_3}", no head, from=1-4, to=1-5]% chktex 18
+    \arrow["{t_{n-1}}", no head, from=1-5, to=1-6]% chktex 18
+    \arrow["{t_0}"', from=1-2, to=1-1]% chktex 18
+    \arrow["{t_n}", from=1-6, to=1-7]% chktex 18
+  \end{tikzcd}\]
+
+  For any given sample $X = X_1, \ldots, X_n$, define $X_{(j)}$ as the $j$-th observation when we order the observations, and choose $t_j \in (X_{(j)}, X_{(j+1)}]$ as the picture above shows. Note that if $t \in (X_{(j)}, X_{(j+1)}]$, then $P_n^\circ (t) = P_n^\circ (t_j)$ since, % chktex 9
+
+  \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+  \begin{array}{rcl}
+    P_n^\circ (t) & = & n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i < t\}}\\
+    & = & n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_{(i)} < t\}}\\
+    & = & n^{-1}\sum_{i = 1}^{j} \sigma_i\1_{\{ X_{(i)} < t\}} + \sum_{i = j+1}^{n} n^{-1} \sigma_i \1_{\{ X_{(i)} < t\}}\\
+    & = & 0 + \sum_{i = j+1}^{n} n^{-1} \sigma_i = P_n^\circ (t_j).
+  \end{array}
+  \]
+
+  It follows that for some $j$, $\|P_n^\circ\| = |P_n^\circ (j)|$, and thus,
+  \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+    \begin{array}{rcl}
+      \P\{ \|P_n^\circ\| > \tfrac{1}{4} \varepsilon \;|\; X \} & \leq & \sum_{j = 1}^n\P\{ |P_n^\circ(j)| > \tfrac{1}{4} \varepsilon \;|\; X \}\\
+      & \leq & n \cdot \max_j \P\{ |P_n^\circ(j)| > \tfrac{1}{4} \varepsilon \;|\; X \} \tag{3}.
+    \end{array}\] 
+  
+  \vspace*{1em}
+
+  \subsubsection*{Exponential Bounds}
+
+  Since for any given sample, $\sigma \1_{X_i < t} \in [-1,1]$, we can use Hoeffding's Inequality~\ref{hoeffding:bounded} to obtain the following inequality
+  \[ \P \{ |P_n^\circ(t)| > \tfrac{1}{4} \varepsilon \} \leq 2 \exp\left( \frac{-2{(n\varepsilon/4)}^2}{4n}\right) = 2e^{-n\varepsilon^2/32}.\]
+  We use equation $(3)$ to conclude
+  \[ \P\{ \|P_n^\circ\| > \tfrac{1}{4} \varepsilon \;|\; X\} \leq 2n e^{-n\varepsilon^2/32}.\] 
+
+  \vspace*{1em}
+
+  \subsubsection*{Integration}
+
+  something is missing before the following step,
+
+  \[ \P \{\|P_n-P\| > \varepsilon\} \leq  8n e^{-n\varepsilon^2/32}\] 
+
+  Since the inequality is exponential, the probabilities are summable:
+
+  \[  \sum_{n = 1}^\infty \P \{\|P_n-P\| > \varepsilon\} < \infty .\] 
+
+  Therefore, using the Borel-Cantelli lemma we conclude that
+
+  \[ \P \{\|P_n-P\| > \varepsilon\} \to 0 \mbox{ with probability 1.} \] 
 \end{proof}
+
+In chapter 4 we will elaborate further on the details required to transform this powerful theorem in a more generalized version.
+
+% chktex 17
