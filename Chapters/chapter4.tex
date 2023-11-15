@@ -7,7 +7,7 @@
     \[ \E [X_{i+1} | X_i,\ldots, X_0] = X_i \] 
 \end{definition}
 
-The random graph $G(n,p)$ has $n$ labeled vertices and produces an edge between 2 of them with probability $p$. Let $v_1, \ldots, v_n$ denote the vertices and $e_1, \ldots, e_m$ the potential $\binom{n}{2}$ edges with the indicator function:
+A random graph $G = G(n,p)$ is a graph that has $n$ labeled vertices and produces an edge between 2 of them with probability $p$. Let $v_1, \ldots, v_n$ denote the vertices of $G$ and $e_1, \ldots, e_m$ all of the $\binom{n}{2}$ potential edges that $G$ can produce. Also, define each edge's indicator function as it follows,
 \[\1_{e_k \in G} = \begin{cases}
     1, & e_k \in G\\
     0, & \mbox{otherwise} 
@@ -18,9 +18,103 @@ An edge exposure martingale is a sequence of random variables defined as the exp
 
 Since all of the graph information is contained in its edges, the sequence transitions from no information: $X_0 = E(f(G))$, to the true value of the function: $X_m = f(G)$. Similarly, one can define a martingale which depends on how many vertices are revealed. The vertex exposure martingale is defined as it follows,
 
-\[ X_i = \E [f(G) \;|\; \1_{\{v_k, v_j\}}, \; k,j \leq i] \] 
+\[ X_i = \E [f(G) \;|\; \1_{\{v_k, v_j\}\in G}, \; k < j \leq i] \] 
 
-In the following section we are going to present an application of the Azuma-Hoeffding inequality to prove the convergence to the mean of a linear approximation algorithm for the \textit{Travelling Salesman Problem}. 
+The following inequality is to some extend an adapted version of Hoeffding inequality~\ref{hoeffding:bounded} for martingale random variables. If we stablish a limit for which a martingale varies from one step to another, the theorem then states that we can exponentially bound the tails of its distribution:
+
+%% --- Azuma's inequality
+\begin{theorem}[Azuma-Hoeffding inequality]\label{azuma}
+    Let $X_0, \ldots, X_m$ be a martingale with $X_0 = 0$, and
+    \[ |X_{i+1} - X_i| \leq 1, \hspace*{1em} \forall i < m. \]
+    Then, for $t > 0$,
+    \[ \P\{X_m > tm\} < e^{-t^2 / 2}. \] 
+\end{theorem}
+
+\begin{proof}
+    First, we must prove another inequality.
+    \begin{lemma}
+        Let $Y_1, \ldots, Y_m$ be independent random variables such that $|Y_i| \leq 1$ and $\E Y_i = 0$, and let $S_m = \sum_{i = 1}^m Y_i$. Then, for $\lambda > 0$,
+        \[ \E[e^{\lambda Y_i}] \;\leq\; e^{\lambda^2 / 2}. \]
+    \end{lemma}
+
+    \begin{proof}
+
+    \begin{tabular}{cc}
+        \(\displaystyle h(x) = \frac{e^\lambda + e^{-\lambda}}{2} + \frac{e^\lambda - e^{-\lambda}}{2} \cdot x,  \)
+        &\hspace*{2em}
+        \begin{tabular}[c]{@{}l@{}}
+        \begin{tikzpicture}
+            \draw[->] (-2.4, 0) -- (2.4, 0) node[right] {$x$};
+            \draw[->] (0, 0) -- (0, 2.8) node[above] {$y$};
+            \draw[scale=1, domain=-2.1:2.1, smooth, variable=\x, blue] plot ({\x}, {e^(\x/2)});
+            \draw[scale=1, domain=-2.1:2.1, smooth, variable=\y, red]  plot ({\y}, {(e+1/e)/2 + (e-1/e) * \y/4}); % Divided \x and \y by 2 on the 2nd coordinate to scale the y axis by 1/2.
+                \node[text=red] at (-0.7,2) {$h(x)$};
+            \node[text=blue] at (1.4,1) {$e^{\lambda x}$};
+            \draw [dashed] (-2, {e^(-1)}) -- (-2,0)  node[below] {$-1$};
+            \draw [dashed] (2, {e^(1)}) -- (2,0) node[below] {$1$};
+        \end{tikzpicture} 
+    \end{tabular}
+    \end{tabular}
+
+    As the picture above shows, $h(x)$ is the line that passes through the points $x = -1$ and $x = 1$ in the function $e^{\lambda x}$. Since $e^{\lambda x}$ is convex ($\lambda > 0$), it follows that $h(x) \leq e^{\lambda x} $ for $x \in [-1,1]$. Thus,
+
+    \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+      \begin{array}{rcl}
+        \E[e^{\lambda Y_i}] & \leq & \E[h(Y_i)] \\
+        \text{\scriptsize ($h$ is linear)}& = & h(\E Y_i) = h(0)\\
+        & = & \frac{e^\lambda + e^{-\lambda}}{2} = \cosh \lambda .
+      \end{array}      
+    \]
+    Finally, $(2k)! \geq 2^k \cdot k! $, for every $k\in\N$. Thus,
+
+    \[
+        \E[e^{\lambda Y_i}]\leq \cosh \lambda \;=\; \sum_{k = 0}^\infty \frac{\lambda^{2k}}{(2k)!} \;\leq\; \sum_{k = 0}^\infty \frac{\lambda^{2k}}{2^k \cdot k!} \;=\; e^{\lambda^2 / 2}.
+    \]
+
+    \end{proof}
+
+    Now, define $Y_i = X_i - X_{i-1}$. Then, by hypothesis, $|Y_i| \leq 1$ and
+    \[ \E [Y_i | X_{i-1},\ldots, X_0] = \E [X_i - X_{i-1} | X_{i-1},\ldots, X_0] = X_i - X_i = 0. \] 
+    Therefore, we can apply the previous inequality to assert,
+    \[ \E [e^{\lambda Y_i} | X_{i-1},\ldots, X_0] \leq e^{\lambda^2/2}. \tag*{$ (\star) $}\]
+    So, it follows,
+    \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+        \begin{array}{r c c c l}
+        & & 
+        \E e^{\lambda X_m}  =   \E \prod_{i = 1}^{m} e^{\lambda Y_i} \hfill\\
+        & = & \E\left[\prod_{i = 1}^{m-1} e^{\lambda Y_i} \cdot \E[e^{\lambda Y_m} | X_{m-1},\ldots, X_0]\right] \hfill & \overset{(\star)}{\leq} & \E\left[\E \prod_{i = 1}^{m-1} e^{\lambda Y_i} \right] e^{\lambda^2 / 2}\\
+        & = & \E\left[\prod_{i = 1}^{m-2} e^{\lambda Y_i} \cdot \E[e^{\lambda Y_{m-1}} | X_{m-2},\ldots, X_0]\right]e^{\lambda^2 / 2} & \overset{(\star)}{\leq} & \E\left[\E \prod_{i = 1}^{m-2} e^{\lambda Y_i} \right] e^{2\lambda^2 / 2}\\
+        & = & \hfill\vdots\hfill & \leq & \hfill\vdots\hfill\\
+        & = & \E\left[\E[e^{\lambda Y_{1}} |  X_0]\right]e^{\lambda^2 / 2} & \leq & \hfill e^{m\lambda^2/2} \hfill
+    \end{array} \tag*{$(*)$} \]
+    At last, by setting $\lambda = t/\sqrt{m}$ we obtain
+    \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+    \begin{array}{r c l}
+        \P\{X_m > t\sqrt{m}\} & = & \P\{e^{\lambda X_m} > e^{\lambda t \sqrt{m}}\} \\
+        \text{\scriptsize (Markov inequality)}& \leq & \E[e^{\lambda X_m} ] e^{-\lambda t \sqrt{m}}\\
+        & \overset{(*)}{\leq} & e^{m\lambda^2/2} \cdot e^{-\lambda t \sqrt{m}}\\
+        \text{\scriptsize ($\lambda = t/\sqrt{m}$)} & = & e^{t^2/2} e^{-t^2} = e^{-t^2 / 2}.
+    \end{array}    
+    \]
+\end{proof}
+%% --------------------
+
+The next section contains three short examples that show how the inequality can be applied.
+
+\section{Three short examples}
+
+Let $g \in {[n]}^{n}$ be a random vector (uniformly chosen) with $n$ entries, in which every entry is in $[n] = \{1,\ldots n\}$. Define $L(g)$ to be the number of times that $g_k \neq k$. For example,
+
+\[ L(\underset{g_1}{1},\underset{g_2}{3},\underset{g_3}{3},\underset{g_4}{4},\underset{g_5}{4},\underset{g_6}{6}) = 2. \]
+
+Note that for every coordinate, $\P\{g_k \neq k\} = 1-\tfrac{1}{n}$
+
+
+
+
+\vspace*{3em}
+
+In the following section we are going to present an application of the Azuma-Hoeffding inequality to prove the convergence to the mean of a fast (but not effective) approximation algorithm for the \textit{Travelling Salesman Problem}. 
 
 \section{An heuristic algorithm for the Travelling Salesman Problem}
 
