@@ -2,22 +2,33 @@
 
 \section{Chernoff-Okamoto Inequalities}
 
-Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
-  \[
-    \P\{X \geq \lambda + t\} \leq e^{-u(\lambda+t)} \E e^{uX} = e^{-u(\lambda+ t)} {(1-p + p e^{u})}^n. 
-  \] 
-  The right hand equation is minimized when,
+Let $X_i$ be a sample from the Bernoulli distribution $\Be(p)$. Define $ X = \sum_{i = 1}^n X_i$, and let $\lambda = np = \E X$. 
+Note that for $u > 0$, 
+  \begin{equation}\label{co:1}
+    \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
+  \begin{array}{l}
+    \E e^{uX} = \prod_i \E e^{uX_i} = {((1-p) + p e^{u})}^n,\\
+    \E e^{-uX} = \prod_i \E e^{-uX_i} = {((1-p) + p e^{-u})}^n
+  \end{array} 
+  \end{equation}
+  By applying Markov's Inequality to $e^{uX}$, we can assert that
+  \[\everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
+  \begin{array}{rcl}
+    \P\{X \geq \lambda + t\} & = & \P\{e^{uX} \geq e^{u(\lambda + t)}\}\\
+    & \leq & e^{-u(\lambda+t)} \cdot \E e^{uX}\\
+    & = & e^{-u(\lambda+ t)} \cdot {(1-p + p e^{u})}^n. 
+  \end{array} \] 
+  According to~\cite{janson2002concentration}, the right hand equation is minimized when,
   \[ e^{u} = \frac{\lambda+t}{(n-\lambda-t)} \cdot \frac{1-p}{p}. \]
   Therefore, for $0 \leq t \leq n-\lambda$,
-  \begin{equation}\label{co:1}
+  \begin{equation}\label{co:2}
     \P\{X \geq \lambda + t\} \leq {\left(\frac{\lambda}{\lambda+t}\right)}^{\lambda + t} {\left(\frac{n-\lambda}{n-\lambda-t}\right)}^{n - \lambda - t}
   \end{equation}
 
+  However, a simpler expression is required for the following application.
+
 \begin{theorem}\label{co:T1}
-  Let $X$ be random variable with the binomial distribution $\Bi(n,p)$ with $\lambda := np = \E X$, then for $t \geq 0$,
-  \begin{equation}\label{co:2}
-    \P\{X \geq \lambda + t\} \leq \exp\left(- \frac{t^2}{2(\lambda+t/3)}\right)
-  \end{equation}
+  Let $X$ be the random variable we defined at the start of this chapter. In particular, $X$ is a random variable with the binomial distribution $\Bi(n,p)$ with $\lambda := np = \E X$, then for $t \geq 0$,
   \begin{equation}\label{co:3}
     \P\{X \leq \lambda - t\} \leq \exp\left(- \frac{t^2}{2\lambda}\right)
   \end{equation}
@@ -26,7 +37,26 @@ Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
 \textbf{Used in:} Theorem~\ref{ade:T2}
 
 \begin{proof}
-  (\textbf{TODO} I've already written the proof on paper)
+This proof was adapted from Appendix A.1.13 from~\cite{alon2016probabilistic}. The first step is to apply formula~\ref{co:1}
+  \[ 
+    \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
+    \begin{array}{rcl}
+      \P \{X < \lambda - t\} & = & \P \{e^{-uX} < e^{-u(\lambda - t)}\}\\
+      & \leq & e^{u(\lambda-t)} \E e^{-uX}\\
+      & = & e^{u(\lambda-t)} e^{u\lambda} {((1-p) + p e^{-u})}^n
+    \end{array} 
+   \]
+   Then, use the inequality $1+u\leq e^{u}$ to conclude,
+   \[ (1-p)+pe^{-u} = 1+(e^{-u}-1)p < e^{p(e^{-u}-1)} \]
+   \[ \implies {((1-p)+pe^{-u})}^n \leq e^{np(e^{-u}-1)} = e^{\lambda(e^{-u}-1)} \] 
+   Combining everything, we obtain
+   \[ \P \{X < \lambda - t\} \leq e^{\lambda(e^{-u}-1)+\lambda u - ut} \]
+   Now, we employ the following inequality obtained by the Taylor series expansion,
+   \[ e^{-u} \leq 1-u+u^2/2.\]
+   after expanding, this results in 
+   \[ \P \{X < \lambda - t\} \leq e^{\lambda u^2 / 2 - ut} \]
+   Finally, by replacing $u = t/\lambda$ we obtain the desired result:
+   \[ \P \{X < \lambda - t\} \leq e^{-t^2/2\lambda} \] 
 \end{proof}
 
 \section{The problem}

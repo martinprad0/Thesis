@@ -516,7 +516,7 @@ If $s(\AA, n) = 2^n$ for every $n\in \N$ or equivalently if $\AA$ doesn't have p
 \end{definition}
 
 \begin{theorem}[Vapnik–Chervonenkis inequality]\label{vc:inequality}
- \[\P\{\|P_n-P\|_{\AA} > \varepsilon\} \leq s(\AA, n) \cdot e^{-n \varepsilon^2 / 32} \] 
+ \[\P\{\|P_n-P\|_{\AA} > \varepsilon\} \leq 8 s(\AA, n) \cdot e^{-n \varepsilon^2 / 32} \] 
 \end{theorem}
 \begin{proof}
     It might be anti-climatic to tell the reader that there's no work left in this proof. But let's recapitulate everything we've done so far:
@@ -527,9 +527,26 @@ If $s(\AA, n) = 2^n$ for every $n\in \N$ or equivalently if $\AA$ doesn't have p
         \[ \P\{\|P_n-P_n'\|_\AA > \tfrac{1}{2}\varepsilon\} \leq 2\; \P\{\|P_n^\circ\|_\AA > \tfrac{1}{4}\varepsilon\}   \]
         \item \textbf{Maximal Inequality:} This was the step in which we had to be most careful. In the rest of the steps it never really mattered if we worked with intervals or any other class of sets on any space. In this step the task is, for any given a sample $X_1, \ldots, X_n$, to find a sub-collection $\AA_n \subset \AA$ such that
         \[ \#\AA_n = \#\{\{X_1,\ldots,X_n\}\cap A \; ;\; A\in\AA\} = N_\AA(X_1,\ldots, X_n).\] 
-        We proved the existence of this set in the previous theorem.
+        We proved the existence of this set in the previous theorem. Then, it follows that for a given sample $X = X_1,\ldots, X_n$, the supremum of $|P_n^\circ|$ is reached in one of the sets $A^\star \in \AA_n$. Thus,
+        \[ \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
+        \begin{array}{rcl}
+            \P\{\|P_n^\circ\|_\AA > \tfrac{1}{4}\varepsilon | X\} & \leq & \sum_{A\in \AA_k}\P\{|P_n^\circ(A)| > \tfrac{1}{4}\varepsilon | X\} \\
+            &\leq& N_\AA(X) \P\{|P_n^\circ(A^\star)| > \tfrac{1}{4}\varepsilon | X\}
+       \end{array}
+        \]
+        \item \textbf{Exponential Bound and integration:} After we apply Hoeffding's inequality, we obtain
+        \[ \P\{\|P_n^\circ\|_\AA > \tfrac{1}{4}\varepsilon | X\} \leq 2 N_\AA(X) e^{-n\varepsilon^2/32}.\]
+        Finally, the result of the last expected value is 
+         \[ \P\{\|P_n-P\|_\AA > \varepsilon\} \leq 8 \E[N_\AA(X)] e^{-n\varepsilon^2/32} \leq 8 s(\AA, n) \cdot e^{-n \varepsilon^2 / 32} \] 
     \end{itemize}
 \end{proof}
+
+The middle term in the last formula is valuable to make a stronger assessment about the condition for the uniform law of large numbers. If
+\[ \P\{\|P_n-P\|_\AA > \varepsilon\} \leq 8 \E[N_\AA(X)] e^{-n\varepsilon^2/32},  \]
+
+According to~\cite{devroye2013probabilistic}, in order for $\P\{\|P_n-P\|_\AA > \varepsilon\}$ to converge to 0 by the Borel-Cantelli theorem, the following condition must be met so the series $\sum_n 8 \E[N_\AA(X)] e^{-n\varepsilon^2/32}$ is summable:
+
+\[ \frac{\E [\log N_\AA(X)]}{n} \to 0. \] 
 
 % Leer cap 4,12,13,18 Devroye
 % chktex 17

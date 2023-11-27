@@ -228,8 +228,8 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
    \begin{equation} \label{gc:3}
     \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
     \begin{array}{rcl}
-      \P\{ \|P_n^\circ\| > \tfrac{1}{4} \varepsilon \;|\; X \} & \leq & \sum_{j = 0}^n\P\{ |P_n^\circ(t_k)| > \tfrac{1}{4} \varepsilon \;|\; X \}\\
-      & \leq & (n+1) \cdot \max_j \P\{ |P_n^\circ(t_k)| > \tfrac{1}{4} \varepsilon \;|\; X \} .
+      \P\{ \|P_n^\circ\| > \tfrac{1}{4} \varepsilon \;|\; X \} & \leq & \sum_{j = 0}^n \max_j \P\{ |P_n^\circ(t_j)| > \tfrac{1}{4} \varepsilon \;|\; X \}\\
+      & \leq & (n+1) \cdot \P\{ |P_n^\circ(t_k)| > \tfrac{1}{4} \varepsilon \;|\; X \} .
     \end{array} 
   \end{equation}
   \vspace*{1em}
