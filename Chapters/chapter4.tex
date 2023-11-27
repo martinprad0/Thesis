@@ -7,7 +7,7 @@
     \[ \E [X_{i+1} | X_i,\ldots, X_0] = X_i \] 
 \end{definition}
 
-A random graph $G = G(n,p)$ is a graph that has $n$ labeled vertices and produces an edge between 2 of them with probability $p$. Let $v_1, \ldots, v_n$ denote the vertices of $G$ and $e_1, \ldots, e_m$ all of the $\binom{n}{2}$ potential edges that $G$ can produce. Also, define each edge's indicator function as it follows,
+A random graph $G = G(n)$ is a graph that has $n$ labeled vertices and produces an edge between 2 of them with a probability. Let $v_1, \ldots, v_n$ denote the vertices of $G$ and $e_1, \ldots, e_m$ all of the $\binom{n}{2}$ potential edges that $G$ can produce. Also, define each edge's indicator function as it follows,
 \[\1_{e_k \in G} = \begin{cases}
     1, & e_k \in G\\
     0, & \mbox{otherwise} 
@@ -27,13 +27,13 @@ The following inequality is to some extend an adapted version of Hoeffding inequ
     Let $X_0, \ldots, X_m$ be a martingale with $X_0 = 0$, and
     \[ |X_{i+1} - X_i| \leq 1, \hspace*{1em} \forall i < m. \]
     Then, for $t > 0$,
-    \[ \P\{X_m > tm\} < e^{-t^2 / 2}. \] 
+    \[ \P\{X_m > t\sqrt{m}\} < e^{-t^2 / 2}. \] 
 \end{theorem}
 
 \begin{proof}
     First, we must prove another inequality.
     \begin{lemma}
-        Let $Y_1, \ldots, Y_m$ be independent random variables such that $|Y_i| \leq 1$ and $\E Y_i = 0$, and let $S_m = \sum_{i = 1}^m Y_i$. Then, for $\lambda > 0$,
+        Let $Y_1, \ldots, Y_m$ be random variables such that $|Y_i| \leq 1$ and $\E Y_i = 0$, and let $S_m = \sum_{i = 1}^m Y_i$. Then, for $\lambda > 0$,
         \[ \E[e^{\lambda Y_i}] \;\leq\; e^{\lambda^2 / 2}. \]
     \end{lemma}
 
@@ -56,7 +56,7 @@ The following inequality is to some extend an adapted version of Hoeffding inequ
     \end{tabular}
     \end{tabular}
 
-    As the picture above shows, $h(x)$ is the line that passes through the points $x = -1$ and $x = 1$ in the function $e^{\lambda x}$. Since $e^{\lambda x}$ is convex ($\lambda > 0$), it follows that $h(x) \leq e^{\lambda x} $ for $x \in [-1,1]$. Thus,
+    As the picture above shows, $h(x)$ is the line that passes through the points $x = -1$ and $x = 1$ in the function $e^{\lambda x}$. Since $e^{\lambda x}$ is convex ($\lambda > 0$), it follows that $h(x) \geq e^{\lambda x} $ for $x \in [-1,1]$. Thus,
 
     \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
       \begin{array}{rcl}
@@ -77,42 +77,41 @@ The following inequality is to some extend an adapted version of Hoeffding inequ
     \[ \E [Y_i | X_{i-1},\ldots, X_0] = \E [X_i - X_{i-1} | X_{i-1},\ldots, X_0] = X_i - X_i = 0. \] 
     Therefore, we can apply the previous inequality to assert,
     \[ \E [e^{\lambda Y_i} | X_{i-1},\ldots, X_0] \leq e^{\lambda^2/2}. \tag*{$ (\star) $}\]
-    So, it follows,
+
+    Using the formula $E[XY] = E_X [X E[Y|X]]$ we assert that
+    \[ \E e^{\lambda X_m} \; = \;  \E\left[\prod_{i = 1}^{m-1} e^{\lambda Y_i} \cdot \E[e^{\lambda Y_m} | X_{m-1},\ldots, X_0]\right] \]
+
+    We repeat this process $n$ times:
     \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
         \begin{array}{r c c c l}
-        & & 
-        \E e^{\lambda X_m}  =   \E \prod_{i = 1}^{m} e^{\lambda Y_i} \hfill\\
+        & & \E e^{\lambda X_m}  =   \E \prod_{i = 1}^{m} e^{\lambda Y_i} \hfill\\
         & = & \E\left[\prod_{i = 1}^{m-1} e^{\lambda Y_i} \cdot \E[e^{\lambda Y_m} | X_{m-1},\ldots, X_0]\right] \hfill & \overset{(\star)}{\leq} & \E\left[\E \prod_{i = 1}^{m-1} e^{\lambda Y_i} \right] e^{\lambda^2 / 2}\\
         & = & \E\left[\prod_{i = 1}^{m-2} e^{\lambda Y_i} \cdot \E[e^{\lambda Y_{m-1}} | X_{m-2},\ldots, X_0]\right]e^{\lambda^2 / 2} & \overset{(\star)}{\leq} & \E\left[\E \prod_{i = 1}^{m-2} e^{\lambda Y_i} \right] e^{2\lambda^2 / 2}\\
         & = & \hfill\vdots\hfill & \leq & \hfill\vdots\hfill\\
         & = & \E\left[\E[e^{\lambda Y_{1}} |  X_0]\right]e^{\lambda^2 / 2} & \leq & \hfill e^{m\lambda^2/2} \hfill
-    \end{array} \tag*{$(*)$} \]
-    At last, by setting $\lambda = t/\sqrt{m}$ we obtain
+    \end{array} \tag*{$ (*) $} \]
+    At last, by setting $\lambda = t/\sqrt{m}$ we obtain,
     \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
     \begin{array}{r c l}
         \P\{X_m > t\sqrt{m}\} & = & \P\{e^{\lambda X_m} > e^{\lambda t \sqrt{m}}\} \\
-        \text{\scriptsize (Markov inequality)}& \leq & \E[e^{\lambda X_m} ] e^{-\lambda t \sqrt{m}}\\
+        \text{\scriptsize (Markov)}& \leq & \E[e^{\lambda X_m} ] e^{-\lambda t \sqrt{m}}\\
         & \overset{(*)}{\leq} & e^{m\lambda^2/2} \cdot e^{-\lambda t \sqrt{m}}\\
         \text{\scriptsize ($\lambda = t/\sqrt{m}$)} & = & e^{t^2/2} e^{-t^2} = e^{-t^2 / 2}.
-    \end{array}    
+    \end{array}    \tag*{$ (\bullet) $}
     \]
 \end{proof}
 %% --------------------
 
-The next section contains three short examples that show how the inequality can be applied.
+\begin{remark} We assumed that $X_0 = 0$ to lighten the notation. However, we can remove this restriction by replacing $X_m$ with $X_m - X_0$ in some crucial steps:
+    \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+        \begin{array}{rl}
+            & X_m-X_0 = \sum_{i = 1}^n Y_i\\
+            \overset{(*)}{\implies} & \E e^{\lambda (X_m-X_0)} = \E \prod_{i = 1}^{m} e^{\lambda Y_i} \leq e^{m \lambda^2 / 2}\\
+            \overset{(\bullet)}{\implies} & \P\{X_m-X_0 > t\sqrt{m}\} \leq e^{-t^2/2}
+        \end{array} 
+        \] 
 
-\section{Three short examples}
-
-Let $g \in {[n]}^{n}$ be a random vector (uniformly chosen) with $n$ entries, in which every entry is in $[n] = \{1,\ldots n\}$. Define $L(g)$ to be the number of times that $g_k \neq k$. For example,
-
-\[ L(\underset{g_1}{1},\underset{g_2}{3},\underset{g_3}{3},\underset{g_4}{4},\underset{g_5}{4},\underset{g_6}{6}) = 2. \]
-
-Note that for every coordinate, $\P\{g_k \neq k\} = 1-\tfrac{1}{n}$
-
-
-
-
-\vspace*{3em}
+\end{remark}    
 
 In the following section we are going to present an application of the Azuma-Hoeffding inequality to prove the convergence to the mean of a fast (but not effective) approximation algorithm for the \textit{Travelling Salesman Problem}. 
 
@@ -133,10 +132,15 @@ Let $X_1,\ldots, X_N$ be a sample of $N$ uniformly distributed points in a compa
     }
 \end{figure}
 
-In the reference~\cite{gzyl1990physicist} the authors assert that by choosing a number of stripes $M^* = \floor{0.58 N^{1/2}}$, one can achieve the best result in comparison to the real TSP solution. If $t_N$ is the TSP solution distance for our sample and $d_N$ is the algorithm's answer with the optimal $M^*$, then the error is asymptotically:
+In the paper~\cite{gzyl1990physicist} the authors found that the optimal  number of stripes is $M^* = \floor{0.58 N^{1/2}}$. If $t_N$ is the TSP solution distance for our sample and $d_N$ is the algorithm's answer with the optimal $M^*$, then the error is asymptotically:
 \[  \frac{d_N-t_N}{t_N} \approx 0.23.\] 
 
-The result that we are going to prove is that $d_N$ converges with an exponential rate to its mean. To prove our point, we are going to modify the algorithm's trajectory as it follows. Let $e_N$ be trajectory distance that for any empty stripe in the plane we sum the length of its diagonal $\sqrt{L^2+ L^2/M^2}$ and then it skips the empty stripe. When there are no empty stripes $e_N = d_N$ and the probability that any given stripe is empty converges exponentially to 0:
+The result that we are going to show is that $d_n$ is very concentrated around its mean. In order to prove this, some modifications must be made to the algorithm's trajectory. Let $e_N$ be the distance of a new trajectory that satisfies the following conditions:
+\begin{itemize}
+    \item For any empty stripe in the plane we sum the length of its diagonal $\sqrt{L^2+ L^2/M^2}$ and then it skips the empty stripe.
+    \item When there are no empty stripes, $e_N = d_N$ 
+\end{itemize}
+ Since the probability that any given stripe is empty converges exponentially to 0,
 \[ \begin{array}{rl}
     {(1- 1/M)}^N & = {(1- 0.58^{-1} N^{-1/2})}^N\\[1em]
     & = {\left({(1- 1/M)}^{M}\right)}^{0.58^{-1} N^{1/2}}\\[1em]
@@ -144,11 +148,11 @@ The result that we are going to prove is that $d_N$ converges with an exponentia
 \end{array} \] 
 
 
-Let $\A_i := \sigma\{X_1,\ldots,X_i\}$ be the sigma algebra corresponding to revealing the first $i$ points, $\A_0 = \{\emptyset, {[0,L]}^2\}$. The expected value of the trajectory $e_N$ given that we only know the positions of the first $i$ points in the sample is $\E (e_N | \A_i)$. Define
+Let $\A_i := \sigma\{X_1,\ldots,X_i\}$ denote the sigma algebra corresponding to revealing the first $i$ points, $\A_0 = \{\emptyset, {[0,L]}^2\}$. The expected value of the trajectory $e_N$ given that we only know the positions of the first $i$ points in the sample is $\E (e_N | \A_i)$. Define
 \[ Z_i = \E (e_N | \A_i) - \E (e_N | \A_{i-1}),  \]  
 As the difference of this expectations when we reveal 1 more point. Note that since
 \[ \E(Z_i | \A_i) =  \E (e_N | \A_i, \A_i) - \E (e_N | \A_{i-1}, A_i) = \E (e_N | \A_i) - \E (e_N | \A_i) = 0,\] 
-The $Z_i's$ form a vertex exposure martingale sequence.
+$Z_1, \ldots, Z_N$ is the difference sequence of a vertex exposure martingale.
 
 \begin{figure}[ht]\label{TSP:pic1}
     \subfloat[$i = 0$]{\label{TSP:pic1.1}
@@ -179,17 +183,58 @@ The $Z_i's$ form a vertex exposure martingale sequence.
     \caption{Evolution of the vertex exposure martingale}
 \end{figure}
 
-Define $e_N^{[i]}$ as the distance of the trajectory when we remove the $i$-th point from the sample. Intuitively from the figure above and the triangle inequality, we can obtain
-\[ e_N^{[i]} \leq e_N \leq e_N + 2 L/M, \]
+Define $e_N^{[i]}$ as the distance of the trajectory when we remove the $i$-th point from the sample. Intuitively from the triangle inequality, we can obtain the following inequalities:
+\[ e_N^{[i]} \leq e_N \leq e_N^{[i]} + 2 L/M, \]
 meaning that revealing one point cannot increase more than 2 widths the distance of the trajectory. Thus,
-\[ \|Z_i\|_\infty = \sup_{X_1,\ldots, X_N} \|\E (e_N | \A_i) - \E (e_N | \A_{i-1})\| \leq 2L/M. \]
+\[ \|Z_i\|_\infty = \sup_{X_1,\ldots, X_N} \|\E (e_N | \A_i) - \E (e_N | \A_{i-1})\| \leq 2L/M. \tag*{$ (\star)$}.\]
 
-On the other hand, by telescopic sums we obtain that 
-\[  e_N - E e_N = \E (e_N | \A_N) - \E (e_N | \A_{0}) = \sum_{i = 1}^{N} Z_i.\]
+On the other hand,
+\[  e_N - \E e_N = \E (e_N | \A_N) - \E (e_N | \A_{0}) = \sum_{i = 1}^{N} Z_i.\]
 Therefore, by the Azuma-Hoeffding inequality,
-\[ \P \{ |e_N - E e_N| > t \} \leq 2\exp\left(\frac{-t^2}{2}\sum_{i = 1}^{N} \|Z_i\|_{\infty}^2 \right). \] 
+\[ \P \{ |e_N - \E e_N| > t \} \leq 2\exp\left(\frac{-t^2}{2}\sum_{i = 1}^{N} \|Z_i\|_{\infty}^2 \right). \] 
 Finally,
 \[ \sum_{i = 1}^{N} \|Z_i\|_{\infty}^2 \leq \frac{4NL^2}{M^2}, \]
 which implies that
-\[\P \{ |e_N - E e_N| > t \} \leq 2\exp\left(\frac{-t^2}{2}\sum_{i = 1}^{N} \frac{4NL^2}{M^2} \right) \sim e^{-t^{2} K N}, \] 
+\[\P \{ |e_N - \E e_N| > t \} \leq 2\exp\left(\frac{-t^2}{2}\sum_{i = 1}^{N} \frac{4NL^2}{M^2} \right) \sim e^{-t^{2} K N}, \] 
 for some $K\in \R^+$.
+
+\section{Three additional short examples}
+
+Three examples from~\cite{alon2016probabilistic} will be exposed to illustrate some ideas that can be associated with the main inequality of this chapter. Furthermore, the usefulness of the Azuma-Hoeffding inequality in the study of graphs and metric spaces can be used in a more general frame. Let $\Omega = A^B$ be the set of all functions $g: B\to A$ for which a probability measure is assigned
+\[ \P\{g(b) = a\} = p(a,b),\hspace*{1em} \sum_{a\in A} p(a,b) = 1. \]
+All the values $g(b)$ are mutually independent. Now, fix a chain of sets 
+\[ \emptyset = B_0 \subset B_1 \subset \ldots \subset B_m = B,\hspace*{1em} \mathcal{B} = {\{B_i\}}_{i = 0}^m \]
+and let $L: A^B \to \R$ be a functional. The martingale sequence $X_0,\ldots, X_m$ associated with $L$ and $\mathcal{B}$ is
+
+\[ X_i(g) = \E[ L(g) \;|\; g(b),\; b\in B_i ] \] 
+
+\begin{theorem}\label{lipschitz-condition}
+    
+\end{theorem}
+
+
+Let $g \in {[n]}^{n}$ be a random vector (uniformly chosen) with $n$ entries, in which every entry is in $[n] = \{1,\ldots n\}$. Define $L(g)$ to be the amount of number that are not included in the vector,
+\[ L(g) = \# \{ k \;:\; g_i \neq k,\; \forall i \in [n]\} = \sum_{k = 1}^{n} \1_{k \not\in g} \] 
+For example,
+
+\[ L(\underset{g_1}{1},\underset{g_2}{3},\underset{g_3}{1},\underset{g_4}{6},\underset{g_5}{4},\underset{g_6}{3}) = 2.\;\text{ (2 and 5 are missing)} \]
+
+We can understand the process of choosing $g$ as independently assigning a random number in each of its coordinates. Thus, for a number $k \in [n]$, the probability of that number to not be in any of the entries of the vector is
+\[\E \1_{k \not\in g} = \P\{g_i \neq k, \; \forall i\} = \prod_{i = 1}^n P\{g_i \neq k\} = {\left(1-\tfrac{1}{n}\right)}^n. \] 
+Hence,
+\[ \E L(g) = \sum_{k = 1}^n \P\{g_i \neq k, \; \forall i\} = n {\left(1-\tfrac{1}{n}\right)}^n \sim \frac{n}{e}. \] 
+Now, define
+\[\begin{array}{rcl}
+    X_0(g) & = & \E L(g) \sim \frac{n}{e}\\
+    X_1(g) & = & \E [ L(g) | g_1 ] \\
+    \hfill\vdots\hfill & = & \vdots \\
+    X_j(g) & = & \E [L(g) | g_1, \ldots, g_j ]\\
+    \hfill\vdots\hfill & = & \vdots \\
+    X_n(g) & = & \E [L(g) | g_1, \ldots, g_n] = L(g)
+\end{array} \] 
+$X_k(g)$ is the martingale that exposes one coordinate of $g$ at a time. The value of $L(g)$ can vary at most by 1 for each coordinate we reveal, so $L(g)$ has the Lipschitz condition. Then, we use \text{theorem}~\ref{lipschitz-condition} and Azuma-Hoeffding inequality to conclude that
+\[ \P\{|L(g) - \tfrac{n}{e}| > t\sqrt{n}\} < 2e^{-t^2 / 2}. \] 
+
+
+
+\vspace*{3em}

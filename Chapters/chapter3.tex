@@ -29,6 +29,8 @@ Applying Markov's Inequality to $Y = e^{uX}$, we can assert that
   (\textbf{TODO} I've already written the proof on paper)
 \end{proof}
 
+\section{The problem}
+
 The article~\cite{diaz2019local} explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how does the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution on any manifold.\\[1em]
 
 In the first place, let $Z_1, \ldots, Z_k$ be a i.i.d.\ sample uniformly distributed on $\S^{d-1}$. Then, we have the following formula for the variance of the angles between $Z_i,Z_j, i\neq j$:
@@ -63,7 +65,7 @@ Knowing that for every $d > 1$, $\beta_d$ is in the interval $[\tfrac{1}{d}, \tf
 
 In Proposition 1.\ of~\cite{diaz2019local} the authors prove that it's the Minimum Variance Unbiased Estimator for $\beta_d$ on the unit sphere.\\[0.5 em]
 
-Furthermore, the authors also prove that this result can be generalized for any manifold with samples of any distribution. Let $X_1,\ldots, X_n$ be a i.i.d.\ sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ a point. For $C>0 \in  \R$, let $k = \ceil{C \ln(n)}$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0 \in M$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$. Additionally, for the following theorem to be true, we requiere that at any neighborhood of $p$, the probability in that neighborhood is greater than 0.\\[0.5 em]
+Furthermore, the authors also prove that this result can be generalized for any manifold with samples of any distribution. Let $X_1,\ldots, X_n$ be a i.i.d.\ sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ denote a point on the. For $C>0 \in  \R$, let $k = \ceil{C \ln(n)}$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0 \in M$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$. Additionally, for the following theorem to be true, we requiere that at any neighborhood of $p$, the probability in that neighborhood is greater than 0.\\[0.5 em]
 
 The following theorem uses a special inequality from Chernoff-Okamoto, and it's crucial in the idea behind this generalization.
 
@@ -81,7 +83,7 @@ The following theorem uses a special inequality from Chernoff-Okamoto, and it's 
 
 \vspace*{0.5 em}
 
-The following theorem, although it does not require concentration inequalities, is important for connecting the idea of the previous theorem to the main frame. Let $\pi : R^m \to T_p M$ be the orthogonal projection on the Tangent Space of $M$ at $p$. Also, define $W_i := \pi(X_i)$ and then normalize,
+The following theorem, although it does not require concentration inequalities, is important for connecting the idea of the previous theorem to the main frame. Let $\pi : R^m \to T_p M$ denote the orthogonal projection on the Tangent Space of $M$ at $p$. Also, define $W_i := \pi(X_i)$ and then normalize,
 \begin{equation}\label{ade:4}
   Z_i := \frac{X_i}{\|X_i\|},\hspace*{5mm} \widehat{W_i} := \frac{W_i}{\|W_i\|}.
 \end{equation}
@@ -139,7 +141,7 @@ This last theorem is as far as this document is planned to cover. However, the l
     \item[(1):] When $d = 2k+2$ is even:
     In the first place, remember that,
     \[ \lim_{k\to\infty}\; \sum_{j = 1}^{k} j^{-2} = \frac{\pi^2}{6}.\] 
-    It follows that
+    It follows from the equation~\ref{ade:1} that
     \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
       \begin{array}{rrlll}
         \beta_d & = & \frac{\pi^2}{12} - 2 \sum_{j = 1}^{k} {(2j)}^{-2}= & \frac{\pi^2}{12} - \frac{1}{2} \sum_{j = 1}^{k} j^{-2}\\
