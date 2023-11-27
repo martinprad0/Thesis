@@ -96,7 +96,7 @@ The proof of the following three theorems can be found in~\cite{boucheron2003con
 
 \vspace*{2em}
 
-%% --- Central Limit Theorem
+%% --- Normal Tails
 \begin{theorem}[Tails of the Normal Distribution]\label{normaltails}
     Let $Z\sim \mathcal{N}(0,1)$, for $t>0$ we have
     \[ \left( \frac{1}{t}-\frac{1}{t^3}\right) \frac{1}{\sqrt{2\pi}} \exp\left(\frac{-t^2}{2}\right) \leq \P\{Z \geq t\} \leq \frac{1}{t}\;\frac{1}{\sqrt{2\pi}} \exp\left(\frac{-t^2}{2}\right). \]
@@ -121,6 +121,44 @@ Unfortunately, the answer is no. The following theorem will show why.
 \end{theorem}
 %% --------------------
 
-Since the approximation error is greater than the bound, the previous results cannot be taken into account.
+Since the approximation error of the Central Limit Theorem is of greater order than the normal bounds, the previous results cannot be taken into account.
 
-In the context of coin tossing, this may not matter at all because the linear bound obtained using Chebyshev's inequality indicates that the probability of wrongly classifying a fair coin as a rigged coin converges at least linearly to zero. Even the Central Limit Theorem shows in a less precise way this convergence. However, for some specific problems in statistics, these basic tools are not precise enough to solve them. In the following chapters, we will show some examples were better crafted strategies are needed in order to get bounds to the tails of the random variables.
+\vspace*{1em}
+
+In the context of coin tossing, this may not matter at all because the linear bound obtained using Chebyshev's inequality indicates that the probability of wrongly classifying a fair coin as a rigged coin converges at least linearly to zero. Even the Central Limit Theorem shows, in a less precise way, this convergence. However, for some specific problems in statistics, these basic tools are not precise enough to solve them. The main objective of this project is to study different ideas that improve these bounds and show examples where they can be used.
+
+\section{Cantelli's inequality}
+We can start with a small modification of the Chebyshev's bound for the one-sided tails
+
+%% --- Cantelli's inequality
+\begin{theorem}[Cantelli's Inequality]\label{cantelli}
+  For $t > 0$, a random variable $X$ with mean $\mu = \E X$ and variance $\sigma^2 = \Var X$, we have
+  \[ \P\{X-\mu \geq t\} \leq \frac{\sigma^2}{t^2 + \sigma^2}. \] 
+\end{theorem}
+
+\begin{proof}
+  In the first place note that,
+  \[ \P\{ Y \geq s\} \leq \P\{ Y \geq s\} + \P\{ Y \leq s\} = \P\{|Y| \geq s\} = \P\{ Y^2 \geq s^2\} \tag*{($\star$)}. \] 
+  Let $u \geq 0$, define $Y = X-\mu + u$ and $s = t+u$ to obtain
+  \[ \P\{X-\mu \geq t\} = \P\{X-\mu + u \geq t + u\} = \P\{Y \geq s\}. \]
+  We use $(\star)$ and Markov's inequality~(\ref{markov}) on $Y^2$ to conclude,
+  \[ \P\{Y \geq s\} \overset{(\star)}{\leq} \P\{ Y^2 \geq s^2\} \overset{(\ref{markov})}{\leq} \frac{\E[{(X-\mu+u)}^2]}{{(t+u)}^2}.\]
+  By linearity of expectation,
+  \[ \E[{(X-\mu+u)}^2] = \E[{(X-\mu)}^2] + 2u \cdot \underbrace{\E(X-\mu)}_{0} + E(u^2) = \sigma^2 + u^2. \]
+
+  Finally, we choose an optimal $u = \frac{\sigma^2}{t}$ to conclude
+  \[
+    \P\{X-\mu \geq t\} \leq \frac{\sigma^2 + u^2}{{(t+u)}^2}
+     = \frac{\sigma^2 + \sigma^4/t^2}{{{(t+\sigma^2/t)}^2}}
+     = \frac{\sigma^2 (\tfrac{t^2+\sigma^2}{t^2})}{{(\tfrac{t^2+\sigma^2}{t})}^2}
+     = \frac{\sigma^2}{t^2+\sigma^2}\]
+\end{proof}
+%% --------------------
+
+On the other hand, the two-sided tail inequality, Cantelli's inequality is not always better than Chebyshev,
+
+\begin{corollary}[Two-sided Cantelli inequality]
+  \[\P\{|X-\mu| \geq t\} \leq \frac{2\sigma^2}{t^2 + \sigma^2}. \] 
+\end{corollary}
+
+In fact, this bound is only better than Chebyshev's $t^2+\sigma^2 \leq 2t^2$, or equivalently, when $\sigma^2 \leq t^2$. However, in this case both formulas provide bounds greater than 1, and thus, are useless. Therefore, the conclusion is that, in general, Chebyshev's inequality is better for two-sided tails and Cantelli is for one-sided tails.

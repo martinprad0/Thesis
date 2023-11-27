@@ -1,6 +1,6 @@
 \chapter{Exponential Inequalities}
 
-Even if we are satisfied with the linear convergence rate provided by Chebyshev's inequality, there are simple ways to improve this bound. The following result will provide the idea from which the exponential inequalities derive
+Even if we are satisfied with the linear convergence rate provided by Chebyshev's inequality or the improvement of one sided tails given by Cantelli's inequality, there is a simple but powerful modification we can make to Markov's inequality that will greatly improve both bounds. The following result will provide the main idea from which most of the exponential inequalities are derived.
 
 %% --- MGF Inequality
 \begin{theorem}[MGF inequality]\label{mgf}
@@ -18,7 +18,7 @@ Even if we are satisfied with the linear convergence rate provided by Chebyshev'
 \end{proof}
 %% --------------------
 
-The following two theorems are examples on how we can obtain tighter bounds than the ones provided by Chebyshev's inequality. In particular, these theorems are derived from the idea of the previous theorem and are considered as corollaries by some authors.
+The following two theorems are examples on how we can obtain even tighter bounds than the ones we've already studied. In particular, these theorems can be obtained from the previous theorem and are be considered to be corollaries by some authors.
 
 %% --- Chernoff's inequality
 \begin{theorem}[Chernoff's inequality]\label{chernoff:bernoulli}
@@ -98,91 +98,57 @@ Another exponential inequality that is derived using a similar technique is Hoef
 %% --------------------
 
 Returning to the coin tossing problem, we can now make a stronger assertion of the rate of convergence of a false negative classification using Hoeffding inequality:
-\[\P \left\{S_N- \frac{N}{2} \geq \frac{\varepsilon}{2} N \right\} \leq \exp\left( - \varepsilon N \right). \] 
+\[\P \left\{S_N- \frac{N}{2} \geq \frac{\varepsilon}{2} N \right\} \leq \exp\left( - \varepsilon^2 N \right). \] 
 
-However, this raises the question of which of the previous inequalities is better for a given problem. In the previous case, we chose Hoeffding's inequality, but when dealing with any specific problem, one needs to determine the criteria for deciding whether it's more appropriate to use Chernoff, Hoeffding, or any other inequality. In the following section, we will try to identify situations where one of these inequalities is more suitable than the other.
+% However, this raises the question of which of the previous inequalities is better for a given problem. In the previous case, we chose Hoeffding's inequality, but when dealing with any specific problem, one needs to determine the criteria for deciding whether it's more appropriate to use Chernoff, Hoeffding, or any other inequality. In the following section, we will try to identify situations where one of these inequalities is more suitable than the other.
 
-\section{Which inequality is better?}
-Let's start with a small improvement of the Chebyshev's bound for the one-sided tails
-
-%% --- Cantelli's inequality
-\begin{theorem}[Cantelli's Inequality]\label{cantelli}
-  For $t > 0$, a random variable $X$ with mean $\mu = \E X$ and variance $\sigma^2 = \Var X$, we have
-  \[ \P\{X-\mu \geq t\} \leq \frac{\sigma^2}{t^2 + \sigma^2}. \] 
-\end{theorem}
-
-\begin{proof}
-  In the first place note that,
-  \[ \P\{ Y \geq s\} \leq \P\{ Y \geq s\} + \P\{ Y \leq s\} = \P\{|Y| \geq s\} = \P\{ Y^2 \geq s^2\} \tag*{($\star$)}. \] 
-  Let $u \geq 0$, define $Y = X-\mu + u$ and $s = t+u$ to obtain
-  \[ \P\{X-\mu \geq t\} = \P\{X-\mu + u \geq t + u\} = \P\{Y \geq s\}. \]
-  We use $(\star)$ and Markov's inequality~(\ref{markov}) on $Y^2$ to conclude,
-  \[ \P\{Y \geq s\} \overset{(\star)}{\leq} \P\{ Y^2 \geq s^2\} \overset{(\ref{markov})}{\leq} \frac{\E[{(X-\mu+u)}^2]}{{(t+u)}^2}.\]
-  By linearity of expectation,
-  \[ \E[{(X-\mu+u)}^2] = \E[{(X-\mu)}^2] + 2u \cdot \underbrace{\E(X-\mu)}_{0} + E(u^2) = \sigma^2 + u^2. \]
-
-  Finally, we choose an optimal $u = \frac{\sigma^2}{t}$ to conclude
-  \[
-    \P\{X-\mu \geq t\} \leq \frac{\sigma^2 + u^2}{{(t+u)}^2}
-     = \frac{\sigma^2 + \sigma^4/t^2}{{{(t+\sigma^2/t)}^2}}
-     = \frac{\sigma^2 (\tfrac{t^2+\sigma^2}{t^2})}{{(\tfrac{t^2+\sigma^2}{t})}^2}
-     = \frac{\sigma^2}{t^2+\sigma^2}\]
-\end{proof}
-%% --------------------
-
-On the other hand, the two-sided tail inequality, Cantelli's inequality is not always better than Chebyshev,
-
-\begin{corollary}[Two-sided Cantelli inequality]
-  \[\P\{|X-\mu| \geq t\} \leq \frac{2\sigma^2}{t^2 + \sigma^2}. \] 
-\end{corollary}
-
-In fact, this bound is only better than Chebyshev's $t^2+\sigma^2 \leq 2t^2$, or equivalently, when $\sigma^2 \leq t^2$. However, in this case both inequalities give bounds greater than 1, and thus, are useless. Therefore, we conclude that in general Chebyshev's is better for two-sided tails and Cantelli's for one-sided tails.
 
 
 \section{Uniform Law of Large Numbers}
 
 For any probability measure $P$ on the real line and $t \in \R$, define $P_n$ as the empirical probability measure obtain from an independent sample $X_1, \ldots, X_n$ of $P$, that is:
-\[ P_n(t) = n^{-1} \cdot \sum_{i = 1}^n \1_{\{ X_i < t\}}.\]
+\[ P_n(t) = P_n(-\infty, t) = n^{-1} \cdot \sum_{i = 1}^n \1_{\{ X_i < t\}}.\]
 
 From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges to $P(t)$ with probability 1. However we can formulate a stronger statement on this convergence. The first application of concentration inequalities we are going to explore is the uniform law of large numbers, which states the following:
 
 \begin{theorem}[Glivenko-Cantelli Theorem]\label{glivenko-cantelli}
-  For $P,\; P_n$ and $t$ from above,
+  For $P,\; P_n$ and $t \in \R$,
   \[ \|P_n - P\| = \sup_{t\in \Q} \left|P_n(t) - P(t)\right| \overset{p}{\longrightarrow} 0.\]  
 \end{theorem} 
 
 \begin{proof}
-  The proof, adapted from~\cite{pollard2012convergence}, consists of 5 steps. At first instance, the author clarifies that we must stablish the condition of $t\in \Q$ to avoid problems with measurability. The author later proves that the theorem is true for any $t\in \R$, but for practical purposes, we will only prove it for rationals. Another remark the author makes is that this result from the real line can be later generalized for some classes of polynomials, and we will cover more about this in section 5.
+  The proof, adapted from~\cite{pollard2012convergence}, consists of 5 steps. At first instance, the author clarifies that we must stablish the condition of $t\in \Q$ to avoid problems with measurability. The author later proves that the theorem is true for any $t\in \R$, but for practical purposes, we will only prove it for rationals. Another remark the author makes is that this result from the real line can be later generalized for some classes of polynomials, and we will cover more about this in the final section.
 
   \subsubsection*{First Symmetrization}
-  In the first place, define $P_n'$ as the empirical measure obtained from an independent copy of the sample $X_1',\ldots, X_n'$ of $P$. Note that for any fixed $t$, $P_n(t)$ and $P_n'(t)$ are random variables derived from their respective samples which have:
-  \[ \E P_n(t) = \E P_n'(t) = P(t),\hspace*{1em} \Var P_n(t) = \Var P_n'(t) = P(t) \] 
-  We will bound the concentration of $\|P_n- P_n'\|$ first, which will later result in a bound for $\|P_n - P\|$ according to the following lemma:
+  In the first place, define $P_n'$ as the empirical measure obtained from an independent but identical sample $X_1',\ldots, X_n'$ of $P$. Note that for any fixed $t$, $P_n(t)$ and $P_n'(t)$ are random variables derived from their respective samples which satisfy that
+  \[ \E P_n(t) = \E P_n'(t) = P(t),\hspace*{1em} \Var P_n(t) = \Var P_n'(t) = P(t). \] 
+  We will bound the concentration of $\|P_n- P_n'\|$ first, which will later result in a bound for $\|P_n - P\|$ at the end of the following lemma.
 
   \vspace*{1em}
 
-  For now, fix $\varepsilon > 0$, and keep in mind the values $Z = P_n - P$, $Z' = P_n' - P$, $\alpha = \frac{1}{2}\varepsilon$ and $\beta = \frac{1}{2}$.
-  \begin{lemma} 
-    Let ${\{Z(t)\}}_{t\in T}$ and ${\{Z'(t)\}}_{t\in T}$ be independent stochastic processes under the same set of indices $T$. Also, assume that there exist $\alpha, \beta > 0$ such that
-    \[ \P\left\{\sup_{t\in T} |Z(t)| \leq \alpha \right\} \geq \beta. \ \]
+  For now, fix a value for $\varepsilon > 0$, and keep in mind that $Z = P_n - P$, $Z' = P_n' - P$, $\alpha = \frac{1}{2}\varepsilon$ and $\beta = \frac{1}{2}$. Also, for this case define $\AA = \{(-\infty, t) : t\in \R\}$
+
+  \begin{lemma}\label{gc:l1}
+    Let ${\{Z(A)\}}_{A\in \AA}$ and ${\{Z'(A)\}}_{A\in \AA}$ be independent and identical functions defined under the same collection of sets $\AA$. Also, assume that there exist $\alpha, \beta > 0$ such that
+    \[ \P\left\{\sup_{A\in \AA} |Z(A)| \leq \alpha \right\} \geq \beta. \ \]
     It follows that, for any $\varepsilon > 0$,
-    \[  \P\left\{\sup_{t\in T} |Z(t)| > \varepsilon \right\} \leq \beta^{-1} \P\left\{\sup_{t\in T} |Z(t)-Z'(t)| > \varepsilon - \alpha \right\}. \]     
+    \[  \P\left\{\sup_{A\in \AA} |Z(A)| > \varepsilon \right\} \leq \beta^{-1} \P\left\{\sup_{A\in \AA} |Z(A)-Z'(A)| > \varepsilon - \alpha \right\}. \]     
   \end{lemma}
 
   \begin{proof}
-    Since $Z,\; Z'$ are independent, it follows from the hypothesis that for any index $\tau \in T$,
-    \[ \P\{|Z'(\tau)|\leq \alpha | Z\} = \P\{|Z'(\tau)|\leq \alpha\} \geq \P \left\{ \sup_{t\in T}|Z'(t)|\leq \alpha \right\} \geq \beta.\] 
-    Now, fix $\tau$ such that $|Z(\tau)| > \varepsilon$ and use the previous inequality to conclude,
+    Since $Z,\; Z'$ are independent, it follows from the hypothesis that for any index $B \in \AA$,
+    \[ \P\{|Z'(B)|\leq \alpha | Z\} = \P\{|Z'(B)|\leq \alpha\} \geq \P \left\{ \sup_{A\in \AA}|Z'(A)|\leq \alpha \right\} \geq \beta.\] 
+    Now, fix $B \in \AA$ such that $|Z(B)| > \varepsilon$ and use the previous inequality to conclude,
     \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
     \begin{array}{rcl}
-      \beta \cdot \P\left\{\sup_{t\in T} |Z(t)| > \varepsilon \right\} & \leq & \P\{|Z'(\tau)| \leq \alpha\} \cdot \P\{|Z(\tau)| > \varepsilon\}\\
-      {\text{\scriptsize ($Z,\; Z'$ are independent)}} & = & \P\{|Z'(\tau)| \leq \alpha,\; |Z(\tau)| > \varepsilon\}\\
-       & \leq & \P\{ |Z(\tau) - Z'(\tau)| > \varepsilon - \alpha \}\\
-        & \leq & \P\left\{\sup_{t\in T} |Z(t)-Z'(t)| > \varepsilon - \alpha \right\}.
+      \beta \cdot \P\left\{\sup_{A\in \AA} |Z(A)| > \varepsilon \right\} & \leq & \P\{|Z'(B)| \leq \alpha\} \cdot \P\{|Z(B)| > \varepsilon\}\\
+      {\text{\scriptsize ($Z,\; Z'$ are independent)}} & = & \P\{|Z'(B)| \leq \alpha,\; |Z(B)| > \varepsilon\}\\
+       & \leq & \P\{ |Z(B) - Z'(B)| > \varepsilon - \alpha \}\\
+        & \leq & \P\left\{\sup_{A\in \AA} |Z(A)-Z'(A)| > \varepsilon - \alpha \right\}.
     \end{array} \] 
   \end{proof}
   Using Chevyshev's inequality (\ref{chebyshev}) we know that the hypothesis is satisfied for the values of $\alpha$ and $\beta$ we chose:
-  \[\forall t\in T: \P\left\{ |Z'(t)| \leq \alpha \right\} = \P\{|P_n(t) - P(t)| \leq \varepsilon\} \geq \frac{1}{2} = \beta,\hspace*{1em} \text{if $n \geq 8\varepsilon^{-2}$}.\]
+  \[\forall t\in \R: \P\left\{ |Z'(t)| \leq \alpha \right\} = \P\{|P_n(t) - P(t)| \leq \varepsilon\} \geq \frac{1}{2} = \beta,\hspace*{1em} \text{if $n \geq 8\varepsilon^{-2}$}.\]
   Therefore, using the previous lemma, we conclude that
   \begin{equation}
     \label{gc:1} 
@@ -194,7 +160,7 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
   \subsubsection*{Second Symmetrization}
   The following trick will allow us to stop considering all of the $2n$ from the previous symmetrization, and will help us to create a simpler random variable. We will initially prove the trick for unidimensional random variables, but in chapter 4, we will generalize this proof for any kind on set on $\R^n$.
 
-  \begin{lemma}
+  \begin{lemma}\label{gc:l2}
     Let $\sigma_1, \ldots, \sigma_n$ be Rademacher random variables, that is $\P\{\sigma_i = 1\} = \P\{\sigma_i = -1\} = 1/2$. Let $Y_i = \1_{\{ X_i' \in A\}} - \1_{\{ X_i \in A\}}$, and note that,
     \[ \P\{Y_i = x\} = \P\{\sigma_i Y_i = x\},\hspace*{1em} x \in \{-1,0,1\} \] 
   \end{lemma}
@@ -225,8 +191,8 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
     \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{3}
   \begin{array}{rcl}
     \P\{\|P_n - P_n'\| > \tfrac{1}{2}\varepsilon\} & = & \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i Y_i\right| >\tfrac{1}{2}\varepsilon \right\}\\
-    & \leq & \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i < t\}}\right| >\tfrac{1}{2}\varepsilon \right\}\\
-    & & + \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i' < t\}}\right| >\tfrac{1}{2}\varepsilon \right\}
+    & \leq & \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i < t\}}\right| >\tfrac{1}{4}\varepsilon \right\}\\
+    & & + \P\left\{\sup_{t\in \Q} \left|n^{-1}\sum_{i = 1}^n \sigma_i\1_{\{ X_i' < t\}}\right| >\tfrac{1}{4}\varepsilon \right\}
   \end{array}
   \end{equation}
   \[ = 2\P\{\|P_n^\circ\| > \tfrac{1}{4} \varepsilon\}.  \] 
@@ -271,7 +237,7 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
   \subsubsection*{Exponential Bounds}
 
   Since for any given sample, $\sigma \1_{X_i < t} \in [-1,1]$, we can use Hoeffding's Inequality~\ref{hoeffding:bounded} to obtain the following inequality
-  \[ \P \{ |P_n^\circ(t)| > \tfrac{1}{4} \varepsilon \} \leq 2 \exp\left( \frac{-2{(n\varepsilon/4)}^2}{4n}\right) = 2e^{-n\varepsilon^2/32}.\]
+  \[ \P \{ |P_n^\circ(A)| > \tfrac{1}{4} \varepsilon \} \leq 2 \exp\left( \frac{-2{(n\varepsilon/4)}^2}{4n}\right) = 2e^{-n\varepsilon^2/32}, \hspace*{1em} \forall A \in \AA.\]
   We use equation $\ref{gc:3}$ to conclude
   \begin{equation} \label{gc:4}
     \P\{ \|P_n^\circ\| > \tfrac{1}{4} \varepsilon \;|\; X\} \leq 2(n+1) e^{-n\varepsilon^2/32}.
@@ -291,10 +257,10 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
     \end{array} 
   \end{equation}
 
-  The Borel-Cantelli states that if the probability of a sequence of events is summable, that is \(\sum_{n = 1}^\infty \P\{A_n\} < \infty\), then
-  \[ \lim_n \P(A_n) \leq \P \left\{ \bigcap_{n=1}^{\infty}\bigcup_{k = n}^{\infty} A_n\right\} = 0. \] 
+  The Borel-Cantelli states that if the probability of a sequence of events is summable, that is \(\sum_{n = 1}^\infty \P\{E_n\} < \infty\), then
+  \[ \lim_n \P(E_n) \leq \P \left\{ \bigcap_{n=1}^{\infty}\bigcup_{k = n}^{\infty} E_n\right\} = 0. \] 
 
-  Since the inequality we obtain through the previous steps is exponential, the probabilities of the events $A_n = \{\|P_n-P\| > \varepsilon\}$ are summable:
+  Since the inequality we obtain through the previous steps is exponential, the probabilities of the events $E_n = \{\|P_n-P\| > \varepsilon\}$ are summable:
 
   \[  \sum_{n = 1}^\infty \P \{\|P_n-P\| > \varepsilon\} < \infty .\] 
 

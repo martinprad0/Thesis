@@ -154,34 +154,34 @@ As the difference of this expectations when we reveal 1 more point. Note that si
 \[ \E(Z_i | \A_i) =  \E (e_N | \A_i, \A_i) - \E (e_N | \A_{i-1}, A_i) = \E (e_N | \A_i) - \E (e_N | \A_i) = 0,\] 
 $Z_1, \ldots, Z_N$ is the difference sequence of a vertex exposure martingale.
 
-\begin{figure}[ht]\label{TSP:pic1}
-    \subfloat[$i = 0$]{\label{TSP:pic1.1}
-        \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic0.png}
-    }
-    \subfloat[$i = 1$]{\label{TSP:pic1.2}
-        \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic1.png}
-    }
-    \subfloat[$i = 2$]{\label{TSP:pic1.3}
-        \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic2.png}
-    }
-    \subfloat[$i = 4$]{\label{TSP:pic1.4}
-        \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic3.png}
-    }
+% \begin{figure}[ht]\label{TSP:pic1}
+%     \subfloat[$i = 0$]{\label{TSP:pic1.1}
+%         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic0.png}
+%     }
+%     \subfloat[$i = 1$]{\label{TSP:pic1.2}
+%         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic1.png}
+%     }
+%     \subfloat[$i = 2$]{\label{TSP:pic1.3}
+%         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic2.png}
+%     }
+%     \subfloat[$i = 4$]{\label{TSP:pic1.4}
+%         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic3.png}
+%     }
 
-    \subfloat[$i = 7$]{\label{TSP:pic1.5}
-        \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic4.png}
-    }
-    \subfloat[$i = {12}$]{\label{TSP:pic1.6}
-        \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic5.png}
-    }
-    \subfloat[$i = {18}$]{\label{TSP:pic1.7}
-        \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic6.png}
-    }
-    \subfloat[$i = N = 50$]{\label{TSP:pic1.8}
-        \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/ex2.png}
-    }
-    \caption{Evolution of the vertex exposure martingale}
-\end{figure}
+%     \subfloat[$i = 7$]{\label{TSP:pic1.5}
+%         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic4.png}
+%     }
+%     \subfloat[$i = {12}$]{\label{TSP:pic1.6}
+%         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic5.png}
+%     }
+%     \subfloat[$i = {18}$]{\label{TSP:pic1.7}
+%         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic6.png}
+%     }
+%     \subfloat[$i = N = 50$]{\label{TSP:pic1.8}
+%         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/ex2.png}
+%     }
+%     \caption{Evolution of the vertex exposure martingale}
+% \end{figure}
 
 Define $e_N^{[i]}$ as the distance of the trajectory when we remove the $i$-th point from the sample. Intuitively from the triangle inequality, we can obtain the following inequalities:
 \[ e_N^{[i]} \leq e_N \leq e_N^{[i]} + 2 L/M, \]
@@ -204,14 +204,50 @@ Three examples from~\cite{alon2016probabilistic} will be exposed to illustrate s
 \[ \P\{g(b) = a\} = p(a,b),\hspace*{1em} \sum_{a\in A} p(a,b) = 1. \]
 All the values $g(b)$ are mutually independent. Now, fix a chain of sets 
 \[ \emptyset = B_0 \subset B_1 \subset \ldots \subset B_m = B,\hspace*{1em} \mathcal{B} = {\{B_i\}}_{i = 0}^m \]
-and let $L: A^B \to \R$ be a functional. The martingale sequence $X_0,\ldots, X_m$ associated with $L$ and $\mathcal{B}$ is
+and let $L: A^B \to \R$ be a functional. The martingale sequence $X_0,\ldots, X_m$ associated with $L$ and $\mathcal{B}$ is defined as it follows: For a fixed $h \in A^B$:
 
-\[ X_i(g) = \E[ L(g) \;|\; g(b),\; b\in B_i ] \] 
+\[ X_i(h) = \E[ L(g) \;|\; g(b) = h(b),\; \forall b\in B_i ]. \] 
+
+What this means is that, given that we know the values in $B_i$ of a function $h$, the martingale at the $i$-th step predicts the outcome of $L(h)$ based only on this information. The following definition and theorem have the purpose to make our lives easier when talking about the `boundness' of a martingale.
+
+\begin{definition}
+    A functional $L$ is said to satisfy the Lipschitz condition if for every $i < m$: Whenever two functions $g(b) \neq g'(b)$ only on $B_{i+1}- B_i$,
+    \[ |L(g) - L(g')| \leq 1. \] 
+\end{definition}
+
+When we say that the outcome of $L$ won't change by more than 1 unit from one revelation to another, it means that it has the Lipschitz condition. The following theorem will connect this idea to Azuma's inequality:
 
 \begin{theorem}\label{lipschitz-condition}
-    
+    The martingale associated with a functional $L$ with the Lipschitz condition satisfies:
+    \[ |X_{i+1}(g)- X_i(g)| \leq 1,\hspace*{1em} \forall g\in A^B,\; \forall i < m. \] 
 \end{theorem}
 
+\begin{proof} The proof is adapted from~\cite{alon2016probabilistic} chapter 7. In the original proof, the author skips many steps that I believe are not trivial. Thus, I decided to restructure the proof in three parts:
+
+\subsubsection*{Rewritting $X_{i+1}$}
+Fix $h \in A^B$, $i\in \N$ and define $H\subset A^B$ to be the set of functions $h'$ in which $h(b) = h'(b)$ for every $b \in B_{i+1}$. Let
+\[ p_{h'} = \P\{g = h' \;|\; g(b) = h(b),\; \forall b \in B_{i+1}\}. \]
+Note that if $h' \not\in H$ and we are given that $g(b) = h(b)$ for $b\in B_{i+1}$, then it would be imposible for $g$ to be equal to $h'$ because there would exist $b^* \in B_{i+1}$ such that $h'(b^*) \neq h(b^*) = g(b^*)$. Thus, $p_{h'} = 0$ if $h' \not\in H$ and,
+
+\[\everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
+    \begin{array}{rcl}
+    X_{i+1}(h) & = & \E[ L(g) \;|\; g(b) = h(b),\; \forall b\in B_{i+1} ]. \\ 
+    & = & \sum_{h' \in A^B} L(h') \cdot \P\{g = h' \;|\; g(b) = h(b),\; \forall b \in B_{i+1}\}\\
+    & = & \sum_{h' \in H} L(h') \cdot p_{h'}
+\end{array}\]
+
+\subsubsection*{Rewritting $X_i$}
+From the definition,
+\[\everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
+    \begin{array}{rcl}
+    X_{i}(h) & = & \E[L(g) \;|\; g(b) = h(b),\; \forall b\in B_{i}]
+\end{array}\]
+Define $H[h']$ to be the collection of functions $h^*$ in which it is guaranteed that $h^*$ agrees with $h'$ everywhere but $B_{i+1}-B_i$ (it can possibly agree there too). Let
+\[q_{h^*} = \P\{g(b) = h^*(b),\; \forall b \in B_{i+1} \;|\; g(b) = h(b) \; \forall b \in B_{i} \}. \]
+For $h' \in H$, $h'(b) = h(b)$ for every $b \in B_{i+1}$, thus
+\[ \E[ L(g) \;|\; g(b) = h'(b),\; \forall b\in B_{i+1} ] = \E[ L(g) \;|\; g(b) = h(b),\; \forall b\in B_{i+1} ] \P\{\}\] 
+
+\end{proof}
 
 Let $g \in {[n]}^{n}$ be a random vector (uniformly chosen) with $n$ entries, in which every entry is in $[n] = \{1,\ldots n\}$. Define $L(g)$ to be the amount of number that are not included in the vector,
 \[ L(g) = \# \{ k \;:\; g_i \neq k,\; \forall i \in [n]\} = \sum_{k = 1}^{n} \1_{k \not\in g} \] 
