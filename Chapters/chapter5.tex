@@ -519,7 +519,7 @@ If $s(\AA, n) = 2^n$ for every $n\in \N$ or equivalently if $\AA$ doesn't have p
  \[\P\{\|P_n-P\|_{\AA} > \varepsilon\} \leq 8 s(\AA, n) \cdot e^{-n \varepsilon^2 / 32} \] 
 \end{theorem}
 \begin{proof}
-    It might be anti-climatic to tell the reader that there's no work left in this proof. But let's recapitulate everything we've done so far:
+    Let's recapitulate everything we've done so far:
     \begin{itemize}
         \item \textbf{First Symmetrization:} Using {lemma}~\ref{gc:l1} and Chebyshev's inequality we concluded that for an identical independent copy of the empirical measure $P_n'$ we have
         \[ \P\{\|P_n - P\|_\AA > \varepsilon\} \leq 2 \; \P\{\|P_n-P_n'\|_\AA > \tfrac{1}{2}\varepsilon\},\hspace*{1em}\text{for } n \geq \frac{8}{\varepsilon^2}.\] 
@@ -547,6 +547,77 @@ The middle term in the last formula is valuable to make a stronger assessment ab
 According to~\cite{devroye2013probabilistic}, in order for $\P\{\|P_n-P\|_\AA > \varepsilon\}$ to converge to 0 by the Borel-Cantelli theorem, the following condition must be met so the series $\sum_n 8 \E[N_\AA(X)] e^{-n\varepsilon^2/32}$ is summable:
 
 \[ \frac{\E [\log N_\AA(X)]}{n} \to 0. \] 
+
+\section{Estimation Error in Decision Functions}
+Let $(X,Y)$ denote a pair of random variables that take values in $S \times \{0,1\}$. The behavior of this pair can be explained by two probability functions $\mu, \eta$. While $\mu$ describes the distribution of $X$ in its space:
+\[ \mu(A) = \P\{X \in A\}, \] 
+$\eta$ describes which values of $Y$ are more probable if $X = x$:
+\[ \eta(x) = \P\{Y = 1 | X = x\} = \E[Y | X = x]. \] 
+
+A classifier or a decision function is any function tries to predict the value of $Y$ on any given $X$:
+\[ \phi \in \CC,\; \phi: S \mapsto \{0,1\}. \]
+
+There's of course a probability that a classifier fails to predict correctly the value of $Y$. Even the best possible classifier $\phi^\star(\cdot) = \ceil{2\eta(\cdot) - 1}$ has a chance of making a mistake if $\eta(x) \neq 1$ or $\eta(x) \neq 0$. The probability of this event is called $L$:
+
+\[ L(\phi) = \P\{\phi(X) \neq Y\}. \]
+
+The lowest possible error $L^*$ for any classifier is called the Bayes error.
+
+In reality, we know from little to nothing about $L$. We can only count on a number of observations $(X_1,Y_1), \ldots, (X_n, Y_n)$ to decide if a classifier works. From these observations we can create an empirical function that evaluates how well a classifier fits to the observations:
+
+\[ \widehat{L}_n(\phi) = n^{-1} \sum_{i = 1}^n \1_{\phi(X_i) \neq Y_i}. \] 
+
+On the other hand, to optimize the computational cost, we might just consider a collection $\CC$ of classifiers instead of all the $2^X$ possible functions. Let $\phi_n^\star$ be the best classifier in $\CC$ according to $\widehat{L}_n$, that is
+
+\[ \phi_n^\star = \underset{\phi\in\CC}{\text{argmin}} \{\widehat{L}_n(\phi)\}. \] 
+
+With all the tools we've built in this chapter, we can make powerful assertions about the convergence of the error of $\phi_n^\star$.
+
+\begin{definition}
+    Let $\CC$ be a collection of decision functions $\phi: S \to \{0,1\}$. Define $\AA$ as the following collection of sets:
+    \[ {\left\{\{\phi^{-1}(1)\times\{0\}\cup\{\phi^{-1}(0)\times\{1\}\}\right\}}_{\phi \in \CC}. \]
+    Define the $n$-shatter coefficient, and VC dimension of a classifier as
+    \[ s(\CC,n) = s(\AA,n),\hspace*{1em} V_\CC = V_\AA. \] 
+\end{definition}
+
+\begin{theorem}
+    For any collection of classifiers $\CC$ and $L,\;\widehat{L}_n $ as defined above,
+    \[ \P \{\|\widehat{L}_n - L\|_\CC > \varepsilon\} \leq 8 s(\CC,n) e^{-n\varepsilon^2/32}. \] 
+\end{theorem}
+
+\begin{proof}
+    Apply {theorem}~\ref{vc:inequality} on $\AA$.
+\end{proof}
+
+\begin{theorem}
+    For the empirically selected classifier $\phi_n^\star \in \CC$,
+    \[ L(\phi_n^\star) - \inf_{\phi\in \CC} L(\phi) \leq 2 \|\widehat{L}_n - L\|_\CC.\] 
+\end{theorem}
+
+\begin{proof}
+    Taken from~\cite{devroye2013probabilistic} Lemma 8.2.
+    \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
+        \begin{array}{rcl}
+            L(\phi_n^\star) - \inf_{\phi\in \CC} L(\phi) & = & L(\phi_n^\star) - \widehat{L}_n(\phi_n^\star) + \widehat{L}_n(\phi_n^\star) - \inf_{\phi\in \CC} L(\phi)\\
+            & \leq & |\widehat{L}_n(\phi_n^\star) - L(\phi_n^\star)| + |\widehat{L}_n(\phi_n^\star) - \inf_{\phi\in \CC} L(\phi)|\\
+            & \leq & \sup_{\phi\in\CC}|\widehat{L}_n(\phi) - L(\phi)| + \sup_{\phi\in\CC}|\widehat{L}_n(\phi) - L(\phi)|\\
+            & = & 2 \|\widehat{L}_n - L\|_\CC.
+        \end{array}
+    \] 
+\end{proof}
+
+Therefore, we can conclude from the two previous theorems that
+
+\[ \P\{L(\phi_n^\star) - \inf_{\phi\in \CC} L(\phi) > \varepsilon\} \leq  8 s(\CC,n) e^{-n\varepsilon^2/128}. \] 
+
+This last formula says that if the shatter coefficient is small enough, then the estimation error
+\[  L(\phi_n^\star) - \inf_{\phi\in\CC} L(\phi) \] 
+will converge almost surely to 0. Note though that this doesn't mean that the empirical error,
+\[ L(\phi_n^\star)- L^\star \] 
+will converge to 0, if the collection $\CC$ is too small, then the approximation error,
+\[ \inf_{\phi\in\CC} L(\phi) - L(\phi^\star) \] 
+might not converge to 0 because we are under-fitting. On the other hand, if the collection $\CC$ is too big, the approximation error will be small but, $s(\CC, n)$ might be so big that we will have no guarantee that the estimation error will converge to 0. In conclusion, the challenge is to find a sweet spot for the size of the collection $\CC$ so the empirical error can converge to 0:
+\[ \underbrace{L(\phi_n^\star)- L^\star}_{\text{emp.~error}} = \left(\underbrace{L(\phi_n^\star)- \inf_{\phi\in \CC} L(\phi)}_{\text{est.~error}}\right) + \left(\underbrace{\inf_{\phi\in \CC} L(\phi)- L^\star}_{\text{approx.~error}}\right) \] 
 
 % Leer cap 4,12,13,18 Devroye
 % chktex 17

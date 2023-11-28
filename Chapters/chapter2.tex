@@ -105,7 +105,6 @@ Returning to the coin tossing problem, we can now make a stronger assertion of t
 
 
 \section{Uniform Law of Large Numbers}
-
 For any probability measure $P$ on the real line and $t \in \R$, define $P_n$ as the empirical probability measure obtain from an independent sample $X_1, \ldots, X_n$ of $P$, that is:
 \[ P_n(t) = P_n(-\infty, t) = n^{-1} \cdot \sum_{i = 1}^n \1_{\{ X_i < t\}}.\]
 
@@ -121,7 +120,7 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
 
   \subsubsection*{First Symmetrization}
   In the first place, define $P_n'$ as the empirical measure obtained from an independent but identical sample $X_1',\ldots, X_n'$ of $P$. Note that for any fixed $t$, $P_n(t)$ and $P_n'(t)$ are random variables derived from their respective samples which satisfy that
-  \[ \E P_n(t) = \E P_n'(t) = P(t),\hspace*{1em} \Var P_n(t) = \Var P_n'(t) = P(t). \] 
+  \[ \E P_n(t) = \E P_n'(t) = P(t),\hspace*{1em} \Var P_n(t) = \Var P_n'(t) = \Var P(t). \] 
   We will bound the concentration of $\|P_n- P_n'\|$ first, which will later result in a bound for $\|P_n - P\|$ at the end of the following lemma.
 
   \vspace*{1em}
