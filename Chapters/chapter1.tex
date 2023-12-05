@@ -55,7 +55,7 @@ and thus,
 
 \section{Why bother?}
 
-The concentration inequalities are used to obtain information on how a random variable is distributed at some specific places of its domain. In the most common scenarios, these inequalities will be used to quantify how concentrated a random variable at its tails, for example,
+The concentration inequalities are used to obtain information on how a random variable is distributed at some specific places of its domain. In the most common scenarios, these inequalities will be used to quantify how concentrated a random variable around its center. In other words, how fast the probability decays as we move towards the tails. For example,
 
 \[ \P\{|X-\mu| \geq t\} < f(t) << 1. \]
 
@@ -69,7 +69,7 @@ A coin tossing game is fair if the chances of winning are equal to the chances o
 
 Let $S_N \sim \Bi(N,1/2)$ denote the number of heads in a fair coin tossing game. Then,
 \[ \mu = \E S_N = \frac{N}{2}, \hspace*{2em} \sigma^2 = \Var S_N = \frac{N}{4}. \] 
-For a fixed $\varepsilon > 0$, we may classify a coin tossing game as rigged if, after $N$ trials, the ratio of heads vs tails in the sample is greater than $[1+\varepsilon:1-\varepsilon]$, or similarly,
+For a fixed $\varepsilon > 0$, we may classify a coin tossing game as rigged if, after $N$ trials, the ratio of success falls outside the interval $[0, \tfrac{1+\varepsilon}{2}]$
 \[ S_N \geq \mu +  \frac{\varepsilon}{2} N = \frac{1+\varepsilon}{2} N. \]
 
 It's clear that calculating the exact probability of the previous event for any $N,\; \varepsilon$ is a very demanding task computationally. The Chebyshev's inequality~\ref{chebyshev} gives us a ``good-enough'' result for this problem,
@@ -151,7 +151,7 @@ We can start with a small modification of the Chebyshev's bound for the one-side
     \P\{X-\mu \geq t\} \leq \frac{\sigma^2 + u^2}{{(t+u)}^2}
      = \frac{\sigma^2 + \sigma^4/t^2}{{{(t+\sigma^2/t)}^2}}
      = \frac{\sigma^2 (\tfrac{t^2+\sigma^2}{t^2})}{{(\tfrac{t^2+\sigma^2}{t})}^2}
-     = \frac{\sigma^2}{t^2+\sigma^2}\]
+     = \frac{\sigma^2}{t^2+\sigma^2}.\]
 \end{proof}
 %% --------------------
 
@@ -161,4 +161,4 @@ On the other hand, the two-sided tail inequality, Cantelli's inequality is not a
   \[\P\{|X-\mu| \geq t\} \leq \frac{2\sigma^2}{t^2 + \sigma^2}. \] 
 \end{corollary}
 
-In fact, this bound is only better than Chebyshev's $t^2+\sigma^2 \leq 2t^2$, or equivalently, when $\sigma^2 \leq t^2$. However, in this case both formulas provide bounds greater than 1, and thus, are useless. Therefore, the conclusion is that, in general, Chebyshev's inequality is better for two-sided tails and Cantelli is for one-sided tails.
+In fact, this bound is only better than Chebyshev's $t^2+\sigma^2 \geq 2t^2$, or equivalently, when $\sigma^2 \geq t^2$. However, in this case both formulas provide bounds greater than 1, and thus, are useless. Therefore, the conclusion is that, in general, Chebyshev's inequality is better for two-sided tails and Cantelli is for one-sided tails.

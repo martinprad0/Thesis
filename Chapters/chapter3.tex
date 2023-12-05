@@ -8,7 +8,7 @@ Note that for $u > 0$,
     \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
   \begin{array}{l}
     \E e^{uX} = \prod_i \E e^{uX_i} = {((1-p) + p e^{u})}^n,\\
-    \E e^{-uX} = \prod_i \E e^{-uX_i} = {((1-p) + p e^{-u})}^n
+    \E e^{-uX} = \prod_i \E e^{-uX_i} = {((1-p) + p e^{-u})}^n.
   \end{array} 
   \end{equation}
   By applying Markov's Inequality to $e^{uX}$, we can assert that
@@ -22,7 +22,7 @@ Note that for $u > 0$,
   \[ e^{u} = \frac{\lambda+t}{(n-\lambda-t)} \cdot \frac{1-p}{p}. \]
   Therefore, for $0 \leq t \leq n-\lambda$,
   \begin{equation}\label{co:2}
-    \P\{X \geq \lambda + t\} \leq {\left(\frac{\lambda}{\lambda+t}\right)}^{\lambda + t} {\left(\frac{n-\lambda}{n-\lambda-t}\right)}^{n - \lambda - t}
+    \P\{X \geq \lambda + t\} \leq {\left(\frac{\lambda}{\lambda+t}\right)}^{\lambda + t} {\left(\frac{n-\lambda}{n-\lambda-t}\right)}^{n - \lambda - t}.
   \end{equation}
 
   However, a simpler expression is required for the following application.
@@ -30,7 +30,7 @@ Note that for $u > 0$,
 \begin{theorem}\label{co:T1}
   Let $X$ be the random variable we defined at the start of this chapter. In particular, $X$ is a random variable with the binomial distribution $\Bi(n,p)$ with $\lambda := np = \E X$, then for $t \geq 0$,
   \begin{equation}\label{co:3}
-    \P\{X \leq \lambda - t\} \leq \exp\left(- \frac{t^2}{2\lambda}\right)
+    \P\{X \leq \lambda - t\} \leq \exp\left(- \frac{t^2}{2\lambda}\right).
   \end{equation}
 \end{theorem}
 
@@ -43,25 +43,25 @@ This proof was adapted from Appendix A.1.13 from~\cite{alon2016probabilistic}. T
     \begin{array}{rcl}
       \P \{X < \lambda - t\} & = & \P \{e^{-uX} < e^{-u(\lambda - t)}\}\\
       & \leq & e^{u(\lambda-t)} \E e^{-uX}\\
-      & = & e^{u(\lambda-t)} e^{u\lambda} {((1-p) + p e^{-u})}^n
+      & = & e^{u(\lambda-t)} e^{u\lambda} {((1-p) + p e^{-u})}^n.
     \end{array} 
    \]
    Then, use the inequality $1+u\leq e^{u}$ to conclude,
    \[ (1-p)+pe^{-u} = 1+(e^{-u}-1)p < e^{p(e^{-u}-1)} \]
-   \[ \implies {((1-p)+pe^{-u})}^n \leq e^{np(e^{-u}-1)} = e^{\lambda(e^{-u}-1)} \] 
+   \[ \implies {((1-p)+pe^{-u})}^n \leq e^{np(e^{-u}-1)} = e^{\lambda(e^{-u}-1)}. \] 
    Combining everything, we obtain
    \[ \P \{X < \lambda - t\} \leq e^{\lambda(e^{-u}-1)+\lambda u - ut} \]
    Now, we employ the following inequality obtained by the Taylor series expansion,
    \[ e^{-u} \leq 1-u+u^2/2.\]
-   after expanding, this results in 
-   \[ \P \{X < \lambda - t\} \leq e^{\lambda u^2 / 2 - ut} \]
+   After expanding, this results in 
+   \[ \P \{X < \lambda - t\} \leq e^{\lambda u^2 / 2 - ut}. \]
    Finally, by replacing $u = t/\lambda$ we obtain the desired result:
-   \[ \P \{X < \lambda - t\} \leq e^{-t^2/2\lambda} \] 
+   \[ \P \{X < \lambda - t\} \leq e^{-t^2/2\lambda}. \] 
 \end{proof}
 
 \section{The problem}
 
-The article~\cite{diaz2019local} explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how does the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution on any manifold.\\[1em]
+The article~\cite{diaz2019local} explains how we can estimate the dimension $d$ of a manifold $M$ embedded on a Euclidean space of dimension $m$, say $\R^m$. First, we are going to introduce the method they used, and then, we will show how the exponential inequalities can be used to prove two important results in the paper. The procedure starts with an example on a uniformly distributed sample on a $d$-sphere $\S^{d-1} \subset \R^d$, but will be later generalized for samples of any distribution with a density bounded away from zero.\\[1em]
 
 In the first place, let $Z_1, \ldots, Z_k$ be a i.i.d.\ sample uniformly distributed on $\S^{d-1}$. Then, we have the following formula for the variance of the angles between $Z_i,Z_j, i\neq j$:
 
@@ -95,7 +95,13 @@ Knowing that for every $d > 1$, $\beta_d$ is in the interval $[\tfrac{1}{d}, \tf
 
 In Proposition 1.\ of~\cite{diaz2019local} the authors prove that it's the Minimum Variance Unbiased Estimator for $\beta_d$ on the unit sphere.\\[0.5 em]
 
-Furthermore, the authors also prove that this result can be generalized for any manifold with samples of any distribution. Let $X_1,\ldots, X_n$ be a i.i.d.\ sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ denote a point on the. For $C>0 \in  \R$, let $k = \ceil{C \ln(n)}$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0 \in M$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$. Additionally, for the following theorem to be true, we requiere that at any neighborhood of $p$, the probability in that neighborhood is greater than 0.\\[0.5 em]
+Furthermore, the authors also prove that there are some conditions on a manifold and on the data sampling distribution for which this result can be generalized. Let $X_1,\ldots, X_n$ be a i.i.d.\ sample from a random distribution $P$ on a manifold $M \subset \R^m$, and let $p \in M$ denote a point on the manifold. For $C>0 \in  \R$, let $k = \ceil{C \ln(n)}$ and define $R(n) = L_{k+1}(p)$ as the distance between $p$ and its $(k+1)$-nearest neighbor. W.L.O.G. assume that $p = 0 \in M$ and that $X_1,\ldots, X_k$ are the $k$-nearest neighbors of $p$. Additionally, for the following theorems to be true, we have the following requirements:
+
+\begin{itemize}
+  \item The distribution of the sample has a continuous density.
+  \item The density at every point of any neighborhood of $p$ is positive.
+  \item The manifold is at least twice differentiable. 
+\end{itemize}
 
 The following theorem uses a special inequality from Chernoff-Okamoto, and it's crucial in the idea behind this generalization.
 
@@ -121,9 +127,9 @@ The following theorem, although it does not require concentration inequalities, 
 \begin{theorem}[Projection Distance Bounds]\label{ade:T3}
   For any $i<j \leq n$,
   \begin{enumerate}
-    \item[(i)]    \( \|X_i-\pi(X_i)\|  =   O(\|\pi (X_i)\|^2) \hfill\inlinetag  \)
-    \item[(ii)]   \( \|Z_i-\widehat{W_i}\|  =   O(\|\pi (X_i) \|) \hfill\inlinetag \)
-    \item[(iii)]  The inner products (cosine of angles) can be bounded as it follows:
+    \item[(i)]    \( \|X_i-\pi(X_i)\|  =   O(\|\pi (X_i)\|^2). \hfill\inlinetag  \)
+    \item[(ii)]   \( \|Z_i-\widehat{W_i}\|  =   O(\|\pi (X_i) \|). \hfill\inlinetag \)
+    \item[(iii)]  The inner products (cosine of angles) can be bounded as follows:
     \begin{equation}\label{ade:7}
       |\angles{Z_i,Z_j} - \langle\widehat{W_i}, \widehat{W_j}\rangle| \leq K r,
     \end{equation}
@@ -193,7 +199,7 @@ This last theorem is as far as this document is planned to cover. However, the l
       \lim_{k\to\infty} \; \sum_{j = 1}^{k} {(2j-1)}^{-2} 
       & = & \lim_{k\to\infty} \sum_{j = 1}^{2k-1} j^{-2} - \sum_{j = 1}^{k-1} {(2j)}^{-2}\\
       & = & \lim_{k\to\infty} \sum_{j = 1}^{2k-1} j^{-2} - \frac{1}{4}\sum_{j = 1}^{k-1} j^{-2}\\
-      & = & \frac{\pi^2}{6}-\frac{\pi^2}{24} = \frac{\pi^2}{8}
+      & = & \frac{\pi^2}{6}-\frac{\pi^2}{24} = \frac{\pi^2}{8}.
     \end{array}\]
     Hence,
     \[\hspace{-10mm}\everymath{\displaystyle}\arraycolsep=1.5pt\def\arraystretch{1.5}
@@ -222,7 +228,7 @@ Where $v_d$ is the volume of the unit $d$-sphere. For the assumptions we made on
 
 \[ \rho = \P\{X \in M : |X| < r\} \geq \alpha v_d r^d  > 0.  \] 
 
-We can now define a binomial process based on how many neighbors does $p$ has within a range $r$. Let $N = N_r \sim \Bi(n,\rho)$ be the number of neighbors, using Theorem~\ref{co:T1} with $\lambda = n\rho $ and $t = \tfrac{\lambda}{2}$ we obtain,
+We can now define a binomial process based on how many neighbors does $p$ have within a range $r$. Let $N = N_r \sim \Bi(n,\rho)$ be the number of neighbors, using Theorem~\ref{co:T1} with $\lambda = n\rho $ and $t = \tfrac{\lambda}{2}$ we obtain,
 
 \[ \P\{N \leq \lambda - t\} = \P\{2N \leq \lambda \} \leq \exp(-\lambda/8). \] 
 
@@ -237,4 +243,33 @@ and,
 Therefore,
 \[P\{2N \leq C \ln n \} \leq  n^{-C/8}.\]
 Finally, with this last expression we proved that if $k = \tfrac{C}{2}\ln n$, then the $k$-neighbors of $p$ are contained in the ball of radius $r(n)$ with a probability that converges exponentially to 1.
+\end{proof}
+
+\begin{proof}[Proof Theorem~\ref{ade:T3}:]\label{ade:T3P}
+  W.L.O.G. we assumed from the beginning that $p=0$ by translating everything. Let $(U, x_1, \ldots, x_m)$ be a chart for $p \in M$. Since the real dimension of the manifold is $d$, there exists by Theorem 11.5~\cite{tu2011manifolds}, a change of basis $(U, z_1, \ldots, z_m)$ such that $T_p M$ is spanned by $\angles{z_1,\ldots, z_d}$. Let
+
+  \[ \phi(z_1, \ldots, z_d) = (z_1,\ldots, z_d, F_1(z_1,\ldots, z_d),\ldots, F_{t}(z_1,\ldots, z_d)),\]
+  
+  with $t = m-d$
+
+  \[ \text{dist}(z_1, \ldots, z_d) = \sqrt{F_1^2(z)+ \cdots + F_t^2(z)}. \]
+  
+  \[ \left\| \frac{X}{\|\pi X\|} - \frac{\pi X}{\|\pi X\|} \right\| \leq K\|\pi X\|. \]
+  
+  \[ \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
+  \begin{array}{rcl}
+    \left\| \frac{X}{\|X\|} - \frac{X}{\|\pi X\|} \right\| & = & \|X\| \left| \frac{1}{\|\pi X\|} - \frac{X}{\|\pi X\|} \right|\\
+    & = & \left|\|X\|- \|\pi X\|\right| \|\pi X\|^{-1}\\
+    & \leq & \|X-\pi X\|\|\pi X\|^{-1}\\
+    & \leq & K \|\pi X\|.
+  \end{array}
+  \] 
+
+  By plugging everything together,
+
+  \[ \left\|\frac{X}{\|X\|} - \frac{\pi X}{\|\pi X\|}\right\| \leq  {\left\| \frac{X}{\|X\|} - \frac{X}{\|\pi X\|} \right\|} + { \left\| \frac{X}{\|\pi X\|} - \frac{\pi X}{\|\pi X\|} \right\|} \leq 2 K \|\pi X\|\] 
+  
+\end{proof}
+
+\begin{proof}[Proof Theorem~\ref{ade:T4}:]\label{ade:T4P}
 \end{proof}

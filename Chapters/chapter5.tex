@@ -85,7 +85,7 @@ Let $A_{i,j} = (-\infty, a_i) \times (-\infty, b_j)$ be the quadrants described 
 
 Let $X^i_j$ be the $i$-th coordinate of the point $X_j$, the formula for $P_n^\circ$ at a point $(x,y) \in \R^2$ is:
 
-\[ P_n^\circ(x,y) = P_n^\circ((-\infty, x)\times(-\infty, y)) = n^{-1} \sum_{k = 1}^{n} \sigma_i \1_{X_k^1 < x}\cdot \1_{X_k^2 < y} \] 
+\[ P_n^\circ(x,y) = P_n^\circ((-\infty, x)\times(-\infty, y)) = n^{-1} \sum_{k = 1}^{n} \sigma_i \1_{X_k^1 < x}\cdot \1_{X_k^2 < y}. \] 
 
 Then, because of the way we chose $a_i$ and $b_j$, there exists $i, j$ such that $x \in (a_{i-1}, a_i)$ and $y \in (b_{j-1}, b_j)$. Thus,
 \[ \forall k \leq n:\; \begin{array}{c}
@@ -127,7 +127,7 @@ which diverges to $\infty$ when $\varepsilon \leq \sqrt{\log 2^{32}}$. This will
         \item The size of $\AA_n$ is at most $p(n)$: $\#\AA_n \leq p(n) = O(n^v)$.
     \end{itemize}
     An equivalent way to express this definition is to say that for any subspace $S_n = \{X_1,\ldots, X_n\} \subset S$, there are at most $p(n)$ different sets with the form $A\cap S_n$ for $A\in\AA$:
-    \[ \max_{X_1,\ldots, X_n \in S} \#\{A \cap \{X_1,\ldots, X_n\} \;|\; A \in \AA\} \leq p(n) \leq 2^n\] 
+    \[ \max_{X_1,\ldots, X_n \in S} \#\{A \cap \{X_1,\ldots, X_n\} \;|\; A \in \AA\} \leq p(n) \leq 2^n.\] 
 \end{definition}
 \begin{remark}
     For any collection $\AA$ and a sample $X_1,\ldots, X_n$ there exists a sub-collection $\AA_n$ such that
@@ -139,7 +139,7 @@ which diverges to $\infty$ when $\varepsilon \leq \sqrt{\log 2^{32}}$. This will
     This equivalence proves that both of the definitions are the same. Then, in order to construct $\AA_n$ take one representative in each of the $\# \{A \cap \{X_1,\ldots, X_n\}\}$ different equivalence classes ${[A]}_\simeq$, $A \in \AA$.
 \end{remark}
 Another important fact from the previous remark is that, for any collection $\AA$, and any given sample $X_1, \ldots, X_n$, since for every set $A \in \AA$ there exists a set $B \in \AA_n$ such that $\1_{X_i \in A} = \1_{X_i \in B}$, $\forall i\leq n$ and $\#\AA_n \leq 2^n$, it follows that $\|P_n^\circ\|_\AA$ exists and,
-\[\exists A^\star \in \AA_n:\; \sup_{A\in \AA} \|P_n^\circ (A)\| = \max_{B\in \AA_n} | P_n^\circ(B) | = | {P_n^\circ(A^\star )}|  \] 
+\[\exists A^\star \in \AA_n:\; \sup_{A\in \AA} \|P_n^\circ (A)\| = \max_{B\in \AA_n} | P_n^\circ(B) | = | {P_n^\circ(A^\star )}|.  \] 
 Similar to the quadrants example in the equations~\ref{vc:2} and~\ref{vc:3}, we conclude that if $\AA$ has a polynomial discrimination, then
 \begin{equation}\label{vc:5}
     \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
@@ -516,7 +516,7 @@ If $s(\AA, n) = 2^n$ for every $n\in \N$ or equivalently if $\AA$ doesn't have p
 \end{definition}
 
 \begin{theorem}[Vapnik–Chervonenkis inequality]\label{vc:inequality}
- \[\P\{\|P_n-P\|_{\AA} > \varepsilon\} \leq 8 s(\AA, n) \cdot e^{-n \varepsilon^2 / 32} \] 
+ \[\P\{\|P_n-P\|_{\AA} > \varepsilon\} \leq 8 s(\AA, n) \cdot e^{-n \varepsilon^2 / 32}. \] 
 \end{theorem}
 \begin{proof}
     Let's recapitulate everything we've done so far:
@@ -524,7 +524,7 @@ If $s(\AA, n) = 2^n$ for every $n\in \N$ or equivalently if $\AA$ doesn't have p
         \item \textbf{First Symmetrization:} Using {lemma}~\ref{gc:l1} and Chebyshev's inequality we concluded that for an identical independent copy of the empirical measure $P_n'$ we have
         \[ \P\{\|P_n - P\|_\AA > \varepsilon\} \leq 2 \; \P\{\|P_n-P_n'\|_\AA > \tfrac{1}{2}\varepsilon\},\hspace*{1em}\text{for } n \geq \frac{8}{\varepsilon^2}.\] 
         \item \textbf{Second Symmetrization:} We build another distribution $P_n^\circ(A) = n^{-1}\sum \sigma_i \1_{X_i \in A} $ and concluded from {lemma}~\ref{gc:l2} equation~\ref{gc:2} that
-        \[ \P\{\|P_n-P_n'\|_\AA > \tfrac{1}{2}\varepsilon\} \leq 2\; \P\{\|P_n^\circ\|_\AA > \tfrac{1}{4}\varepsilon\}   \]
+        \[ \P\{\|P_n-P_n'\|_\AA > \tfrac{1}{2}\varepsilon\} \leq 2\; \P\{\|P_n^\circ\|_\AA > \tfrac{1}{4}\varepsilon\}.   \]
         \item \textbf{Maximal Inequality:} This was the step in which we had to be most careful. In the rest of the steps it never really mattered if we worked with intervals or any other class of sets on any space. In this step the task is, for any given a sample $X_1, \ldots, X_n$, to find a sub-collection $\AA_n \subset \AA$ such that
         \[ \#\AA_n = \#\{\{X_1,\ldots,X_n\}\cap A \; ;\; A\in\AA\} = N_\AA(X_1,\ldots, X_n).\] 
         We proved the existence of this set in the previous theorem. Then, it follows that for a given sample $X = X_1,\ldots, X_n$, the supremum of $|P_n^\circ|$ is reached in one of the sets $A^\star \in \AA_n$. Thus,
@@ -537,7 +537,7 @@ If $s(\AA, n) = 2^n$ for every $n\in \N$ or equivalently if $\AA$ doesn't have p
         \item \textbf{Exponential Bound and integration:} After we apply Hoeffding's inequality, we obtain
         \[ \P\{\|P_n^\circ\|_\AA > \tfrac{1}{4}\varepsilon | X\} \leq 2 N_\AA(X) e^{-n\varepsilon^2/32}.\]
         Finally, the result of the last expected value is 
-         \[ \P\{\|P_n-P\|_\AA > \varepsilon\} \leq 8 \E[N_\AA(X)] e^{-n\varepsilon^2/32} \leq 8 s(\AA, n) \cdot e^{-n \varepsilon^2 / 32} \] 
+         \[ \P\{\|P_n-P\|_\AA > \varepsilon\} \leq 8 \E[N_\AA(X)] e^{-n\varepsilon^2/32} \leq 8 s(\AA, n) \cdot e^{-n \varepsilon^2 / 32}. \] 
     \end{itemize}
 \end{proof}
 
@@ -612,12 +612,10 @@ Therefore, we can conclude from the two previous theorems that
 
 This last formula says that if the shatter coefficient is small enough, then the estimation error
 \[  L(\phi_n^\star) - \inf_{\phi\in\CC} L(\phi) \] 
-will converge almost surely to 0. Note though that this doesn't mean that the empirical error,
+will converge almost surely to 0. Note though that this doesn't mean that the empirical error
 \[ L(\phi_n^\star)- L^\star \] 
-will converge to 0, if the collection $\CC$ is too small, then the approximation error,
+will converge to 0, if the collection $\CC$ is too small, then the approximation error
 \[ \inf_{\phi\in\CC} L(\phi) - L(\phi^\star) \] 
 might not converge to 0 because we are under-fitting. On the other hand, if the collection $\CC$ is too big, the approximation error will be small but, $s(\CC, n)$ might be so big that we will have no guarantee that the estimation error will converge to 0. In conclusion, the challenge is to find a sweet spot for the size of the collection $\CC$ so the empirical error can converge to 0:
-\[ \underbrace{L(\phi_n^\star)- L^\star}_{\text{emp.~error}} = \left(\underbrace{L(\phi_n^\star)- \inf_{\phi\in \CC} L(\phi)}_{\text{est.~error}}\right) + \left(\underbrace{\inf_{\phi\in \CC} L(\phi)- L^\star}_{\text{approx.~error}}\right) \] 
-
-% Leer cap 4,12,13,18 Devroye
+\[ \underbrace{L(\phi_n^\star)- L^\star}_{\text{emp.~error}} = \left(\underbrace{L(\phi_n^\star)- \inf_{\phi\in \CC} L(\phi)}_{\text{est.~error}}\right) + \left(\underbrace{\inf_{\phi\in \CC} L(\phi)- L^\star}_{\text{approx.~error}}\right). \] 
 % chktex 17

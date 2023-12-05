@@ -3,29 +3,31 @@
 \section{The Azuma-Hoeffding Inequality}
 
 \begin{definition}
-    A sequence $X_0, \ldots, X_n$ of random variables is consider a \textbf{martingale} if, for every $i \leq n$,
-    \[ \E [X_{i+1} | X_i,\ldots, X_0] = X_i \] 
+    A sequence $X_0, \ldots, X_n$ of random variables is a \textbf{martingale} if, for every $i \leq n$,
+    \[ \E [X_{i+1} | X_i,\ldots, X_0] = X_i. \] 
 \end{definition}
 
-A random graph $G = G(n)$ is a graph that has $n$ labeled vertices and produces an edge between 2 of them with a probability. Let $v_1, \ldots, v_n$ denote the vertices of $G$ and $e_1, \ldots, e_m$ all of the $\binom{n}{2}$ potential edges that $G$ can produce. Also, define each edge's indicator function as it follows,
+A random graph $G = G(n)$ is a graph that has $n$ labeled vertices and produces an edge between 2 of them with a probability. Let $v_1, \ldots, v_n$ denote the vertices of $G$ and $e_1, \ldots, e_m$ all of the $\binom{n}{2}$ potential edges that $G$ can produce. Also, define each edge's indicator function as follows,
 \[\1_{e_k \in G} = \begin{cases}
     1, & e_k \in G\\
     0, & \mbox{otherwise} 
 \end{cases} \] 
 An edge exposure martingale is a sequence of random variables defined as the expected value of a function $f(G)$ which depends on the information of the first $j$ potential edges:
 
-\[ X_j = \E [f(G) \;|\; \1_{e_1 \in G}, \ldots, \1_{e_j \in G}] \] 
+\[ X_j = \E [f(G) \;|\; \1_{e_1 \in G}, \ldots, \1_{e_j \in G}]. \] 
 
-Since all of the graph information is contained in its edges, the sequence transitions from no information: $X_0 = E(f(G))$, to the true value of the function: $X_m = f(G)$. Similarly, one can define a martingale which depends on how many vertices are revealed. The vertex exposure martingale is defined as it follows,
+Since all of the graph information is contained in its edges, the sequence transitions from no information: $X_0 = E(f(G))$, to the true value of the function: $X_m = f(G)$. Similarly, one can define a martingale which depends on how many vertices are revealed. The vertex exposure martingale is defined as follows,
 
-\[ X_i = \E [f(G) \;|\; \1_{\{v_k, v_j\}\in G}, \; k < j \leq i] \] 
+\[ X_i = \E [f(G) \;|\; \1_{\{v_k, v_j\}\in G}, \; k < j \leq i] .\] 
 
-The following inequality is to some extend an adapted version of Hoeffding inequality~\ref{hoeffding:bounded} for martingale random variables. If we stablish a limit for which a martingale varies from one step to another, the theorem then states that we can exponentially bound the tails of its distribution:
+The following inequality is to some extent an adapted version of Hoeffding inequality~\ref{hoeffding:bounded} for martingale random variables. If we stablish a limit for which a martingale varies from one step to another, the theorem then states that we can exponentially bound the tails of its distribution:
 
 %% --- Azuma's inequality
 \begin{theorem}[Azuma-Hoeffding inequality]\label{azuma}
     Let $X_0, \ldots, X_m$ be a martingale with $X_0 = 0$, and
-    \[ |X_{i+1} - X_i| \leq 1, \hspace*{1em} \forall i < m. \]
+    \begin{equation}\label{azuma-condition}
+        |X_{i+1} - X_i| \leq 1, \hspace*{1em} \forall i < m.
+    \end{equation}
     Then, for $t > 0$,
     \[ \P\{X_m > t\sqrt{m}\} < e^{-t^2 / 2}. \] 
 \end{theorem}
@@ -40,7 +42,7 @@ The following inequality is to some extend an adapted version of Hoeffding inequ
     \begin{proof}
 
     \begin{tabular}{cc}
-        \(\displaystyle h(x) = \frac{e^\lambda + e^{-\lambda}}{2} + \frac{e^\lambda - e^{-\lambda}}{2} \cdot x,  \)
+        \(\displaystyle h(x) = \frac{e^\lambda + e^{-\lambda}}{2} + \frac{(e^\lambda - e^{-\lambda})x}{2},  \)
         &\hspace*{2em}
         \begin{tabular}[c]{@{}l@{}}
         \begin{tikzpicture}
@@ -56,7 +58,7 @@ The following inequality is to some extend an adapted version of Hoeffding inequ
     \end{tabular}
     \end{tabular}
 
-    As the picture above shows, $h(x)$ is the line that passes through the points $x = -1$ and $x = 1$ in the function $e^{\lambda x}$. Since $e^{\lambda x}$ is convex ($\lambda > 0$), it follows that $h(x) \geq e^{\lambda x} $ for $x \in [-1,1]$. Thus,
+    As the picture above shows, $h(x)$ is the line that passes through the points $x = -1$ and $x = 1$ in the function $e^{\lambda x}$. Since $e^{\lambda x}$ is convex ($\lambda > 0$), follows that $h(x) \geq e^{\lambda x} $ for $x \in [-1,1]$. Thus,
 
     \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
       \begin{array}{rcl}
@@ -79,7 +81,7 @@ The following inequality is to some extend an adapted version of Hoeffding inequ
     \[ \E [e^{\lambda Y_i} | X_{i-1},\ldots, X_0] \leq e^{\lambda^2/2}. \tag*{$ (\star) $}\]
 
     Using the formula $E[XY] = E_X [X E[Y|X]]$ we assert that
-    \[ \E e^{\lambda X_m} \; = \;  \E\left[\prod_{i = 1}^{m-1} e^{\lambda Y_i} \cdot \E[e^{\lambda Y_m} | X_{m-1},\ldots, X_0]\right] \]
+    \[ \E e^{\lambda X_m} \; = \;  \E\left[\prod_{i = 1}^{m-1} e^{\lambda Y_i} \cdot \E[e^{\lambda Y_m} | X_{m-1},\ldots, X_0]\right]. \]
 
     We repeat this process $n$ times:
     \[ \everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
@@ -113,7 +115,7 @@ The following inequality is to some extend an adapted version of Hoeffding inequ
 
 \end{remark}    
 
-In the following section we are going to present an application of the Azuma-Hoeffding inequality to prove the convergence to the mean of a fast (but not effective) approximation algorithm for the \textit{Travelling Salesman Problem}. 
+In the following section we are going to present an application of the Azuma-Hoeffding inequality in a problem involving a fast (but ineffective) approximation algorithm for the \textit{Travelling Salesman Problem}. 
 
 \section{An Heuristic Algorithm for the Travelling Salesman Problem}
 
@@ -140,7 +142,7 @@ The result that we are going to show is that $d_n$ is very concentrated around i
     \item For any empty stripe in the plane we sum the length of its diagonal $\sqrt{L^2+ L^2/M^2}$ and then it skips the empty stripe.
     \item When there are no empty stripes, $e_N = d_N$ 
 \end{itemize}
- Since the probability that any given stripe is empty converges exponentially to 0,
+ The probability that any given stripe is empty converges exponentially to 0,
 \[ \begin{array}{rl}
     {(1- 1/M)}^N & = {(1- 0.58^{-1} N^{-1/2})}^N\\[1em]
     & = {\left({(1- 1/M)}^{M}\right)}^{0.58^{-1} N^{1/2}}\\[1em]
@@ -150,7 +152,7 @@ The result that we are going to show is that $d_n$ is very concentrated around i
 
 Let $\A_i := \sigma\{X_1,\ldots,X_i\}$ denote the sigma algebra corresponding to revealing the first $i$ points, $\A_0 = \{\emptyset, {[0,L]}^2\}$. The expected value of the trajectory $e_N$ given that we only know the positions of the first $i$ points in the sample is $\E (e_N | \A_i)$. Define
 \[ Z_i = \E (e_N | \A_i) - \E (e_N | \A_{i-1}),  \]  
-As the difference of this expectations when we reveal 1 more point. Note that since
+as the difference of this expectations when we reveal 1 more point. Note that since
 \[ \E(Z_i | \A_i) =  \E (e_N | \A_i, \A_i) - \E (e_N | \A_{i-1}, A_i) = \E (e_N | \A_i) - \E (e_N | \A_i) = 0,\] 
 $Z_1, \ldots, Z_N$ is the difference sequence of a vertex exposure martingale.
 
@@ -200,15 +202,15 @@ for some $K\in \R^+$.
 
 \section{Lipschitz Condition and Three Additional Examples}
 
-Three examples from~\cite{alon2016probabilistic} will be exposed to illustrate some ideas that can be associated with the main inequality of this chapter. Furthermore, the usefulness of the Azuma-Hoeffding inequality in the study of graphs and metric spaces can be used in a more general frame by defining the Lipschitz condition.
+We are going to expose three examples from~\cite{alon2016probabilistic} in order to illustrate some ideas that can be associated with the main inequality of this chapter. Furthermore, by introducing the notion of a martingale with the ``Lipschitz condition'', we will extend the number of cases in which we can use Azuma's inequality.
 
 \vspace*{1em}
 
-Let $\Omega = A^B$ be the set of all functions $g: B\to A$ for which a probability measure is assigned
+Let $A,B$ be finite sets and let $\Omega = A^B$ be the set of all functions $g: B\to A$. Assign a probability space to each function:
 \[ \P\{g(b) = a\} = p(a,b),\hspace*{1em} \sum_{a\in A} p(a,b) = 1. \]
-All the values $g(b)$ are mutually independent. Now, fix a chain of sets 
+The probability for any value of $g(b)$ is independent from the value of $g(b')$ for any $b,b' \in B$. Now, fix a chain of sets 
 \[ \emptyset = B_0 \subset B_1 \subset \ldots \subset B_m = B,\hspace*{1em} \mathcal{B} = {\{B_i\}}_{i = 0}^m \]
-and let $L: A^B \to \R$ be a functional. The martingale sequence $X_0,\ldots, X_m$ associated with $L$ and $\mathcal{B}$ is defined as it follows: For a fixed $h \in A^B$:
+and let $L: A^B \to \R$ be a functional. The martingale sequence $X_0,\ldots, X_m$ associated with the functional $L$ and the chain $\mathcal{B}$ is defined as follows: For a fixed $h \in A^B$:
 
 \[ X_i(h) = \E[ L(g) \;|\; g(b) = h(b),\; \forall b\in B_i ]. \] 
 
@@ -216,66 +218,71 @@ What this means is that, given that we know the values in $B_i$ of a function $h
 
 \begin{definition}
     A functional $L$ is said to satisfy the Lipschitz condition if for every $i < m$: Whenever two functions $g, g'$ differ only in $B_{i+1}- B_i$,
-    \[ |L(g) - L(g')| \leq 1. \] 
+    \[ |L(g) - L(g')| \leq 1. \]
+    A martingale associated with a functional $L$ has the Lipschitz condition if $L$ has the Lipschitz condition.
 \end{definition}
 
-When we say that the outcome of $L$ won't change by more than 1 unit from one revelation to another, it means that it has the Lipschitz condition. The following theorem will connect this idea to Azuma's inequality:
+In other words, if the outcome of $L$ won't change by more than one unit if two functions $g, g'$ vary on just one coordinate, then $L$ has the Lipschitz condition. The following theorem will prove the connection between this condition and the hypothesis for the Azuma-Hoeffding inequality. In fact, what we're going to prove is that the Lipschitz condition is a stronger than the martingale boundness condition from formula~\ref{azuma-condition}.
 
 \begin{theorem}\label{lipschitz-condition}
-    The martingale associated with a functional $L$ with the Lipschitz condition satisfies:
+    If a martingale associated with a functional $L$ has the Lipschitz condition, then
     \[ |X_{i+1}(g)- X_i(g)| \leq 1,\hspace*{1em} \forall g\in A^B,\; \forall i < m. \] 
 \end{theorem}
 
 \begin{proof} The proof is adapted from~\cite{alon2016probabilistic} chapter 7. In the original proof, the author skips many steps that I believe are not trivial. Thus, I decided to restructure the proof using the same notation they used in the source material:
 
 \subsubsection*{Preliminaries}
-Our goal is to calculate $|X_{i+1}(h) - X_{i}(h)|$, so fix $h \in A^B$, $i\in \N$ and define
+Our goal is to bound $|X_{i+1}(h) - X_{i}(h)|$, so in the first place, fix $h \in A^B$, $i\in \N$ and define
 
 \[ p_{f}^{(j)} = \P\{g = f \;|\; g(b) = h(b),\; \forall b \in B_{j}\}.\; \forall j\in \N. \]
 
-Now, $\forall j\in \N$, define $H^{(j)}\subset A^B$ to be the set of functions $f$ in which $h(b) = f(b)$ for every $b \in B_{j}$. In notation,
+This is the probability that $g = f$ given that $g$ agrees on $B_j$ (the $j$-th revelation) with the function $h$ we've chosen from the beginning. Now, $\forall j\in \N$, define $H^{(j)}\subset A^B$ to be the set of functions $f$ in which $f(b) = h(b)$ for every $b \in B_{j}$. In notation,
 
-\[ H^{(j)} = \{f \in A^B: h(b) = f(b),\; \forall b \in B_j\}. \] 
+\[ H^{(j)} = \{f \in A^B: f(b) = h(b),\; \forall b \in B_j\}. \] 
 
 Note that if $h' \not\in H^{(j)}$ and $g(b) = h(b)$ for every $b\in B_{j}$, then it would be imposible for $g$ to be equal to $h'$ because there would exist $b^* \in B_{j}$ such that $h'(b^*) \neq h(b^*) = g(b^*)$. Thus, if $h' \not\in H^{(j)}$, then $p_{h'}^{(j)} = 0$. This also implies that 
-\[\sum_{h' \in H^{(j)}} p_{h'}^{(j)} = 1 \] 
+\[\sum_{h' \in A^B} p_{h'}^{(j)} = \sum_{h' \in H^{(j)}} p_{h'}^{(j)} = 1. \] 
 
 \subsubsection*{Rewriting $X_{i+1}$}
-From now on, $H$ without any index refers to $H^{(i+1)} =: H$
+From now on, let $H$ (without any index) refer to $H^{(i+1)} =: H$. This is notation that is used on~\cite{alon2016probabilistic}. From the definition of expected value it follows that
 \[\everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
     \begin{array}{rcl}
-    X_{i+1}(h) & = & \E[ L(g) \;|\; g(b) = h(b),\; \forall b\in B_{i+1} ]. \\ 
+    X_{i+1}(h) & = & \E[ L(g) \;|\; g(b) = h(b),\; \forall b\in B_{i+1} ] \\ 
     & = & \sum_{h' \in A^B} L(h') \cdot \P\{g = h' \;|\; g(b) = h(b),\; \forall b \in B_{i+1}\}\\
-    & = & \sum_{h' \in H} L(h') \cdot p_{h'}^{(i+1)}
+    & = & \sum_{h' \in H} L(h') \cdot p_{h'}^{(i+1)}.
 \end{array}\]
 
 
 \subsubsection*{Rewriting $X_i$}
-Like the previous step,
+As the previous step,
 \[\everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
     \begin{array}{rcl}
-    X_{i}(h) & = & \sum_{f\in H^{(i)}} L(f) p_{f}^{(i)}
+    X_{i}(h) & = & \sum_{f\in H^{(i)}} L(f) p_{f}^{(i)}.
 \end{array}\]
-However, we want to write the sum of $X_{i}(h)$ in terms of $h' \in H$. Now, for $h' \in H$, let $H[h']$ be the set of $h^*$ such that $h^*, h'$ that can only differ in $B_{i+1}-B_{i}$. In notation,
+However, we our goal is to write the sum of $X_{i}(h)$ only in terms of functions $h' \in H$.\\[1em]
+
+For $h' \in H$, let $H[h']$ be the set of $h^*$ such that $h^*, h'$ that can only differ in $B_{i+1}-B_{i}$. In notation,
 \[ H[h'] = \left\{ h^*: \begin{matrix}
-    h^*(b) = h'(b),\; \forall b\in B-B_{i+1}\\
-    h^*(b) = h'(b) ,\; \forall b\in B_{i}
+    h^*(b) = h'(b),\; \forall b\in B-B_{i+1},\\
+    h^*(b) = h'(b) ,\; \forall b\in B_{i}.
 \end{matrix} \right\} \] 
 Also, define for $h^* \in H[h']$
 \[ q_{h^*} = \P\{g(b) = h^*(b),\; \forall b\in B_{i+1} \;|\; g(b) = h(b),\; \forall b\in B_{i} \}. \]
-It follows from the definition of $H[h']$ and $H$ that
+Since $B_{i+1} = (B_{i+1}- B_{i}) \overset{\cdot}{\cup} B_i$, it follows from the definition of $H[h']$ that
 \[ \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
     \begin{array}{rcl}
-    \sum_{h^* \in H[h']} q_{h^*} & = & \sum_{h^* \in H[h']} \P\left\{\begin{matrix} g(b) = h^*(b),\; \forall b\in B_{i+1}-B_i\\  g(b) = h^*(b) = h'(b) ,\; \forall b\in B_i \end{matrix} \;\Bigg|\; g(b) = h(b) = h'(b),\; \forall b\in B_{i} \right\} \\
-     & = & \P\{g(b) = h'(b),\; \forall b\in B_{i} \;|\; g(b) = h'(b),\; \forall b\in B_{i} \}\\
+    \sum_{h^* \in H[h']} q_{h^*} & = & \sum_{h^* \in H[h']} \P\left\{\begin{matrix} g(b) = h^*(b),\; \forall b\in B_{i+1}-B_i\\  g(b) = h^*(b) ,\; \forall b\in B_i \end{matrix} \;\Bigg|\; g(b) = h(b),\; \forall b\in B_{i} \right\} \\
+    {  \scriptscriptstyle \binom{h(b) = h'(b) = h^*(b)}{b \in B_i} } 
+    & = & \sum_{h^* \in H[h']} \P\left\{\begin{matrix} g(b) = h^*(b),\; \forall b\in B_{i+1}-B_i\\  g(b) = h'(b) ,\; \forall b\in B_i \end{matrix} \;\Bigg|\; g(b) = h'(b),\; \forall b\in B_{i} \right\} \\
+     & = & \sum_{h^* \in H[h']} \P\{g(b) = h'(b),\; \forall b\in B_{i+1}-B_i\}\\
      & = & 1.
 \end{array} \]  
 
 $\coprod$ is the notation I'm going to use for the disjoint union. Note that if $h_1'\neq h_2' \in H$, then both must differ in some $b \in B- B_{i+1}$. Thus, the following unions are disjoint
 \[\everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
     \begin{array}{rcl}
-    \coprod_{h' \in H} H[h'] & = & 
-    \coprod_{h' \in H} \left\{ h^*: \begin{matrix}
+    \coprod_{h' \in H} \coprod_{h^* \in H[h']}\{h^*\} & = & \coprod_{h' \in H} H[h']\\
+    & = & \coprod_{h' \in H} \left\{ h^*: \begin{matrix}
         h^*(b) = h'(b),\; \forall b\in B-B_{i+1}\\
         h^*(b) = h'(b) = h(b) ,\; \forall b\in B_{i}
     \end{matrix} \right\}\\
@@ -286,11 +293,11 @@ $\coprod$ is the notation I'm going to use for the disjoint union. Note that if 
     \hfill\downarrow\hfill& = & \{h^*: h^*(b) = h(b) ,\; \forall b\in B_{i} \}\\
     \coprod_{h' \in H} \coprod_{h^* \in H[h']}\{h^*\} & = & H^{(i)}.
 \end{array} \] 
-Thus, we can make a partition of $X_i(h)$ iterating over $H$ and $H[h']$:
+Then, instead of iterating over $f \in H^{(i)}$, we iterate over $h' \in H$ and $h^* \in H[h']$:
 \[\everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5} 
 \begin{array}{lcl}
     \E[L(g) \;|\; g(b) = h(b),\; \forall b\in B_{i}] & = & \sum_{f\in H^{(i)}} L(f) p_{f}^{(i)}\\
-    & = &  \sum_{h' \in H}\sum_{h^* \in H[h']} L(h^*) p^{(i)}_{h^*}
+    & = &  \sum_{h' \in H}\sum_{h^* \in H[h']} L(h^*) p^{(i)}_{h^*}.
 \end{array}\] 
 
 Finally, for $h' \in H$ and $h^* \in H[h']$,
@@ -300,9 +307,9 @@ Finally, for $h' \in H$ and $h^* \in H[h']$,
     & & \P\{g = h^* \;|\; g(b) = h(b),\; \forall b\in B_i\}\\
     & = & \P\{g = h^* | g(b) = h^*(b),\; \forall b\in B_{i+1} \} \cdot \P\{g(b) = h^*(b),\;\forall b\in B_{i+1} | g(b) = h^*(b),\; \forall b\in B_{i} \}\\
     & = & \P\{g = h' | g(b) = h(b),\; \forall b\in B_{i+1} \} \cdot q_{h^*}\\
-    & = & p_{h'}^{(i+1)}\cdot q_{h^*}
+    & = & p_{h'}^{(i+1)}\cdot q_{h^*}.
 \end{array}  \] 
-\[ \implies X_i(h) = \sum_{h' \in H}\sum_{h^* \in H[h']} [L(h^*) q_{h^*}] \cdot p_{h'}^{(i+1)} \] 
+\[ \implies X_i(h) = \sum_{h' \in H}\sum_{h^* \in H[h']} [L(h^*) q_{h^*}] \cdot p_{h'}^{(i+1)}. \] 
 
 \subsubsection*{Bound for $|X_{i+1}- X_i|$}
 Combine the results from the two previous sections. For the second line, remember that $\sum_{h^*\in H[h']} q_{h^*} = 1$
@@ -323,7 +330,7 @@ With this theorem, we can talk with more freedom about the boundness of a martin
 
 \subsection*{Example 1}
 Let $g \in {[n]}^{n}$ be a random vector (uniformly chosen) with $n$ entries, in which every entry is in $[n] = \{1,\ldots n\}$. Define $L(g)$ to be the amount of number that are not included in the vector,
-\[ L(g) = \# \{ k \;:\; g_i \neq k,\; \forall i \in [n]\} = \sum_{k = 1}^{n} \1_{k \not\in g} \] 
+\[ L(g) = \# \{ k \;:\; g_i \neq k,\; \forall i \in [n]\} = \sum_{k = 1}^{n} \1_{k \not\in g}. \] 
 For example,
 
 \[ L(\underset{g_1}{1},\underset{g_2}{3},\underset{g_3}{1},\underset{g_4}{6},\underset{g_5}{4},\underset{g_6}{3}) = 2.\;\text{ (because 2 and 5 are missing)} \]
@@ -352,15 +359,15 @@ Here's a case where using {theorem}~\ref{lipschitz-condition} will give us worse
 The goal here is to find an exponential bound for the tail distribution of $X$. We create a martingale that exposes the value of $\sigma_i$ one $i$ at a time. Let $\sigma' = (\sigma_1',\ldots, \sigma_n') \in {\{-1,1\}}^n$,
 
 \[\begin{array}{rcl}
-    X_0(\sigma') & = & \E |\sum_{i = 1}^n \sigma_i v_i|\\
-    X_1(\sigma') & = & \E [ |\sum_{i = 1}^n \sigma_i v_i| \;|\; \sigma_1 = \sigma_1' ] \\
+    X_0(\sigma') & = & \E |\sum_{i = 1}^n \sigma_i v_i|,\\
+    X_1(\sigma') & = & \E [ |\sum_{i = 1}^n \sigma_i v_i| \;|\; \sigma_1 = \sigma_1' ], \\
     \hfill\vdots\hfill & = & \vdots \\
-    X_j(\sigma') & = & \E [|\sum_{i = 1}^n \sigma_i v_i| \;|\; \sigma_i = \sigma_i',\; \forall i\leq j ]\\
+    X_j(\sigma') & = & \E [|\sum_{i = 1}^n \sigma_i v_i| \;|\; \sigma_i = \sigma_i',\; \forall i\leq j ],\\
     \hfill\vdots\hfill & = & \vdots \\
     X_n(\sigma') & = & \E [|\sum_{i = 1}^n \sigma_i v_i| \;|\; \sigma_i = \sigma_i',\; \forall i\leq n] = X.
 \end{array} \]
 
-The value on one coordinate can alter $X$ to a maximum of 2 units. Thus, we could apply {theorem}~\ref{lipschitz-condition} to conclude that $|X_{i+1}- X_i| \leq 2$. However, note that if $\sigma'$, $\sigma^*$ are two $n$-tuple that only differ on one coordinate, it follows from linearity of expectation that
+The value on one coordinate can alter $X$ to a maximum of 2 units. Thus, we could apply {theorem}~\ref{lipschitz-condition} to conclude that $|X_{i+1}- X_i| \leq 2$. However, note that if $\sigma'$, $\sigma^*$ are two $n$-tuple that only differ on one coordinate, follows from linearity of expectation that
 \[ X_i(\sigma') = \frac{1}{2}(X_{i+1}(\sigma^*)+ X_{i+1}(\sigma')) \]
 \[ \implies X_i(\sigma') - X_{i+1}(\sigma')  = \frac{1}{2}(X_{i+1}(\sigma^*)- X_{i+1}(\sigma'))\] 
 \[ \implies  |X_i(\sigma') - X_{i+1}(\sigma')|  = \frac{1}{2}|X_{i+1}(\sigma^*)- X_{i+1}(\sigma')| \leq 1.\]
@@ -378,7 +385,7 @@ Let $B(A,s)$ be the set $\{y \;:\; \exists x\in A,\;\rho(x)\leq s\}$. The follow
 
 \vspace*{1em}
 
-\textit{Solution:} Assign a probability space to ${\{0,1\}}^n$ where all the points have the same probability of being chosen at random. Let $X(y) = \min_{x\in A} \rho(x,y)$, then create a martingale $X_0, \ldots, X_n$ based on the number of coordinates of $\{0,1\}^n$ exposed, that is,
+\textit{Solution:} Assign a probability space to ${\{0,1\}}^n$ where all the points have the same probability of being chosen at random. Let $X(y) = \min_{x\in A} \rho(x,y)$, then create a martingale $X_0, \ldots, X_n$ based on the number of coordinates of ${\{0,1\}}^n$ exposed, that is,
 \[ X_j(y) = \E [\min_{x\in A} \rho(x,z) \; | \; z_i = y_i,\; \forall i\leq j]. \]
 In this case, note that if $y, y'$ differ in just one coordinate, then
 \[ |X(y) - X(y')| \leq 1. \]
@@ -386,7 +393,7 @@ So we can use Azuma's inequality to conclude that
 \[ \P\{X < \E X - t\sqrt{n}\} < e^{-\lambda^2/2} = \varepsilon \]   
 \[ \P\{X > \E X + t\sqrt{n}\} < e^{-\lambda^2/2} = \varepsilon. \]   
 
-Finally, since $P\{X = 0\} = |A|2^{-n} \geq \varepsilon$, it follows that $\E X \leq t\sqrt{n}$. Therefore,
+Finally, since $P\{X = 0\} = |A|2^{-n} \geq \varepsilon$, follows that $\E X \leq t\sqrt{n}$. Therefore,
 \[ \P\{X > 2t\sqrt{n}\} < \varepsilon, \]
 and as a consequence,
 \[ |B(A,2t\sqrt{n})| = 2^n\P\{X > 2t\sqrt{n}\} \geq 2^n (1-\varepsilon) .  \] 

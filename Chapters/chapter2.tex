@@ -4,8 +4,8 @@ Even if we are satisfied with the linear convergence rate provided by Chebyshev'
 
 %% --- MGF Inequality
 \begin{theorem}[MGF inequality]\label{mgf}
-  Let $X_i$ be a finite sequence of independent random variables and let $S_N := \sum_{i = 1}^N a_i X_i$. Let $\lambda > 0$ the following inequality holds,
-  \[ \P\left\{  S_N \geq t\right\} \leq e^{-\lambda t}\cdot \prod_{i = 1}^N \E e^{\lambda a_i X_i} \] 
+  Let $X_i$ be a finite sequence of independent random variables and let $S_N := \sum_{i = 1}^N a_i X_i$. Let $\lambda > 0$. The following inequality holds,
+  \[ \P\left\{  S_N \geq t\right\} \leq e^{-\lambda t}\cdot \prod_{i = 1}^N \E e^{\lambda a_i X_i}. \] 
 
 \end{theorem}
 
@@ -18,7 +18,7 @@ Even if we are satisfied with the linear convergence rate provided by Chebyshev'
 \end{proof}
 %% --------------------
 
-The following two theorems are examples on how we can obtain even tighter bounds than the ones we've already studied. In particular, these theorems can be obtained from the previous theorem and are be considered to be corollaries by some authors.
+The following two theorems are examples on how we can obtain even tighter bounds than the ones we've already studied. In particular, these theorems can be obtained from the previous theorem and are considered, by some authors, as corollaries of the previous result.
 
 %% --- Chernoff's inequality
 \begin{theorem}[Chernoff's inequality]\label{chernoff:bernoulli}
@@ -29,7 +29,7 @@ The following two theorems are examples on how we can obtain even tighter bounds
 
 \begin{proof}
   In the first place, use Theorem~\ref{mgf} to assert that for a $\lambda > 0$ that
-  \[\P\left\{  S_N \geq t\right\} \leq e^{-\lambda t}\cdot \prod_{i = 1}^N \E e^{\lambda X_i} \] 
+  \[\P\left\{  S_N \geq t\right\} \leq e^{-\lambda t}\cdot \prod_{i = 1}^N \E e^{\lambda X_i}.\] 
   Now it is left to bound every $X_i$ individually. Using the inequality $1+x \leq e^x$ we obtain
   \[ \E e^{\lambda X_i} = e^{\lambda}p_i + (1-p_i) = 1 + (e^{\lambda}-1)p_i  \leq \exp(e^{\lambda}-1)e^{p_i}.\]
   Finally, we plug this inequality on the equation to conclude that
@@ -50,8 +50,8 @@ Another exponential inequality that is derived using a similar technique is Hoef
 \begin{proof}
   Since $x \mapsto e^x$ is a convex function, it follows that, for a random variable $X \in [a,b]$:
   \[ e^{\lambda X} \leq \frac{e^{\lambda a}(b-X)}{b-a} + \frac{e^{\lambda b}(X-a)}{b-a},\hspace*{1em} a \leq b. \]
-  Next, take expectations on both hands of the equation to obtain:
-  \[ \E e^{tX} \leq \frac{(b-\E X) \cdot e^{\lambda a}}{b-a} - \frac{(\E X -a) \cdot e^{\lambda b}}{b-a}. \]
+  Next, take expectations on both sides of the equation to obtain:
+  \[ \E e^{tX} \leq \frac{(b-\E X) \cdot e^{\lambda a}}{b-a} + \frac{(\E X -a) \cdot e^{\lambda b}}{b-a}. \]
   To simplify the expression, let $\alpha = (\E X -a)/(b-a)$, $\beta = (b-\E X)/(b-a)$ and $u = \lambda (b-a)$. Since $a < \E X < b$, it follows that $\alpha$ and $\beta$ are positive. Also, note that,
   \[ \alpha + \beta = \frac{\E X-a}{b-a} + \frac{b-\E X}{b-a} = \frac{b-a}{b-a} = 1. \] 
   Now,
@@ -59,8 +59,8 @@ Another exponential inequality that is derived using a similar technique is Hoef
   This function is differentiable with respect to $u$.
   \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
     \begin{array}{rcl}
-    L(u) & = & -\alpha u + \ln(\beta + \alpha e^{u})\\
-    L'(u) & = & -\alpha + \frac{\alpha}{\alpha + \beta e^{-u}}\\
+    L(u) & = & -\alpha u + \ln(\beta + \alpha e^{u}),\\
+    L'(u) & = & -\alpha + \frac{\alpha}{\alpha + \beta e^{-u}},\\
     L''(u) & = & \frac{\alpha}{\alpha + \beta e^{-u}} \cdot \frac{\beta e^{-u}}{\alpha + \beta e^{-u}}.
   \end{array} \]
   Note that if $x = \frac{\alpha}{\alpha + \beta e^{-u}} \leq 1$, then $L''(u) = x(1-x) \leq \frac{1}{4}$. Remember that $\alpha + \beta = 1$. Now, by expanding the Taylor series we obtain,
@@ -78,7 +78,7 @@ Another exponential inequality that is derived using a similar technique is Hoef
   \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{2}
     \begin{array}{rcl}
       \P\{S_N-\mu \geq t\} & \leq & e^{-\lambda t} \prod_{i = 1}^N \E e^{\lambda X_i} \\
-      &\leq^{(\star)} & e^{-\lambda t} \exp\left(\frac{1}{8}t^2 \sum_{i = 1}^{N} {(b_i-a_i)}^2\right)
+      &\leq^{(\star)} & e^{-\lambda t} \exp\left(\frac{1}{8}t^2 \sum_{i = 1}^{N} {(b_i-a_i)}^2\right).
     \end{array}\]  
 
 \end{proof}
@@ -105,8 +105,8 @@ Returning to the coin tossing problem, we can now make a stronger assertion of t
 
 
 \section{Uniform Law of Large Numbers}
-For any probability measure $P$ on the real line and $t \in \R$, define $P_n$ as the empirical probability measure obtain from an independent sample $X_1, \ldots, X_n$ of $P$, that is:
-\[ P_n(t) = P_n(-\infty, t) = n^{-1} \cdot \sum_{i = 1}^n \1_{\{ X_i < t\}}.\]
+For any probability measure $P$ on the real line and $t \in \R$, define $P_n$ as the empirical probability measure obtained from an independent sample $X_1, \ldots, X_n$ of $P$, that is:
+\[ P_n(t) = P_n(-\infty, t) = n^{-1} \cdot \sum_{i = 1}^n \1_{\{ X_i \leq t\}}.\]
 
 From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges to $P(t)$ with probability 1. However we can formulate a stronger statement on this convergence. The first application of concentration inequalities we are going to explore is the uniform law of large numbers, which states the following:
 
@@ -116,11 +116,11 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
 \end{theorem} 
 
 \begin{proof}
-  The proof, adapted from~\cite{pollard2012convergence}, consists of 5 steps. At first instance, the author clarifies that we must stablish the condition of $t\in \Q$ to avoid problems with measurability. The author later proves that the theorem is true for any $t\in \R$, but for practical purposes, we will only prove it for rationals. Another remark the author makes is that this result from the real line can be later generalized for some classes of polynomials, and we will cover more about this in the final section.
+  The proof, adapted from~\cite{pollard1984convergence}, consists of 5 steps. At first instance, the author clarifies that we can impose the condition $t\in \Q$ to avoid problems with measurability. The author later proves that the theorem is true $t$ is allowed to vary in $\R$, but for practical purposes, we will only prove it for rationals. Another remark the author makes is that this result from the real line can be later generalized for some classes of ``polynomial discrimination'', and we will cover more about this in the final section.
 
   \subsubsection*{First Symmetrization}
   In the first place, define $P_n'$ as the empirical measure obtained from an independent but identical sample $X_1',\ldots, X_n'$ of $P$. Note that for any fixed $t$, $P_n(t)$ and $P_n'(t)$ are random variables derived from their respective samples which satisfy that
-  \[ \E P_n(t) = \E P_n'(t) = P(t),\hspace*{1em} \Var P_n(t) = \Var P_n'(t) = \Var P(t). \] 
+  \[ \E P_n(t) = \E P_n'(t) = P(t). \] 
   We will bound the concentration of $\|P_n- P_n'\|$ first, which will later result in a bound for $\|P_n - P\|$ at the end of the following lemma.
 
   \vspace*{1em}
@@ -129,7 +129,7 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
 
   \begin{lemma}\label{gc:l1}
     Let ${\{Z(A)\}}_{A\in \AA}$ and ${\{Z'(A)\}}_{A\in \AA}$ be independent and identical functions defined under the same collection of sets $\AA$. Also, assume that there exist $\alpha, \beta > 0$ such that
-    \[ \P\left\{\sup_{A\in \AA} |Z(A)| \leq \alpha \right\} \geq \beta. \ \]
+    \[ \P\left\{|Z(A)| \leq \alpha \right\} \geq \beta, \hspace*{1em} \forall A \in \AA \]
     It follows that, for any $\varepsilon > 0$,
     \[  \P\left\{\sup_{A\in \AA} |Z(A)| > \varepsilon \right\} \leq \beta^{-1} \P\left\{\sup_{A\in \AA} |Z(A)-Z'(A)| > \varepsilon - \alpha \right\}. \]     
   \end{lemma}
@@ -137,11 +137,13 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
   \begin{proof}
     Since $Z,\; Z'$ are independent, it follows from the hypothesis that for any index $B \in \AA$,
     \[ \P\{|Z'(B)|\leq \alpha | Z\} = \P\{|Z'(B)|\leq \alpha\} \geq \P \left\{ \sup_{A\in \AA}|Z'(A)|\leq \alpha \right\} \geq \beta.\] 
-    Now, fix $B \in \AA$ such that $|Z(B)| > \varepsilon$ and use the previous inequality to conclude,
+    Fix an index $B$ in the set $\{ A \in \AA \;:\; |Z(A)| > \varepsilon\}$. Since 
+    \[ \P\{\sup_{A\in \AA} |Z(A)| > \varepsilon\} \leq \P\{|Z(B)| > \varepsilon\}, \]
+    it follows that,
     \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
     \begin{array}{rcl}
       \beta \cdot \P\left\{\sup_{A\in \AA} |Z(A)| > \varepsilon \right\} & \leq & \P\{|Z'(B)| \leq \alpha\} \cdot \P\{|Z(B)| > \varepsilon\}\\
-      {\text{\scriptsize ($Z,\; Z'$ are independent)}} & = & \P\{|Z'(B)| \leq \alpha,\; |Z(B)| > \varepsilon\}\\
+      {\text{\scriptsize ($Z,\; Z'$ are independent)}} & = & \P\{|Z'(B)| \leq \alpha\text{ and } |Z(B)| > \varepsilon\}\\
        & \leq & \P\{ |Z(B) - Z'(B)| > \varepsilon - \alpha \}\\
         & \leq & \P\left\{\sup_{A\in \AA} |Z(A)-Z'(A)| > \varepsilon - \alpha \right\}.
     \end{array} \] 
@@ -157,11 +159,11 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
   \vspace*{1em}
 
   \subsubsection*{Second Symmetrization}
-  The following trick will allow us to stop considering all of the $2n$ from the previous symmetrization, and will help us to create a simpler random variable. We will initially prove the trick for unidimensional random variables, but in chapter 4, we will generalize this proof for any kind on set on $\R^n$.
+  The following trick will allow us to stop considering all of the $2n$ data points from the previous symmetrization, and will help us to create a simpler random variable. We will initially prove the trick for unidimensional random variables, but in chapter 4, we will generalize this proof for any kind on set on $\R^n$.
 
   \begin{lemma}\label{gc:l2}
     Let $\sigma_1, \ldots, \sigma_n$ be Rademacher random variables, that is $\P\{\sigma_i = 1\} = \P\{\sigma_i = -1\} = 1/2$. Let $Y_i = \1_{\{ X_i' \in A\}} - \1_{\{ X_i \in A\}}$, and note that,
-    \[ \P\{Y_i = x\} = \P\{\sigma_i Y_i = x\},\hspace*{1em} x \in \{-1,0,1\} \] 
+    \[ \P\{Y_i = x\} = \P\{\sigma_i Y_i = x\},\hspace*{1em} x \in \{-1,0,1\}. \] 
   \end{lemma}
 
   \begin{proof} In the first place, since $X_i$ and $X'_i$ are two independent and identical copies of the same distribution, the following equality holds: 
@@ -252,12 +254,12 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
     \label{gc:5}\begin{array}{rcl}
       \P \{\|P_n-P\| > \varepsilon\} & = & \E [\P \{\|P_n-P\| > \varepsilon \;|\; X\}]\\
       & \leq & \E [8(n+1) e^{-n\varepsilon^2/32}]\\
-      & = & 8(n+1) e^{-n\varepsilon^2/32}
+      & = & 8(n+1) e^{-n\varepsilon^2/32}.
     \end{array} 
   \end{equation}
 
-  The Borel-Cantelli states that if the probability of a sequence of events is summable, that is \(\sum_{n = 1}^\infty \P\{E_n\} < \infty\), then
-  \[ \lim_n \P(E_n) \leq \P \left\{ \bigcap_{n=1}^{\infty}\bigcup_{k = n}^{\infty} E_n\right\} = 0. \] 
+  The Borel-Cantelli Lemma states that if the probability of a sequence of events is summable, that is \(\sum_{n = 1}^\infty \P\{E_n\} < \infty\), then
+  \[ \limsup_n \P(E_n) \leq \P \left\{ \bigcap_{n=1}^{\infty}\bigcup_{k = n}^{\infty} E_n\right\} = 0. \] 
 
   Since the inequality we obtain through the previous steps is exponential, the probabilities of the events $E_n = \{\|P_n-P\| > \varepsilon\}$ are summable:
 
@@ -268,6 +270,6 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
   \[ \P \{\|P_n-P\| > \varepsilon\} \to 0 \mbox{ with probability 1.} \] 
 \end{proof}
 
-In chapter 4 we will elaborate further on the details required to transform this powerful theorem in a more generalized version.
+In chapter 4 we will elaborate further on the details required to transform this powerful theorem in a more general version.
 
 % chktex 17
