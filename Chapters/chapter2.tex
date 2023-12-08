@@ -116,7 +116,7 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
 \end{theorem} 
 
 \begin{proof}
-  The proof, adapted from~\cite{pollard1984convergence}, consists of 5 steps. At first instance, the author clarifies that we can impose the condition $t\in \Q$ to avoid problems with measurability. The author later proves that the theorem is true $t$ is allowed to vary in $\R$, but for practical purposes, we will only prove it for rationals. Another remark the author makes is that this result from the real line can be later generalized for some classes of ``polynomial discrimination'', and we will cover more about this in the final section.
+  The proof, adapted from~\cite{pollard1984convergence}, consists of 5 steps. At first instance, the author clarifies that we can impose the condition $t\in \Q$ to avoid problems with measurability. The author later proves that the theorem is true if $t$ is allowed to vary in $\R$, but for practical purposes, we will only prove it for rationals. Another remark the author makes is that this result from the real line can be later generalized for some classes of ``polynomial discrimination'', and we will cover more about this in the final section.
 
   \subsubsection*{First Symmetrization}
   In the first place, define $P_n'$ as the empirical measure obtained from an independent but identical sample $X_1',\ldots, X_n'$ of $P$. Note that for any fixed $t$, $P_n(t)$ and $P_n'(t)$ are random variables derived from their respective samples which satisfy that
@@ -128,22 +128,23 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
   For now, fix a value for $\varepsilon > 0$, and keep in mind that $Z = P_n - P$, $Z' = P_n' - P$, $\alpha = \frac{1}{2}\varepsilon$ and $\beta = \frac{1}{2}$. Also, for this case define $\AA = \{(-\infty, t) : t\in \R\}$
 
   \begin{lemma}\label{gc:l1}
-    Let ${\{Z(A)\}}_{A\in \AA}$ and ${\{Z'(A)\}}_{A\in \AA}$ be independent and identical functions defined under the same collection of sets $\AA$. Also, assume that there exist $\alpha, \beta > 0$ such that
+    Let ${\{Z(A)\}}_{A\in \AA}$ and ${\{Z'(A)\}}_{A\in \AA}$ be independent and identical functions defined over the same collection of sets $\AA$. Also, assume that there exist $\alpha, \beta > 0$ such that
     \[ \P\left\{|Z(A)| \leq \alpha \right\} \geq \beta, \hspace*{1em} \forall A \in \AA \]
     It follows that, for any $\varepsilon > 0$,
     \[  \P\left\{\sup_{A\in \AA} |Z(A)| > \varepsilon \right\} \leq \beta^{-1} \P\left\{\sup_{A\in \AA} |Z(A)-Z'(A)| > \varepsilon - \alpha \right\}. \]     
   \end{lemma}
 
   \begin{proof}
-    Since $Z,\; Z'$ are independent, it follows from the hypothesis that for any index $B \in \AA$,
-    \[ \P\{|Z'(B)|\leq \alpha | Z\} = \P\{|Z'(B)|\leq \alpha\} \geq \P \left\{ \sup_{A\in \AA}|Z'(A)|\leq \alpha \right\} \geq \beta.\] 
-    Fix an index $B$ in the set $\{ A \in \AA \;:\; |Z(A)| > \varepsilon\}$. Since 
-    \[ \P\{\sup_{A\in \AA} |Z(A)| > \varepsilon\} \leq \P\{|Z(B)| > \varepsilon\}, \]
-    it follows that,
+    Fix an index $B$ in the set $T_\varepsilon = \{ A \in \AA \;:\; |Z(A)| > \varepsilon\}$.
+    it follows from the independence of $Z$ and $Z'$ that,
+
+    \[ \beta \cdot \P \{ T_\varepsilon \neq \emptyset\} \leq \P \{ T_\varepsilon \neq \emptyset \text{ and }  |Z'(B)|\leq \alpha \} \] 
+
+    Now, if $T_\varepsilon \neq \emptyset \text{ and }  |Z'(B)|\leq \alpha  $, then $|Z'(B)| \leq \alpha\text{ and } |Z(B)| > \varepsilon$. Thus, since $\sup_{A\in \AA} |Z(A)| > \varepsilon$ implies $T_\varepsilon \neq \emptyset$, it follows that
+
     \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{1.8}
     \begin{array}{rcl}
-      \beta \cdot \P\left\{\sup_{A\in \AA} |Z(A)| > \varepsilon \right\} & \leq & \P\{|Z'(B)| \leq \alpha\} \cdot \P\{|Z(B)| > \varepsilon\}\\
-      {\text{\scriptsize ($Z,\; Z'$ are independent)}} & = & \P\{|Z'(B)| \leq \alpha\text{ and } |Z(B)| > \varepsilon\}\\
+      \beta \cdot \P\left\{\sup_{A\in \AA} |Z(A)| > \varepsilon \right\} & \leq & \P\{|Z'(B)| \leq \alpha\text{ and } |Z(B)| > \varepsilon\}\\
        & \leq & \P\{ |Z(B) - Z'(B)| > \varepsilon - \alpha \}\\
         & \leq & \P\left\{\sup_{A\in \AA} |Z(A)-Z'(A)| > \varepsilon - \alpha \right\}.
     \end{array} \] 
@@ -159,10 +160,10 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
   \vspace*{1em}
 
   \subsubsection*{Second Symmetrization}
-  The following trick will allow us to stop considering all of the $2n$ data points from the previous symmetrization, and will help us to create a simpler random variable. We will initially prove the trick for unidimensional random variables, but in chapter 4, we will generalize this proof for any kind on set on $\R^n$.
+  The following trick will allow us to stop considering all of the $2n$ data points from the previous symmetrization, and will help us to create a simpler random variable. We will initially prove the trick for unidimensional random variables, but in chapter 4, we will generalize this proof for any kind of set on $\R^n$.
 
   \begin{lemma}\label{gc:l2}
-    Let $\sigma_1, \ldots, \sigma_n$ be Rademacher random variables, that is $\P\{\sigma_i = 1\} = \P\{\sigma_i = -1\} = 1/2$. Let $Y_i = \1_{\{ X_i' \in A\}} - \1_{\{ X_i \in A\}}$, and note that,
+    Let $\sigma_1, \ldots, \sigma_n$ be Rademacher i.i.d.~random variables, that is $\P\{\sigma_i = 1\} = \P\{\sigma_i = -1\} = 1/2$, and they are independent from $X_i$ and $X_i'$. Let $Y_i = \1_{\{ X_i' \in A\}} - \1_{\{ X_i \in A\}}$, and note that,
     \[ \P\{Y_i = x\} = \P\{\sigma_i Y_i = x\},\hspace*{1em} x \in \{-1,0,1\}. \] 
   \end{lemma}
 
@@ -259,7 +260,9 @@ From the law of large numbers we know that for a fixed $t$, $P_n(t)$ converges t
   \end{equation}
 
   The Borel-Cantelli Lemma states that if the probability of a sequence of events is summable, that is \(\sum_{n = 1}^\infty \P\{E_n\} < \infty\), then
-  \[ \limsup_n \P(E_n) \leq \P \left\{ \bigcap_{n=1}^{\infty}\bigcup_{k = n}^{\infty} E_n\right\} = 0. \] 
+  \begin{equation}\label{borel-cantelli}
+    \limsup_n \P(E_n) = \P \left\{ \bigcap_{n=1}^{\infty}\bigcup_{k = n}^{\infty} E_n\right\} = 0.
+  \end{equation}
 
   Since the inequality we obtain through the previous steps is exponential, the probabilities of the events $E_n = \{\|P_n-P\| > \varepsilon\}$ are summable:
 

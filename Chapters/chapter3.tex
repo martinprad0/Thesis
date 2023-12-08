@@ -119,7 +119,7 @@ The following theorem uses a special inequality from Chernoff-Okamoto, and it's 
 
 \vspace*{0.5 em}
 
-The following theorem, although it does not require concentration inequalities, is important for connecting the idea of the previous theorem to the main frame. Let $\pi : R^m \to T_p M$ denote the orthogonal projection on the Tangent Space of $M$ at $p$. Also, define $W_i := \pi(X_i)$ and then normalize,
+The following theorem, although it does not require concentration inequalities, is important for connecting the idea of the previous theorem to the main frame. Let $\pi : \R^m \to T_p M$ denote the orthogonal projection on the Tangent Space of $M$ at $p$. Also, define $W_i := \pi(X_i)$ and then normalize,
 \begin{equation}\label{ade:4}
   Z_i := \frac{X_i}{\|X_i\|},\hspace*{5mm} \widehat{W_i} := \frac{W_i}{\|W_i\|}.
 \end{equation}
@@ -129,11 +129,11 @@ The following theorem, although it does not require concentration inequalities, 
   \begin{enumerate}
     \item[(i)]    \( \|X_i-\pi(X_i)\|  =   O(\|\pi (X_i)\|^2). \hfill\inlinetag  \)
     \item[(ii)]   \( \|Z_i-\widehat{W_i}\|  =   O(\|\pi (X_i) \|). \hfill\inlinetag \)
-    \item[(iii)]  The inner products (cosine of angles) can be bounded as follows:
+    \item[(iii)]  The difference between inner products (cosine of angles) can be bounded as follows:
     \begin{equation}\label{ade:7}
-      |\angles{Z_i,Z_j} - \langle\widehat{W_i}, \widehat{W_j}\rangle| \leq K r,
+      |\angles{Z_i,Z_j} - \langle\widehat{W_i}, \widehat{W_j}\rangle| \leq C r,
     \end{equation}
-    for a constant $K\in\R$, whenever $r \geq \max (\|\pi(X_i)\|,\|\pi(X_j)\|)$.
+    for a constant $C\in\R$, whenever $r \geq \max (\|\pi(X_i)\|,\|\pi(X_j)\|)$.
   \end{enumerate}
 \end{theorem}
 \begin{proof}[]
@@ -222,9 +222,9 @@ This last theorem is as far as this document is planned to cover. However, the l
 
 The volume of a $d$-sphere of radius $r$ is equal to:
 
-\[ v_d r^d = \frac{\pi^{d/2}}{\Gamma(\tfrac{n}{2}+1)} r^d. \]
+\[ v_d r^d = \frac{\pi^{d/2}}{\Gamma(\tfrac{n}{2}+1)} r^d, \]
 
-Where $v_d$ is the volume of the unit $d$-sphere. For the assumptions we made on $P$ and $M$ around $p = 0$, we can say that for any $r > 0$, there's a percent (greater than 0) of the sample that is within a range $r$ from $p$. This proportion is subordinated only by the volume of a $d$-sphere of radius $r$ and a constant $\alpha := \alpha(P)$ that depends on the distribution $P$:
+where $v_d$ is the volume of the unit $d$-sphere. For the assumptions we made on $P$ and $M$ around $p = 0$, we can say that for any $r > 0$, there's a percent (greater than 0) of the sample that is within a range $r$ from $p$. This proportion is subordinated only by the volume of a $d$-sphere of radius $r$ and a constant $\alpha := \alpha(P)$ that depends on the distribution $P$:
 
 \[ \rho = \P\{X \in M : |X| < r\} \geq \alpha v_d r^d  > 0.  \] 
 
@@ -240,36 +240,133 @@ we obtain:
 \[P\{2N \leq C \ln n \} \leq \P\{2N \leq \lambda \}, \]
 and,
 \[\exp(-\lambda/8)  \leq  \exp\left(\frac{-C\ln n}{8}\right) = n^{-C/8}.\]
-Therefore,
-\[P\{2N \leq C \ln n \} \leq  n^{-C/8}.\]
-Finally, with this last expression we proved that if $k = \tfrac{C}{2}\ln n$, then the $k$-neighbors of $p$ are contained in the ball of radius $r(n)$ with a probability that converges exponentially to 1.
+Therefore, if $C > 8$, then
+\[P\{2N \leq C \ln n \} \leq  n^{-C/8},\]
+which implies, from the same argument using Borel Cantelli~\ref{borel-cantelli} in chapter 2, that this probability converges to 0. Finally, with this last expression we proved that if $k = \tfrac{C}{2}\ln n$, then the $k$-neighbors of $p$ are contained in the ball of radius $r(n)$ with a probability that converges exponentially to 1.
 \end{proof}
 
 \begin{proof}[Proof Theorem~\ref{ade:T3}:]\label{ade:T3P}
-  W.L.O.G. we assumed from the beginning that $p=0$ by translating everything. Let $(U, x_1, \ldots, x_m)$ be a chart for $p \in M$. Since the real dimension of the manifold is $d$, there exists by Theorem 11.5~\cite{tu2011manifolds}, a change of basis $(U, z_1, \ldots, z_m)$ such that $T_p M$ is spanned by $\angles{z_1,\ldots, z_d}$. Let
-
-  \[ \phi(z_1, \ldots, z_d) = (z_1,\ldots, z_d, F_1(z_1,\ldots, z_d),\ldots, F_{t}(z_1,\ldots, z_d)),\]
+  W.L.O.G. we assumed from the beginning that $p=0$ by translating everything. Let $(U, x_1, \ldots, x_m)$ be a chart for $p \in M$. Since the real dimension of the manifold is $d$, there exists by Theorem 11.5~\cite{tu2011manifolds}, a change of basis $(U, z_1, \ldots, z_m)$ such that $T_p M$ is spanned by $\angles{z_1,\ldots, z_d}$.
   
-  with $t = m-d$
-
-  \[ \text{dist}(z_1, \ldots, z_d) = \sqrt{F_1^2(z)+ \cdots + F_t^2(z)}. \]
+  \vspace*{1em}
   
+  Let $\pi : M \to T_p M$ be the projection from $M$ to its tangent space at $p$. This function is differentiable and its derivative at $p$ is the identity. Therefore, by the Implicit Function Theorem, there exists a neighborhood $V \subset \R^m$ of $p$ such that $\pi |_{V\cap M}$ is a diffeomorphism and that there exists a chart $(V\cap T_p M, \phi)$ defined as follows:
+  
+  \[ \phi : V\cap T_p M \to M,\] 
+
+  \begin{equation}\label{ade:phi}
+    \phi(z_1, \ldots, z_d) = (z_1,\ldots, z_d, F_1(z_1,\ldots, z_d),\ldots, F_{t}(z_1,\ldots, z_d)),
+  \end{equation}
+  
+  with $t = m-d$, $\phi(0) = p = 0$ and $\partial F(p)/ \partial z_j = 0$ for $i \leq t$ and $j \leq d$. Then, the distance between a point in $V\cap M$ and its projection is expressed in the local coordinates as follows,
+
+  \[ \text{f}(z) = \text{dist}((z,0,\ldots,0) - \phi(z)) = \sqrt{F_1^2(z)+ \cdots + F_t^2(z)}. \]
+  Now, Taylor's theorem stats that at $p$, the distance function,
+
+  \[ \text{f}(z) = f(p) + df(p) \cdot (z-p) + \sum_{i = 2}^{\infty} g_i(p) {(z-p)}^i. \]
+  Since $p = 0$, then ${(z-p)}^i = \|z\|^2 {(z)}^{i-2}$ for $i \geq 2$. Also,
+
+  \[ f(p) = \text{dist}((0,\ldots, 0)- \phi(0)) = 0, \]
+  Also, $df(p) = 0$ because the partial derivatives of $F_j$ are 0, and since the tangent space is a linear approximation of $M$ at $p$, the rate of change of the error between a point in $M$ and its projection at $T_p M$ should go to 0 when we are close to $p$. Thus,
+
+  \[ \text{f}(z) = \cancelto{0}{f(p)} + \cancelto{0}{df(p)} \cdot z + \|z\|^2 \sum_{i = 2}^{\infty} g_i(p) z^{i-2}. \]
+  Since $\lim_{i\to\infty} g_i(p) = 0$, it follows that there exists $G \in \R$ such that $G = \max |g_i(p)|$
+  Assume without lose of generality that $V \subset B_{1/2}(0)$. It follows that for $z \in V\cap T_p M$,
+  \[ \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5} 
+  \begin{array}{rcl}
+    \text{f}(z) & \leq & \|z\|^2 \sum_{i = 0}^{\infty} |g_i(p)| \cdot \|z\|^i\\
+    & \leq & \|z\|^2 \cdot \frac{G}{1-\|z\|}\\
+    \text{\scriptsize ($\|z\| \leq 2$)}\hspace*{0.5em} & = & 2G\|z\|^2 = K\|z\|^2.
+  \end{array} \] 
+
+  This proves that there exists a constant $K$ for which $\|X - \pi X\| \leq K \|X\|^2$ for $X$ very close to $p$, which proves equation 3.2.5.
+
+
   \[ \left\| \frac{X}{\|\pi X\|} - \frac{\pi X}{\|\pi X\|} \right\| \leq K\|\pi X\|. \]
   
   \[ \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5}
   \begin{array}{rcl}
-    \left\| \frac{X}{\|X\|} - \frac{X}{\|\pi X\|} \right\| & = & \|X\| \left| \frac{1}{\|\pi X\|} - \frac{X}{\|\pi X\|} \right|\\
-    & = & \left|\|X\|- \|\pi X\|\right| \|\pi X\|^{-1}\\
-    & \leq & \|X-\pi X\|\|\pi X\|^{-1}\\
+    \left\| \frac{X}{\|X\|} - \frac{X}{\|\pi X\|} \right\| & = & \|X\| \left| \frac{1}{\|X\|} - \frac{1}{\|\pi X\|} \right|\\
+    & = & \Big|\|X\|- \|\pi X\|\Big| \cdot \|\pi X\|^{-1}\\
+    & \leq & \|X-\pi X\|\cdot\|\pi X\|^{-1}\\
     & \leq & K \|\pi X\|.
   \end{array}
   \] 
 
-  By plugging everything together,
+  By plugging everything together, we obtain
 
-  \[ \left\|\frac{X}{\|X\|} - \frac{\pi X}{\|\pi X\|}\right\| \leq  {\left\| \frac{X}{\|X\|} - \frac{X}{\|\pi X\|} \right\|} + { \left\| \frac{X}{\|\pi X\|} - \frac{\pi X}{\|\pi X\|} \right\|} \leq 2 K \|\pi X\|\] 
+  \[ \|Z - \widehat{W}\| = \left\|\frac{X}{\|X\|} - \frac{\pi X}{\|\pi X\|}\right\| \leq  {\left\| \frac{X}{\|X\|} - \frac{X}{\|\pi X\|} \right\|} + { \left\| \frac{X}{\|\pi X\|} - \frac{\pi X}{\|\pi X\|} \right\|} \leq 2 K \|\pi X\|.\] 
+
+  This proves equation 3.2.6. 3.2.7 follows immediately from 3.26 and the triangle inequality.
   
 \end{proof}
 
-\begin{proof}[Proof Theorem~\ref{ade:T4}:]\label{ade:T4P}
+\begin{proof}[Proof Theorem~\ref{ade:T4}:]\label{ade:T4P} 
+For every $ i\leq k$, from the way we parametrized the tangent space in equation~\ref{ade:phi}, it's clear that $\|\pi X_i\| \leq \|X_i\| \leq R(n)$:
+
+\vspace*{1em}
+
+  \begin{center}
+  \begin{tikzpicture}
+    % \draw[->] (-2.4, 0) -- (2.4, 0) node[right] {};
+    \draw[scale=1, domain=-2.1:2.1, smooth, variable=\x, black] plot ({\x}, { (\x/2)^2+1});
+    \draw[scale=1, domain=-2.1:2.1, smooth, variable=\y, red]  plot ({\y}, {1}); % Divided \x and \y by 2 on the 2nd coordinate to scale the y axis by 1/2.
+        \node[text=black] at (-2,1.6) {$M$};
+    \node[text=red] at (-2.1,0.5) {$T_p M$};
+    \draw [dashed] (1.5, 2) -- (1.5,0.5);
+    \node[text=black] at (0,1) {$\bullet$};
+    \node[text=black] at (0,0.7) {$p$};
+    \node[text=black] at (1.5,{(1.5/2)^2 + 1}) {$\bullet$};
+    \node[text=black] at (2.1,{(1.5/2)^2 + 1}) {$X_{k+1}$};
+    \node[text=red] at (1.5,1) {$\bullet$};
+    \node[text=red] at (2.1,0.5) {$\pi X_{k+1}$};
+  
+    \draw[blue] (0, 1) -- (1.5, {(1.5/2)^2 + 1});
+    \node[text=blue] at (0.75,1.7) {$R(n)$};
+  \end{tikzpicture}
+\end{center}
+
+  \vspace*{1em}
+
+  Then, from theorems~\ref{ade:T2} and~\ref{ade:T3}.\text{(ii)} it follows that
+  \[ \max_{i \leq k} \|Z_i - \widehat{W}_i\| = O_\P (r(n)) = O_\P [{(\ln n / n)}^{1/d}].\] 
+  Thus,
+  \[ \max_{i \leq k} |\angles{Z_i,Z_j} - \langle\widehat{W}_i, \widehat{W}_j\rangle| = O_\P (r(n)). \]
+  Now, in order to continue, we must prove the following inequality.
+  \begin{lemma}
+    For $c_1, c_2 \in [-1, 1]$ such that $c_2-c_1 \leq 1/4$, we have
+    \[ |\arccos(c_2) - \arccos(c_1)| \leq 2 \sqrt{|c_2 - c_1|}. \] 
+  \end{lemma}
+
+  \begin{proof}
+    Assume W.L.O.G. that $c_2 \geq c_1$. If $c_1,c_2 > 0$, then
+    \[ \everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{2}
+    \begin{array}{rcl}
+      |\arccos(c_2) - \arccos(c_1)| & = & \int_{c_1}^{c_2} {(1-x^2)}^{-1/2}dx\\
+      & \leq & \int_{1-(c_2-c_1)}^{1} {(1-x^2)}^{-1/2}dx\\
+      \text{\scriptsize ($ u = 1-x $)}\hspace*{0.5em} & = & \int_0^{c_2-c_1} {(2u-u^2)}^{-1/2}\\
+      & \leq & \int_0^{c_2-c_1} u^{-1/2} du\\
+      & = & 2 \sqrt{|c_2 - c_1|}.
+    \end{array}
+    \]
+
+    This argument is identical in the case where $c_2, c_1$ are both negative. If $c_2 \geq 0$ and $c_1 \leq 0$, then $c_2, c_1 \in [-1/4, 1/4]$. Since $\arccos$ is monotonically decreasing and its derivative is bounded in this interval, by the mean value theorem there exists $t\in \R$ such that
+    \[\everymath{\displaystyle}\arraycolsep=1.4pt\def\arraystretch{1.5} 
+      \begin{array}{rcl}
+      |\arccos(c_2)-\arccos(c_1)| & = & (c_2-c_1) \frac{1}{\sqrt{1-t^2}}\\
+      & \leq & |c_2-c_1| \sup_{x \in [-1/4, 1/4]} \frac{1}{\sqrt{1-x^2}}\\
+      & = & |c_2-c_1| \sqrt{\frac{4}{3}} \\
+      \text{\scriptsize ($x \leq 1/4 \implies x \leq \sqrt{x} $)}\hspace*{0.5em}  & \leq & 2 |c_2-c_1| \leq 2 \sqrt{|c_2 - c_1|}.
+    \end{array} \] 
+  \end{proof}
+  From the previous lemma we obtain,
+  \[ \begin{array}{rcl}
+    \max_{i< j \leq k} \left|\arccos\angles{Z_i,Z_j} - \arccos\angles{\widehat{W}_i,\widehat{W}_j}\right| & \leq & \sqrt{\max_{i \leq k} |\angles{Z_i,Z_j} - \langle\widehat{W}_i, \widehat{W}_j\rangle|}\\
+    & = & O_\P(\sqrt{r(n)}). 
+  \end{array}\] 
+  The lemma is also true for values under the application $u\mapsto {(u-\pi)}^2$ because this function is Lipschitz near $p = 0$, so it follows that, after taking the expected value on each side,
+  \[ U_{k,n} - V_{k,n} = O_\P(\sqrt{r(n)}) = O_\P [{(\ln n / n)}^{1/(2d)}] .\]
+  Therefore, for $k = C \ln(n)$,
+  \[ k \cdot O_\P [{(\ln n / n)}^{1/(2d)}] = o_{\P}(1),\]
+  which proves part (i). Part (ii) follows from the fact that $ U_{k,n} - V_{k,n}  $ is a bounded random variable whose probability converges to 0. Thus, its expected value also converges to 0.
 \end{proof}
