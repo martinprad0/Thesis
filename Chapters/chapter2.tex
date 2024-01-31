@@ -51,7 +51,7 @@ Another exponential inequality that is derived using a similar technique is Hoef
   Since $x \mapsto e^x$ is a convex function, it follows that, for a random variable $X \in [a,b]$:
   \[ e^{\lambda X} \leq \frac{e^{\lambda a}(b-X)}{b-a} + \frac{e^{\lambda b}(X-a)}{b-a},\hspace*{1em} a \leq b. \]
   Next, take expectations on both sides of the equation to obtain:
-  \[ \E e^{tX} \leq \frac{(b-\E X) \cdot e^{\lambda a}}{b-a} + \frac{(\E X -a) \cdot e^{\lambda b}}{b-a}. \]
+  \[ \E e^{\lambda X} \leq \frac{(b-\E X) \cdot e^{\lambda a}}{b-a} + \frac{(\E X -a) \cdot e^{\lambda b}}{b-a}. \]
   To simplify the expression, let $\alpha = (\E X -a)/(b-a)$, $\beta = (b-\E X)/(b-a)$ and $u = \lambda (b-a)$. Since $a < \E X < b$, it follows that $\alpha$ and $\beta$ are positive. Also, note that,
   \[ \alpha + \beta = \frac{\E X-a}{b-a} + \frac{b-\E X}{b-a} = \frac{b-a}{b-a} = 1. \] 
   Now,
@@ -78,8 +78,10 @@ Another exponential inequality that is derived using a similar technique is Hoef
   \[\everymath{\displaystyle}\arraycolsep=1.8pt\def\arraystretch{2}
     \begin{array}{rcl}
       \P\{S_N-\mu \geq t\} & \leq & e^{-\lambda t} \prod_{i = 1}^N \E e^{\lambda X_i} \\
-      &\leq^{(\star)} & e^{-\lambda t} \exp\left(\frac{1}{8}t^2 \sum_{i = 1}^{N} {(b_i-a_i)}^2\right).
-    \end{array}\]  
+      &\leq^{(\star)} & e^{-\lambda t} \exp\left(\frac{1}{8}\lambda^2 \sum_{i = 1}^{N} {(b_i-a_i)}^2\right).
+    \end{array}\] 
+
+  Use the substitution $\lambda = 4t {\left(\sum{(b_i-a_i)}^2\right)}^{-1}$ to get the desired result.
 
 \end{proof}
 %% --------------------
