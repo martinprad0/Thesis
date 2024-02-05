@@ -143,10 +143,12 @@ In the paper~\cite{gzyl1990physicist} the authors found that the optimal  number
 \[  \frac{d_N-t_N}{t_N} \approx 0.23.\] 
 
 The result that we are going to show is that $d_n$ is very concentrated around its mean. In order to prove this, some modifications must be made to the algorithm's trajectory. Let $e_N$ be the distance of a new trajectory that satisfies the following conditions:
+
 \begin{itemize}
     \item For any empty stripe in the plane we sum the length of its diagonal $\sqrt{L^2+ L^2/M^2}$ and then it skips the empty stripe.
     \item When there are no empty stripes, $e_N = d_N$ 
 \end{itemize}
+
  The probability that any given stripe is empty converges exponentially to 0,
 \[ \begin{array}{rl}
     {(1- 1/M)}^N & = {(1- 0.58^{-1} N^{-1/2})}^N\\[1em]
@@ -154,14 +156,7 @@ The result that we are going to show is that $d_n$ is very concentrated around i
     &  \sim \exp(-0.58^{-1} N^{1/2}).
 \end{array} \] 
 
-
-Let $\A_i := \sigma\{X_1,\ldots,X_i\}$ denote the sigma algebra corresponding to revealing the first $i$ points, $\A_0 = \{\emptyset, {[0,L]}^2\}$. The expected value of the trajectory $e_N$ given that we only know the positions of the first $i$ points in the sample is $\E (e_N | \A_i)$. Define
-\[ Z_i = \E (e_N | \A_i) - \E (e_N | \A_{i-1}),  \]  
-as the difference of this expectations when we reveal 1 more point. Note that since
-\[ \E(Z_i | \A_i) =  \E (e_N | \A_i) - \E (e_N | \A_{i-1}, A_i) = \E (e_N | \A_i) - \E (e_N | \A_i) = 0,\] 
-$Z_1, \ldots, Z_N$ is the difference sequence of a vertex exposure martingale.
-
-% \begin{figure}[ht]\label{TSP:pic1}
+% \begin{figure}[H]\label{TSP:pic1}
 %     \subfloat[$i = 0$]{\label{TSP:pic1.1}
 %         \includegraphics[width=0.25\textwidth]{../Simulation/TSPPictures/pic0.png}
 %     }
@@ -190,7 +185,22 @@ $Z_1, \ldots, Z_N$ is the difference sequence of a vertex exposure martingale.
 %     \caption{Evolution of the vertex exposure martingale}
 % \end{figure}
 
-Define $e_N^{[i]}$ as the distance of the trajectory when we remove the $i$-th point from the sample. Intuitively from the triangle inequality, we can obtain the following inequalities:
+
+Let $\A_i := \sigma\{X_1,\ldots,X_i\}$ denote the sigma algebra corresponding to revealing the first $i$ points, $\A_0 = \{\emptyset, {[0,L]}^2\}$. The expected value of the trajectory $e_N$ given that we only know the positions of the first $i$ points in the sample is $\E (e_N | \A_i)$. Define
+\[ Z_i = \E (e_N | \A_i) - \E (e_N | \A_{i-1}),  \]  
+as the difference of this expectations when we reveal 1 more point. Note that since
+\[ \E(Z_i | \A_i) =  \E (e_N | \A_i) - \E (e_N | \A_{i-1}, A_i) = \E (e_N | \A_i) - \E (e_N | \A_i) = 0,\] 
+where $Z_1, \ldots, Z_N$ is the difference sequence of a vertex exposure martingale.
+
+Define $e_N^{[i]}$ as the distance of the trajectory when we remove the $i$-th point from the sample.
+% \begin{wrapfigure}{r}{0.45\textwidth}
+%     \setbox0\hbox
+%     {\includegraphics[trim={1cm 1cm 1cm 1cm},clip,width=0.4\textwidth]{../Simulation/TSPPictures/grid.png}}
+%     \ht0=140pt % change this to move it up or down
+%     \dp0=0pt
+%     \box0
+% \end{wrapfigure}
+Intuitively from the triangle inequality, we can obtain the following inequalities:
 \[ e_N^{[i]} \leq e_N \leq e_N^{[i]} + 2 L/M, \]
 meaning that revealing one point cannot increase more than 2 widths the distance of the trajectory. Thus,
 \[ \|Z_i\|_\infty = \sup_{X_1,\ldots, X_N} \|\E (e_N | \A_i) - \E (e_N | \A_{i-1})\| \leq 2L/M. \tag*{$ (\star)$}.\]
